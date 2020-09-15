@@ -49,7 +49,7 @@ class Mailto:
 
 db_name = "seajobs"
 db_user = "root"
-db_password = "1234"
+db_password = "QKh8RrWnc51CNcs2DigDsTIxg9J1SXZo"
 mail_addr = "homie.niktob560@gmail.com"
 mail_pass = "ATX5GQHM&"
 encoding = "utf-8"
@@ -60,8 +60,8 @@ def db():
     return mariadb.connect(
         user=db_user,
         password=db_password,
-        host="0.0.0.0",
-        port=3306,
+        host="128.0.129.115",
+        port=3308,
         database=db_name)
 
 def query_db(query, args=(), one=False):
