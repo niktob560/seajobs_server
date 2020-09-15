@@ -50,8 +50,8 @@ class Mailto:
 db_name = "seajobs"
 db_user = "root"
 db_password = "QKh8RrWnc51CNcs2DigDsTIxg9J1SXZo"
-mail_addr = "homie.niktob560@gmail.com"
-mail_pass = "ATX5GQHM&"
+mail_addr = "seajobs.development@gmail.com"
+mail_pass = "Kpl5xKpdzPaHnQ1y"
 encoding = "utf-8"
 images_path = "/tmp/"
 cv_path = "/tmp/"
@@ -148,6 +148,7 @@ def register_company(request, company_name: str, password: str, website: str, mo
             connection.commit()
             cursor.close()
         except mariadb.Error as e:
+            print(e)
             raise Exception("Company with such email already exist")
     except Exception as e:
         return {"result": "err", "extra": "{}".format(e)}
@@ -373,7 +374,7 @@ def update_profile_company(request, email: str, password: str, website: str, mob
         old_email = request.auth["owner"]
         cur.execute(f"UPDATE companies SET email='{email}', password='{password}', website='{website}', mobile_phone='{phone}', email='{email}', country='{country}', city='{city}', address='{address}' WHERE email='{old_email}' LIMIT 1")
         cur.execute(f"UPDATE tokens SET owner='{email}' WHERE owner='{old_email}' LIMIT 1")
-        cur.execute(f"UPDATE files SET owner='{email}' WHERE owner='{old_email}' LIMIT 1"):
+        cur.execute(f"UPDATE files SET owner='{email}' WHERE owner='{old_email}' LIMIT 1")
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
     else:
@@ -581,7 +582,9 @@ Content-Disposition: attachment; filename=%s
     message = part1 + part2 + part3
     s = smtplib.SMTP('smtp.gmail.com', 587)
     try:
+        s.ehlo()
         s.starttls()
+        s.ehlo()
         s.login(mail_addr, mail_pass)
         s.sendmail(mail_addr, mailto.addr, f"{message}".encode(encoding))
         print(f"Sent message {message} to {mailto}")
