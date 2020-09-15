@@ -14,8 +14,21 @@ services:
         volumes:
             - ./Mariadb:/docker-entrypoint-initdb.d
             - ./DB:/var/lib/mysql
-    adminer:
-        image: adminer
-        restart: always
+    api:
+        build: ./api
+        container_name: seajobs-api
+        volumes: 
+            - ./api/:/app
         ports:
-        - 8085:8080
+            - 8000:80
+    nginx:
+        image: nginx:latest
+        container_name: nginx
+        ports:
+            - 80:80
+            - 443:443
+        volumes:
+            - ./Nginx/core:/etc/nginx/conf.d
+            - ./Nginx/www:/var/www/
+            - ./Nginx/Logs:/var/log/nginx/
+            - ./Nginx/html:/usr/share/nginx/html/

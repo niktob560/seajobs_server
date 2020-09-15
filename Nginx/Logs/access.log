@@ -1,0 +1,7 @@
+172.19.0.1 - - [15/Sep/2020:17:20:53 +0000] "GET /api/docs HTTP/1.1" 404 2058 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:80.0) Gecko/20100101 Firefox/80.0"
+172.19.0.1 - - [15/Sep/2020:17:20:53 +0000] "GET /favicon.ico HTTP/1.1" 404 153 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:80.0) Gecko/20100101 Firefox/80.0"
+172.19.0.1 - - [15/Sep/2020:17:20:58 +0000] "GET /api/api/docs HTTP/1.1" 200 768 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:80.0) Gecko/20100101 Firefox/80.0"
+172.19.0.1 - - [15/Sep/2020:17:20:58 +0000] "GET /api/openapi.json HTTP/1.1" 404 2082 "http://127.0.0.1/api/api/docs" "Mozilla/5.0 (X11; Linux x86_64; rv:80.0) Gecko/20100101 Firefox/80.0"
+172.19.0.1 - - [15/Sep/2020:17:21:05 +0000] "GET /api/docs HTTP/1.1" 404 2058 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:80.0) Gecko/20100101 Firefox/80.0"
+172.19.0.1 - - [15/Sep/2020:17:21:27 +0000] "GET /api/docs HTTP/1.1" 200 768 "-" "Mozilla/5.0 (X11; Linux x86_64; rv:80.0) Gecko/20100101 Firefox/80.0"
+172.19.0.1 - - [15/Sep/2020:17:21:27 +0000] "GET /api/openapi.json HTTP/1.1" 200 8398 "http://127.0.0.1/api/docs" "Mozilla/5.0 (X11; Linux x86_64; rv:80.0) Gecko/20100101 Firefox/80.0"
