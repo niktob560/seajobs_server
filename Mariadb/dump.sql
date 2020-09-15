@@ -29,7 +29,7 @@ CREATE TABLE vacations (
   post_date DATE NOT NULL,
   english_level ENUM('Not required', 'Elementary(A1)', 'Pre Intermediate(A2)', 'Intermediate(B1)', 'Upper Intermediate(B2)', 'Advanced(C1)') NOT NULL,
   id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  FOREIGN KEY (company_email) REFERENCES companies(email) ON DELETE CASCADE
+  FOREIGN KEY (company_email) REFERENCES companies(email) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 

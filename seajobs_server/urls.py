@@ -346,7 +346,7 @@ def get_vacation(request, id: int):
         return {"result": "ok", "extra": data}
 
 @api.post("/update_profile_company", auth=AuthBearer())
-def update_profile_company(request, company_name: str, password: str, website: str, mobile_phone: str, country: str, city: str, address: str):
+def update_profile_company(request, email: str, password: str, website: str, mobile_phone: str, country: str, city: str, address: str):
     con = None
     cur = None
     try:
@@ -357,19 +357,23 @@ def update_profile_company(request, company_name: str, password: str, website: s
             raise ValueError("Invalid phone number")
         if not password or password.__len__() < 4:
             raise ValueError("Password must contain at least 4 chars")
-        if not company_name:
-            raise ValueError("Company name must be set")
+        if not email or not validate_email(email):
+            raise ValueError("Invalid email")
         if not country:
             raise ValueError("Country must be set")
         if not city:
             raise ValueError("City must be set")
         if not address:
             raise ValueError("Address must be set")
+        if query_db(f"SELECT email FROM companies WHERE email='{email}' LIMIT 1", one=True) or query_db(f"SELECT email FROM users WHERE email='{email}' LIMIT 1", one=True):
+            raise ValueError("Email already exists")
         phone = "+{}{}".format(mobile_phone.country_code, mobile_phone.national_number)
         con = db()
         cur = con.cursor()
-        email = request.auth["owner"]
-        cur.execute(f"UPDATE companies SET name='{company_name}', password='{password}', website='{website}', mobile_phone='{phone}', email='{email}', country='{country}', city='{city}', address='{address}' WHERE email='{email}' LIMIT 1")
+        old_email = request.auth["owner"]
+        cur.execute(f"UPDATE companies SET email='{email}', password='{password}', website='{website}', mobile_phone='{phone}', email='{email}', country='{country}', city='{city}', address='{address}' WHERE email='{old_email}' LIMIT 1")
+        cur.execute(f"UPDATE tokens SET owner='{email}' WHERE owner='{old_email}' LIMIT 1")
+        cur.execute(f"UPDATE files SET owner='{email}' WHERE owner='{old_email}' LIMIT 1"):
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
     else:
