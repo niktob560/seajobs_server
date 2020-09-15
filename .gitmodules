@@ -1,0 +1,3 @@
+[submodule "Nginx/www"]
+	path = Nginx/www
+	url = git@github.com:/proger00/seajobs
