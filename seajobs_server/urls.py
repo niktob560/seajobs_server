@@ -386,7 +386,7 @@ def update_profile_company(request, email: str, password: str, website: str, mob
             con.commit()
 
 @api.post("/update_profile_sailor", auth=AuthBearer())
-def update_profile_sailor(request, name: str, password: str, birthday_date: str, mobile_phone: str, position: str):
+def update_profile_sailor(request, name: str, password: str, birthday_date: str, mobile_phone: str, position: str, email: str):
     cursor = None
     connection = None
     try :
@@ -405,12 +405,16 @@ def update_profile_sailor(request, name: str, password: str, birthday_date: str,
             raise ValueError("Position must be set")
         if not name:
             raise ValueError("Name must be set")
+        if query_db(f"SELECT email FROM companies WHERE email='{email}' LIMIT 1", one=True) or query_db(f"SELECT email FROM users WHERE email='{email}' LIMIT 1", one=True):
+            raise ValueError("Email already exists")
         phone = "+{}{}".format(mobile_phone.country_code, mobile_phone.national_number)
-        email = request.auth["owner"]
+        old_email = request.auth["owner"]
         try:
             connection = db()
             cursor = connection.cursor()
-            id = cursor.execute(f"UPDATE users SET name='{name}', password='{password}', birthday_date='{birthday_date}', mobile_phone='{phone}', position='{position}' WHERE email='{email}' LIMIT 1", ())
+            id = cursor.execute(f"UPDATE users SET name='{name}', password='{password}', birthday_date='{birthday_date}', mobile_phone='{phone}', position='{position}' WHERE email='{old_email}' LIMIT 1", ())
+            cursor.execute(f"UPDATE tokens SET owner='{email}' WHERE owner='{old_email}' LIMIT 1")
+            cursor.execute(f"UPDATE files SET owner='{email}' WHERE owner='{old_email}' LIMIT 1")
             connection.commit()
             cursor.close()
         except mariadb.Error as e:
@@ -590,7 +594,7 @@ Content-Disposition: attachment; filename=%s
         print(f"Sent message {message} to {mailto}")
     except Exception as e:
         print(e)
-        raise e
+        raise Exception("Failed to send message")
     finally:
         s.quit()
 
