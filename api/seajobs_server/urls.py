@@ -356,8 +356,13 @@ def update_profile_company(request, email: str, password: str, website: str, mob
         mobile_phone = phonenumbers.parse(mobile_phone, "RU")
         if not mobile_phone or mobile_phone == None:
             raise ValueError("Invalid phone number")
-        if not password or password.__len__() < 4:
+        if password and password.__len__() < 4:
             raise ValueError("Password must contain at least 4 chars")
+        elif password.strip():
+            password_query = f", password='{password}'"
+        else:
+            password_query = f""
+            
         if not email or not validate_email(email):
             raise ValueError("Invalid email")
         if not country:
@@ -372,7 +377,7 @@ def update_profile_company(request, email: str, password: str, website: str, mob
         con = db()
         cur = con.cursor()
         old_email = request.auth["owner"]
-        cur.execute(f"UPDATE companies SET email='{email}', password='{password}', website='{website}', mobile_phone='{phone}', email='{email}', country='{country}', city='{city}', address='{address}' WHERE email='{old_email}' LIMIT 1")
+        cur.execute(f"UPDATE companies SET email='{email}'{password_query}, website='{website}', mobile_phone='{phone}', email='{email}', country='{country}', city='{city}', address='{address}' WHERE email='{old_email}' LIMIT 1")
         cur.execute(f"UPDATE tokens SET owner='{email}' WHERE owner='{old_email}' LIMIT 1")
         cur.execute(f"UPDATE files SET owner='{email}' WHERE owner='{old_email}' LIMIT 1")
     except Exception as e:
@@ -395,8 +400,12 @@ def update_profile_sailor(request, name: str, password: str, birthday_date: str,
         mobile_phone = phonenumbers.parse(mobile_phone, "RU")
         if not mobile_phone or mobile_phone == None:
             raise ValueError("Invalid phone number")
-        if not password or password.__len__() < 4:
+        if password and password.__len__() < 4:
             raise ValueError("Password must contain at least 4 chars")
+        elif password.strip():
+            password_query = f", password='{password}'"
+        else:
+            password_query = f""
         if not birthday_date:
             raise ValueError("Birthday date must be set")
         birthday_date = datetime.strptime(birthday_date, "%d.%m.%Y")
@@ -412,7 +421,7 @@ def update_profile_sailor(request, name: str, password: str, birthday_date: str,
         try:
             connection = db()
             cursor = connection.cursor()
-            id = cursor.execute(f"UPDATE users SET name='{name}', password='{password}', birthday_date='{birthday_date}', mobile_phone='{phone}', position='{position}' WHERE email='{old_email}' LIMIT 1", ())
+            id = cursor.execute(f"UPDATE users SET name='{name}'{password_query}, birthday_date='{birthday_date}', mobile_phone='{phone}', position='{position}' WHERE email='{old_email}' LIMIT 1", ())
             cursor.execute(f"UPDATE tokens SET owner='{email}' WHERE owner='{old_email}' LIMIT 1")
             cursor.execute(f"UPDATE files SET owner='{email}' WHERE owner='{old_email}' LIMIT 1")
             connection.commit()
