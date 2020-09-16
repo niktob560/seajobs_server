@@ -440,11 +440,11 @@ def update_profile_sailor(request, name: str, password: str, birthday_date: str,
 
 sort_dict = {"creation": "v.post_date", "start_at_asc": "v.start_at ASC", "start_at_desc": "v.start_at DESC"}
 @api.post("/get_vacations")
-def get_vacations(request, position: str, fleet: str, country: str, salary_from: int, start_at: str, end_at: str, sort: str):
+def get_vacations(request, position: str, fleet: str, countries: str, salary_from: int, start_at: str, end_at: str, sort: str):
     try:
         position = position.strip()
         fleet = fleet.strip()
-        country = country.strip()
+        countries = countries.strip()
         start_at = start_at.strip()
         end_at = end_at.strip()
         sort = sort.strip()
@@ -484,16 +484,24 @@ def get_vacations(request, position: str, fleet: str, country: str, salary_from:
                 if i < fleet.count(","):
                     where_position += " OR "
             where_position += ")"
+
+        if len(countries) > 0:
+            if len(where_position) > 0:
+                where_position += " AND "
+            print("A")
+            where_position += "("
+            for i in range(0, countries.count(",") + 1):
+                fl = countries.split(",")[i]
+                print(f"i {i} country {fl}")
+                where_position += f"c.country='{fl}'"
+                if i < countries.count(","):
+                    where_position += " OR "
+            where_position += ")"
         
         if salary_from > 0:
             if len(where_position) > 0:
                 where_position += " AND "
             where_position += f"v.salary >= {salary_from}"
-
-        if country:
-            if len(where_position) > 0:
-                where_position += " AND "
-            where_position += f"c.country='{country}'"
         
         if start_at:
             if len(where_position) > 0:

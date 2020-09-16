@@ -4,3 +4,6 @@
 2020/09/15 17:29:09 [error] 19#19: *1 open() "/var/www//favicon.ico" failed (2: No such file or directory), client: 172.20.0.1, server: seajobs.dev, request: "GET /favicon.ico HTTP/1.1", host: "127.0.0.1"
 2020/09/15 17:30:09 [error] 19#19: *1 open() "/var/www/js/index.js" failed (2: No such file or directory), client: 172.20.0.1, server: seajobs.dev, request: "GET /js/index.js HTTP/1.1", host: "127.0.0.1", referrer: "http://127.0.0.1/reg.html"
 2020/09/15 17:30:09 [error] 19#19: *1 open() "/var/www/js/index.js" failed (2: No such file or directory), client: 172.20.0.1, server: seajobs.dev, request: "GET /js/index.js HTTP/1.1", host: "127.0.0.1", referrer: "http://127.0.0.1/reg.html"
+2020/09/16 18:53:50 [error] 19#19: *8 open() "/var/www/favicon.ico" failed (2: No such file or directory), client: 172.20.0.1, server: seajobs.dev, request: "GET /favicon.ico HTTP/1.1", host: "127.0.0.1"
+2020/09/16 18:57:58 [error] 19#19: *12 open() "/var/www/favicon.ico" failed (2: No such file or directory), client: 172.20.0.1, server: seajobs.dev, request: "GET /favicon.ico HTTP/1.1", host: "127.0.0.1"
+2020/09/16 19:02:09 [error] 19#19: *14 open() "/var/www/favicon.ico" failed (2: No such file or directory), client: 172.20.0.1, server: seajobs.dev, request: "GET /favicon.ico HTTP/1.1", host: "127.0.0.1"
