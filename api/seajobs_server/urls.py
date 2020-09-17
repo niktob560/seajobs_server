@@ -103,12 +103,15 @@ def register_sailor(request, name: str, password: str, email: str, birthday_date
             raise ValueError("Name must be set")
         phone = "+{}{}".format(mobile_phone.country_code, mobile_phone.national_number)
         try:
+            if query_db(f"SELECT email FROM companies WHERE email='{email}'"):
+                raise Exception("Company with such email already exist")
             connection = db()
             cursor = connection.cursor()
             id = cursor.execute("INSERT INTO users(name, password, email, birthday_date, mobile_phone, position) VALUES (?, ?, ?, ?, ?, ?) LIMIT 1", (name, password, email, birthday_date, phone, position))
             connection.commit()
             cursor.close()
         except mariadb.Error as e:
+            print(f"{e}")
             raise Exception("User with such email already exist")
     except Exception as e:
         return {"result": "err", "extra": "{}".format(e)}
@@ -142,16 +145,18 @@ def register_company(request, company_name: str, password: str, website: str, mo
             raise ValueError("Address must be set")
         phone = "+{}{}".format(mobile_phone.country_code, mobile_phone.national_number)
         try:
+            if query_db(f"SELECT email FROM users WHERE email='{email}'"):
+                raise Exception("User with such email already exist")
             connection = db()
             cursor = connection.cursor()
             id = cursor.execute("INSERT INTO companies(name, password, website, mobile_phone, email, country, city, address) VALUES (?, ?, ?, ?, ?, ?, ?, ?) LIMIT 1", (company_name, password, website, phone, email, country, city, address))
             connection.commit()
             cursor.close()
         except mariadb.Error as e:
-            print(e)
+            print(f"{e}")
             raise Exception("Company with such email already exist")
     except Exception as e:
-        return {"result": "err", "extra": "{}".format(e)}
+        return {"result": "err", "extra": f"{e}"}
     else:
         return {"result": "ok", "extra": f"{id}"}
     finally:
