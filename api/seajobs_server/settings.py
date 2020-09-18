@@ -137,4 +137,4 @@ MAIL_ADDR = "seajobs.development@gmail.com"
 MAIL_PASS = "Kpl5xKpdzPaHnQ1y"
 ENCODING = "utf-8"
 
-MAX_VACATIONS_DISPLAYED = 50
+MAX_VACATIONS_DISPLAYED = 100

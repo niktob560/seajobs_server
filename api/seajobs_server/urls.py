@@ -556,7 +556,8 @@ def get_vacations(request, position: str, fleet: str, countries: str, salary_fro
         
         if where_position:
             where_position = "WHERE {}".format(where_position)
-        q = f"SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email {where_position} {order_by}"
+        limit = settings.MAX_VACATIONS_DISPLAYED
+        q = f"SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email {where_position} {order_by} LIMIT {limit}"
         print(q)
         data = query_db(q)
         for i in range(0, len(data)):
