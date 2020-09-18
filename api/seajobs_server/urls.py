@@ -13,23 +13,36 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path("blog/", include("blog.urls"))
 """
+# Django
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.http import HttpResponse, Http404
+from django.core.exceptions import PermissionDenied
+
+
+# Django-Ninja
 from ninja import NinjaAPI
 from ninja.security import HttpBearer
 
+# storage
 import mariadb
+import pathlib
+import os
+import filetype
 
 # input validity
 import phonenumbers
 from validate_email import validate_email
 from datetime import datetime, timedelta, date
 
+# random and hashes
 import hashlib
 import time
 import random
 import secrets
 
+# e-mail
 import smtplib
 import sys
 import base64
@@ -47,22 +60,14 @@ class Mailto:
         self.addr = addr
         self.name = name
 
-db_name = "seajobs"
-db_user = "root"
-db_password = "QKh8RrWnc51CNcs2DigDsTIxg9J1SXZo"
-mail_addr = "seajobs.development@gmail.com"
-mail_pass = "Kpl5xKpdzPaHnQ1y"
-encoding = "utf-8"
-images_path = "/tmp/"
-cv_path = "/tmp/"
 
 def db():
     return mariadb.connect(
-        user=db_user,
-        password=db_password,
-        host="128.0.129.115",
-        port=3308,
-        database=db_name)
+        user=settings.DB_USER,
+        password=settings.DB_PASSWORD,
+        host=settings.DB_HOST,
+        port=settings.DB_PORT,
+        database=settings.DB_NAME)
 
 def query_db(query, args=(), one=False):
     cur = db().cursor()
@@ -236,21 +241,39 @@ def handle_uploaded_file(filename, file):
         for chunk in file.chunks():
             destination.write(chunk)
 
+def handle_remove_file(filepath):
+    pathlib.Path.unlink(filepath)
+
 @api.post("/upload_cv", auth=AuthBearer())
 def upload_cv(request):
+    con = None
+    cur = None
     try:
         if request.auth["owner_type"] != "user":
             raise ValueError("Only sailor can upload CV")
+        email = request.auth["owner"]
         file = request.FILES["cv"]
         filename = secrets.token_hex(64)
         ext = f"{file}".split(".")[1]
         filename += f".{ext}"
-        path = f"{cv_path}{filename}"
+        path = f"{settings.CV_ROOT}{filename}"
         handle_uploaded_file(path, file)
+        oldname = query_db(f"SELECT name FROM files WHERE owner_type='user' AND owner='{email}'", one=True)
+        con = db()
+        cur = con.cursor()
+        if oldname:
+            cur.execute(f"UPDATE files SET name='{filename}' WHERE owner='{email}' LIMIT 1")
+        else:
+            cur.execute(f"INSERT INTO files (owner_type, owner, name) VALUES ('user', '{email}', '{filename}')")
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
     else:
         return {"result": "ok", "extra": f"{filename}"}
+    finally:
+        if cur and cur != None:
+            cur.close()
+        if con and con != None:
+            con.commit()
 
 @api.post("/upload_logo", auth=AuthBearer())
 def upload_logo(request):
@@ -261,7 +284,7 @@ def upload_logo(request):
             raise ValueError("Only company can upload logo")
         file = request.FILES["logo"]
         filename = secrets.token_hex(64)
-        path = f"{images_path}{filename}"
+        path = f"{settings.LOGO_ROOT}{filename}"
         handle_uploaded_file(path, file)
         email = request.auth["owner"]
         con = db()
@@ -569,7 +592,7 @@ def respond_vacation(request, name: str, surname: str, birthday_date: str, email
         vacation = get_vacation(None, vacation_id)["extra"]
         print(vacation)
         msg = '<style>th, td { padding:15px 60px;font-size:30px; } table{ margin: 0px 25%; } div{ padding: 30px; text-align: center; background: #00246A; color: white; font-size: 30px;} body { padding: 0px; } * { margin: 0px; } </style> <div style="padding: 30px;  text-align: center;  background: #00246A;  color: white;  font-size: 30px;"><h1>New responce</h1></div><table><tr><td>Name:</td><td>' + name + ' ' + surname + '</td></tr><tr><td>Age:</td><td>' + f"{age}" + '</td></tr><tr><td>Position:</td><td>' + vacation["position"] +'</td></tr><tr><td>Email:</td><td>' + email + '</td></tr><tr><td>Mobile phone:</td><td>' + phone + '</td></tr><tr><td>CV file</td><td><a href="https://google.com/">' + "cv." + path_to_cv.split(".")[1] + '</a></td></tr></table>'
-        sendMail(Mailto(addr=vacation["company"]["email"], name=vacation["company"]["name"]), "CV Responce", msg, f"{cv_path}{path_to_cv}")
+        sendMail(Mailto(addr=vacation["company"]["email"], name=vacation["company"]["name"]), "CV Responce", msg, f"{settings.CV_ROOT}{path_to_cv}")
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
     else:
@@ -587,7 +610,7 @@ Subject: %s
 MIME-Version: 1.0
 Content-Type: multipart/mixed; boundary=%s
 --%s
-""" % (mail_addr, mailto.name, mailto.addr, subject, marker, marker)
+""" % (settings.MAIL_ADDR, mailto.name, mailto.addr, subject, marker, marker)
 
     # Define the message action
     part2 = """Content-Type: text/html
@@ -611,14 +634,49 @@ Content-Disposition: attachment; filename=%s
         s.ehlo()
         s.starttls()
         s.ehlo()
-        s.login(mail_addr, mail_pass)
-        s.sendmail(mail_addr, mailto.addr, f"{message}".encode(encoding))
+        s.login(settings.MAIL_ADDR, settings.MAIL_PASS)
+        s.sendmail(settings.MAIL_ADDR, mailto.addr, f"{message}".encode(settings.ENCODING))
         print(f"Sent message {message} to {mailto}")
     except Exception as e:
         print(e)
         raise Exception("Failed to send message")
     finally:
         s.quit()
+
+def get_file(file_path: str):
+    if os.path.exists(file_path):
+        kind = filetype.guess(file_path)
+        if kind is None:
+            print(f"Cannot guess file type {file_path}")
+            raise Http404
+        with open(file_path, 'rb') as fh:
+            response = HttpResponse(fh.read(), content_type=kind)
+            response['Content-Disposition'] = 'inline; filename=' + os.path.basename(file_path)
+            return response
+    raise Http404
+
+@api.get("/get_cv", auth=AuthBearer())
+def get_cv(request, filename: str):
+    file_path = os.path.join(settings.CV_ROOT, filename)
+    return get_file(file_path)
+
+@api.get("/get_user_cv", auth=AuthBearer())
+def get_user_cv(request, username: str):
+    print(f"{request.auth}")
+    if request.auth["owner_type"] != "company":
+        raise PermissionDenied
+    filename = query_db(f"SELECT name FROM files WHERE owner='{username}' AND owner_type='user' LIMIT 1", one=True)
+    if not filename:
+        raise Http404
+    filename = filename["name"]
+    print(f"{filename}")
+    file_path = os.path.join(settings.CV_ROOT, filename)
+    return get_file(file_path)
+
+@api.get("/get_logo")
+def get_logo(request, filename: str):
+    file_path = os.path.join(settings.LOGO_ROOT, filename)
+    return get_file(file_path)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
