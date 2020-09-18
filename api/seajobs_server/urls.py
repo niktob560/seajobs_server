@@ -350,7 +350,7 @@ def add_vacation(request, position: str, salary: int, fleet_type: str, start_at:
         post_date = "{Y}-{m}-{d}".format(Y=post_date.year, m=post_date.month, d=post_date.day)
         con = db()
         cur = con.cursor()
-        id = cur.execute(f"INSERT INTO vacations (position, salary, fleet, start_at, end_at, company_email, post_date, english_level) VALUES('{position}', '{salary}', '{fleet_type}', '{start_at}', '{end_at}', '{company_email}', '{post_date}', '{english_level}') LIMIT 1", ())
+        id = cur.execute(f"INSERT INTO vacations (position, salary, fleet, start_at, end_at, company_email, post_date, english_level, nationality) VALUES('{position}', '{salary}', '{fleet_type}', '{start_at}', '{end_at}', '{company_email}', '{post_date}', '{english_level}', {nationality}) LIMIT 1", ())
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
     else:
