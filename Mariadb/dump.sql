@@ -24,7 +24,7 @@ CREATE TABLE vacations (
   salary INT UNSIGNED NOT NULL,
   fleet TEXT NOT NULL,
   start_at DATE NOT NULL,
-  end_at DATE NOT NULL,
+  contract_duration INT UNSIGNED NOT NULL,
   company_email VARCHAR(200) NOT NULL,
   post_date DATE NOT NULL,
   english_level ENUM('Not required', 'Elementary(A1)', 'Pre Intermediate(A2)', 'Intermediate(B1)', 'Upper Intermediate(B2)', 'Advanced(C1)') NOT NULL,

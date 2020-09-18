@@ -307,7 +307,7 @@ def upload_logo(request):
             con.commit()
 
 @api.post("/add_vacation", auth=AuthBearer())
-def add_vacation(request, position: str, salary: int, fleet_type: str, start_at: str, contract_duration_days: int, nationality: str, english_level: str, requierments: str, fleet_construct_year: int, fleet_dtw: str, fleet_gd_type: str, fleet_power: int):
+def add_vacation(request, position: str, salary: int, fleet_type: str, start_at: str, contract_duration: int, nationality: str, english_level: str, requierments: str, fleet_construct_year: int, fleet_dtw: str, fleet_gd_type: str, fleet_power: int):
     con = None
     cur = None
     try:
@@ -322,11 +322,9 @@ def add_vacation(request, position: str, salary: int, fleet_type: str, start_at:
         if not start_at:
             raise ValueError("Bad start date")
         start_at = datetime.strptime(start_at, "%d.%m.%Y")
-        if contract_duration_days <= 0:
-            raise ValueError("Contract duration can't be less than 1 day")
-        end_at = start_at + timedelta(days=contract_duration_days)
-        end_at = "{Y}-{m}-{d}".format(Y=end_at.year, m=end_at.month, d=end_at.day)
         start_at = "{Y}-{m}-{d}".format(Y=start_at.year, m=start_at.month, d=start_at.day)
+        if contract_duration <= 0:
+            raise ValueError("Contract duration can't be less than 1")
         if not nationality:
             raise ValueError("Bad nationality")
         if not english_level:
@@ -350,7 +348,7 @@ def add_vacation(request, position: str, salary: int, fleet_type: str, start_at:
         post_date = "{Y}-{m}-{d}".format(Y=post_date.year, m=post_date.month, d=post_date.day)
         con = db()
         cur = con.cursor()
-        id = cur.execute(f"INSERT INTO vacations (position, salary, fleet, start_at, end_at, company_email, post_date, english_level, nationality) VALUES('{position}', '{salary}', '{fleet_type}', '{start_at}', '{end_at}', '{company_email}', '{post_date}', '{english_level}', '{nationality}') LIMIT 1", ())
+        id = cur.execute(f"INSERT INTO vacations (position, salary, fleet, start_at, contract_duration, company_email, post_date, english_level, nationality) VALUES('{position}', '{salary}', '{fleet_type}', '{start_at}', '{contract_duration}', '{company_email}', '{post_date}', '{english_level}', '{nationality}')", ())
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
     else:
@@ -493,7 +491,7 @@ def get_vacations(request, position: str, fleet: str, countries: str, salary_fro
                 end_at = datetime.strptime(end_at, "%d.%m.%Y")
                 end_at = "{Y}-{m}-{d}".format(Y=end_at.year, m=end_at.month, d=end_at.day)
         except:
-            end_at = ""
+            end_at = ''
         where_position = ""
         print(position.count(","))
         if len(position) > 0:
@@ -544,7 +542,7 @@ def get_vacations(request, position: str, fleet: str, countries: str, salary_fro
         if end_at:
             if len(where_position) > 0:
                 where_position += " AND "
-            where_position += f"v.end_at <= '{end_at}'"
+            where_position += f"v.start_at <= '{end_at}'"
         
         if sort:
             try:
