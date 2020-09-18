@@ -362,7 +362,9 @@ def add_vacation(request, position: str, salary: int, fleet_type: str, start_at:
 @api.post("/get_vacation")
 def get_vacation(request, id: int):
     try:
-        data = query_db(f"SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE id='{id}'", one=True)
+        if id < 1:
+            raise ValueError("Invalid id")
+        data = query_db(f"SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE v.id={id}", one=True)
         data["company"] = {
                                 "name": data["company_name"], 
                                 "logo_path": data["company_logo_path"], 

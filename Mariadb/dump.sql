@@ -50,7 +50,6 @@ CREATE TABLE files (
 CREATE INDEX vacations_salary ON vacations(salary);
 CREATE INDEX vacations_post ON vacations(post_date);
 CREATE INDEX vacations_start ON vacations(start_at);
-CREATE INDEX vacations_end ON vacations(end_at);
 
 CREATE UNIQUE INDEX companies_email ON companies(email);
 CREATE UNIQUE INDEX users_email ON users(email);
