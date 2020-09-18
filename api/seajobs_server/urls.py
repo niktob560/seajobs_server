@@ -661,20 +661,27 @@ def get_cv(request, filename: str):
     return get_file(file_path)
 
 @api.get("/get_user_cv", auth=AuthBearer())
-def get_user_cv(request, username: str):
-    print(f"{request.auth}")
+def get_user_cv(request, email: str):
     if request.auth["owner_type"] != "company":
         raise PermissionDenied
-    filename = query_db(f"SELECT name FROM files WHERE owner='{username}' AND owner_type='user' LIMIT 1", one=True)
+    filename = query_db(f"SELECT name FROM files WHERE owner='{email}' AND owner_type='user' LIMIT 1", one=True)
     if not filename:
         raise Http404
     filename = filename["name"]
-    print(f"{filename}")
     file_path = os.path.join(settings.CV_ROOT, filename)
     return get_file(file_path)
 
 @api.get("/get_logo")
 def get_logo(request, filename: str):
+    file_path = os.path.join(settings.LOGO_ROOT, filename)
+    return get_file(file_path)
+
+@api.get("/get_company_logo")
+def get_company_logo(request, email: str):
+    filename = query_db(f"SELECT name FROM files WHERE owner='{email}' AND owner_type='company' LIMIT 1", one=True)
+    if not filename:
+        raise Http404
+    filename = filename["name"]
     file_path = os.path.join(settings.LOGO_ROOT, filename)
     return get_file(file_path)
 
