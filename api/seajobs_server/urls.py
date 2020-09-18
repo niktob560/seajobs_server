@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf import settings
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpResponseServerError
 from django.core.exceptions import PermissionDenied
 
 
@@ -117,7 +117,10 @@ def register_sailor(request, name: str, password: str, email: str, birthday_date
             cursor.close()
         except mariadb.Error as e:
             print(f"{e}")
-            raise Exception("User with such email already exist")
+            if f"{e}".startswith("Duplicate entry"):
+                raise Exception("User with such email already exist")
+            else:
+                return HttpResponseServerError()
     except Exception as e:
         return {"result": "err", "extra": "{}".format(e)}
     else:
@@ -159,7 +162,10 @@ def register_company(request, company_name: str, password: str, website: str, mo
             cursor.close()
         except mariadb.Error as e:
             print(f"{e}")
-            raise Exception("Company with such email already exist")
+            if f"{e}".startswith("Duplicate entry"):
+                raise Exception("Company with such email already exist")
+            else:
+                return HttpResponseServerError()
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
     else:
