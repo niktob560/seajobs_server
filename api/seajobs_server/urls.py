@@ -290,6 +290,8 @@ def upload_logo(request):
             raise ValueError("Only company can upload logo")
         file = request.FILES["logo"]
         filename = secrets.token_hex(64)
+        ext = f"{file}".split(".")[1]
+        filename += f".{ext}"
         path = f"{settings.LOGO_ROOT}{filename}"
         handle_uploaded_file(path, file)
         email = request.auth["owner"]
@@ -364,16 +366,16 @@ def get_vacation(request, id: int):
     try:
         if id < 1:
             raise ValueError("Invalid id")
-        data = query_db(f"SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE v.id={id}", one=True)
+        data = query_db(f"SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_country FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE v.id={id}", one=True)
         data["company"] = {
                                 "name": data["company_name"], 
                                 "logo_path": data["company_logo_path"], 
-                                "contry": data["company_contry"],
+                                "country": data["company_country"],
                                 "email": data["company_email"]
                             }
         del data["company_name"]
         del data["company_logo_path"]
-        del data["company_contry"]
+        del data["company_country"]
         del data["company_email"]
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
@@ -576,8 +578,8 @@ def get_vacations(request, position: str, fleet: str, countries: str, salary_fro
     else:
         return {"result": "ok", "extra": data}
 
-@api.post("/respond_vacation")
-def respond_vacation(request, name: str, surname: str, birthday_date: str, email: str, mobile_phone: str, path_to_cv: str, vacation_id: int):
+@api.post("/respond_vacation_anonymous")
+def respond_vacation_anonymous(request, name: str, surname: str, birthday_date: str, email: str, mobile_phone: str, path_to_cv: str, vacation_id: int):
     try:       
         mobile_phone = phonenumbers.parse(mobile_phone, "RU")
         if not mobile_phone or mobile_phone == None:
@@ -597,17 +599,42 @@ def respond_vacation(request, name: str, surname: str, birthday_date: str, email
         phone = "+{}{}".format(mobile_phone.country_code, mobile_phone.national_number)
         age = calculate_age(birthday_date)
         vacation = get_vacation(None, vacation_id)["extra"]
-        print(vacation)
-        msg = '<style>th, td { padding:15px 60px;font-size:30px; } table{ margin: 0px 25%; } div{ padding: 30px; text-align: center; background: #00246A; color: white; font-size: 30px;} body { padding: 0px; } * { margin: 0px; } </style> <div style="padding: 30px;  text-align: center;  background: #00246A;  color: white;  font-size: 30px;"><h1>New responce</h1></div><table><tr><td>Name:</td><td>' + name + ' ' + surname + '</td></tr><tr><td>Age:</td><td>' + f"{age}" + '</td></tr><tr><td>Position:</td><td>' + vacation["position"] +'</td></tr><tr><td>Email:</td><td>' + email + '</td></tr><tr><td>Mobile phone:</td><td>' + phone + '</td></tr><tr><td>CV file</td><td><a href="https://google.com/">' + "cv." + path_to_cv.split(".")[1] + '</a></td></tr></table>'
-        sendMail(Mailto(addr=vacation["company"]["email"], name=vacation["company"]["name"]), "CV Responce", msg, f"{settings.CV_ROOT}{path_to_cv}")
+        msg = '<style>th, td { padding:15px 60px;font-size:30px; } table{ margin: 0px 25%; } div{ padding: 30px; text-align: center; background: #00246A; color: white; font-size: 30px;} body { padding: 0px; } * { margin: 0px; } </style> <div style="padding: 30px;  text-align: center;  background: #00246A;  color: white;  font-size: 30px;"><h1>New responce</h1></div><table><tr><td>Name:</td><td>' + name + ' ' + surname + '</td></tr><tr><td>Age:</td><td>' + f"{age}" + '</td></tr><tr><td>Position:</td><td>' + vacation["position"] +'</td></tr><tr><td>Email:</td><td>' + email + '</td></tr><tr><td>Mobile phone:</td><td>' + phone + '</td></table>'
+        sendMail(Mailto(addr=vacation["company"]["email"], name=vacation["company"]["name"]), "CV Responce", msg, request.FILES["cv"])
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
     else:
         return {"result": "ok", "extra": "0"}
 
-def sendMail(mailto: Mailto, subject: str, body: str, filename: str):
-    fo = open(f"{filename}", "rb")
-    filecontent = fo.read()
+@api.post("/respond_vacation", auth=AuthBearer())
+def respond_vacation(request, vacation_id: int):
+    try:
+        if request.auth["owner_type"] != "user":
+            raise ValueError("Only sailor can respond on vacation")
+        email = request.auth["owner"]
+        cv_filename = _get_user_cv_filename(email)
+        path_to_cv = os.path.join(settings.CV_ROOT, cv_filename)
+        fo = open(path_to_cv, "rb")
+        filecontent = fo.read()
+        userdata = query_db(f"SELECT name, birthday_date, mobile_phone, position FROM users WHERE email='{email}' LIMIT 1", one=True)
+        name = userdata["name"].split(" ")[0]
+        surname = userdata["name"].split(" ")[1]
+        age = calculate_age(userdata["birthday_date"])
+        phone = userdata["mobile_phone"]
+        vacation = get_vacation(None, vacation_id)["extra"]
+        msg = '<style>th, td { padding:15px 60px;font-size:30px; } table{ margin: 0px 25%; } div{ padding: 30px; text-align: center; background: #00246A; color: white; font-size: 30px;} body { padding: 0px; } * { margin: 0px; } </style> <div style="padding: 30px;  text-align: center;  background: #00246A;  color: white;  font-size: 30px;"><h1>New responce</h1></div><table><tr><td>Name:</td><td>' + name + ' ' + surname + '</td></tr><tr><td>Age:</td><td>' + f"{age}" + '</td></tr><tr><td>Position:</td><td>' + vacation["position"] +'</td></tr><tr><td>Email:</td><td>' + email + '</td></tr><tr><td>Mobile phone:</td><td>' + phone + '</td></tr><tr><td>CV file</td><td><a href="http://' + request.get_host() + f"/api/get_cv?filename={cv_filename}" + '">' + "cv." + cv_filename.split(".")[1] + '</a></td></tr></table>'
+        sendMail(Mailto(addr=vacation["company"]["email"], name=vacation["company"]["name"]), "CV Responce", msg, filecontent, filename=cv_filename)
+    except Exception as e:
+        return {"result": "err", "extra": f"{e}"}
+    else:
+        return {"result": "ok", "exntra": "0"}
+
+def sendMail(mailto: Mailto, subject: str, body: str, filecontent, filename: str = "cv"):
+    if "." in filename:
+        ext = filename.split(".")[1]
+        filename = filename.split(".")[0]
+    else:
+        ext = f"{filecontent}".split(".")[1]
     encodedcontent = base64.b64encode(filecontent)
     marker = "AUNIQUEMARKER"
     # Define the main headers.
@@ -634,7 +661,7 @@ Content-Disposition: attachment; filename=%s
 
 %s
 --%s--
-""" %(filename, filename, f"{encodedcontent}".split("'")[1], marker)
+""" %(f"{filename}.{ext}", f"{filename}.{ext}", f"{encodedcontent}".split("'")[1], marker)
     message = part1 + part2 + part3
     s = smtplib.SMTP('smtp.gmail.com', 587)
     try:
@@ -667,16 +694,27 @@ def get_cv(request, filename: str):
     file_path = os.path.join(settings.CV_ROOT, filename)
     return get_file(file_path)
 
-@api.get("/get_user_cv", auth=AuthBearer())
-def get_user_cv(request, email: str):
-    if request.auth["owner_type"] != "company":
-        raise PermissionDenied
+def _get_user_cv_filename(email: str):
+    filename = query_db(f"SELECT name FROM files WHERE owner='{email}' AND owner_type='user' LIMIT 1", one=True)
+    if filename:
+        return filename["name"]
+    else:
+        return ""
+
+
+def _get_user_cv(email: str):
     filename = query_db(f"SELECT name FROM files WHERE owner='{email}' AND owner_type='user' LIMIT 1", one=True)
     if not filename:
         raise Http404
     filename = filename["name"]
     file_path = os.path.join(settings.CV_ROOT, filename)
     return get_file(file_path)
+
+@api.get("/get_user_cv", auth=AuthBearer())
+def get_user_cv(request, email: str):
+    if request.auth["owner_type"] != "company":
+        raise PermissionDenied
+    return _get_user_cv(email)
 
 @api.get("/get_logo")
 def get_logo(request, filename: str):
