@@ -55,3 +55,4 @@
 2020/09/20 13:34:00 [error] 19#19: *1 open() "/var/www/favicon.ico" failed (2: No such file or directory), client: 172.22.0.1, server: seajobs.dev, request: "GET /favicon.ico HTTP/1.1", host: "0.0.0.0", referrer: "http://0.0.0.0/user_profile.html"
 2020/09/20 17:08:04 [emerg] 1#1: host not found in upstream "api" in /etc/nginx/conf.d/nginx.conf:16
 2020/09/20 17:08:46 [emerg] 1#1: host not found in upstream "api" in /etc/nginx/conf.d/nginx.conf:16
+2020/09/20 18:02:27 [error] 19#19: *35 open() "/var/www/favicon.ico" failed (2: No such file or directory), client: 172.25.0.1, server: seajobs.dev, request: "GET /favicon.ico HTTP/1.1", host: "127.0.0.1", referrer: "http://127.0.0.1/api/add_vacation?position=qwed&salary=123&fleet_type=weds&start_at=11.11.1111&contract_duration=12345&nationality=123wed&english_level=Not%20required&requierments=adsx&fleet_construct_year=12345&fleet_dwt=wesd&fleet_gd_type=gfds&fleet_power=1234"
