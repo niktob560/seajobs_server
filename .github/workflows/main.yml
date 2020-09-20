@@ -46,5 +46,7 @@ jobs:
           args: up -d
           docker_prune: 'false'
           pull_images_first: 'true'
-
+          copy_stack_file: 'true'
+          stack_file_name: docker-compose.yaml
+          deploy_path: /data/seajobs_ci
 
