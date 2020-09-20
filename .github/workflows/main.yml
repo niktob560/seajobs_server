@@ -31,8 +31,13 @@ jobs:
 #           fingerprint: ${{ secrets.DOCKER_SSH_PUBLIC_KEY }}
 #           port: ${{ secrets.PORT }}
 #           script: whoami
-      - name: Save host
-        run: mkdir -p ~/.ssh && ssh-keyscan -H ${{secrets.HOST}}${{secrets.PORT}} > ~/.ssh/known_hosts
+      - name: Geberate SSH keys
+        run: |
+          mkdir -p ~/.ssh/
+          echo "${{DOCKER_SSH_PRIVATE_KEY}}" > ~/.ssh/private.key
+          sudo chmod 600 ~/.ssh/private.key
+          echo "${{SSH_KNOWN_HOSTS}}" > ~/.ssh/known_hosts
+        shell: bash
       - name: Deploy
         uses: wshihadeh/docker-deployment-action@v1
         with:
