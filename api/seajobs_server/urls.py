@@ -225,7 +225,7 @@ def get_profile_company(request):
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
     else:
-        return {"result": "ok", "extra": f"{data}"}
+        return {"result": "ok", "extra": data}
 
 @api.post("/get_profile_user", auth=AuthBearer())
 def get_profile_user(request):
@@ -240,7 +240,7 @@ def get_profile_user(request):
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
     else:
-        return {"result": "ok", "extra": f"{data}"}
+        return {"result": "ok", "extra": data}
 
 def handle_uploaded_file(filename, file):
     with open(filename, "wb+") as destination:
