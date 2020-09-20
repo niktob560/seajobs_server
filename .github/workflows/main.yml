@@ -31,7 +31,8 @@ jobs:
 #           fingerprint: ${{ secrets.DOCKER_SSH_PUBLIC_KEY }}
 #           port: ${{ secrets.PORT }}
 #           script: whoami
-
+      - name: Save host
+        run: ssh-keyscan -H ${{secrets.HOST}}${{secrets.PORT}} > ~/.ssh/known_hosts
       - name: Deploy
         uses: wshihadeh/docker-deployment-action@v1
         with:
