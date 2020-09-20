@@ -366,7 +366,7 @@ def get_vacation(request, id: int):
     try:
         if id < 1:
             raise ValueError("Invalid id")
-        data = query_db(f"SELECT v.position, v.salary, v.fleet, DATE_FORMAT(v.start_at, '%d.%m.%Y'), v.contract_duration, v.company_email, v.requierments, v.fleet_construct_year, v.fleet_dwt, v.fleet_gd, v.fleet_power, DATE_FORMAT(v.post_date, '%d.%m.%Y') as post_date, v.english_level, v.nationality, v.id, c.logo_path as company_logo_path, c.name as company_name, c.country as company_country FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE v.id={id}", one=True)
+        data = query_db(f"SELECT v.position, v.salary, v.fleet, DATE_FORMAT(v.start_at, '%d.%m.%Y') as start_at, v.contract_duration, v.company_email, v.requierments, v.fleet_construct_year, v.fleet_dwt, v.fleet_gd, v.fleet_power, DATE_FORMAT(v.post_date, '%d.%m.%Y') as post_date, v.english_level, v.nationality, v.id, c.logo_path as company_logo_path, c.name as company_name, c.country as company_country FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE v.id={id}", one=True)
         data["company"] = {
                                 "name": data["company_name"], 
                                 "logo_path": data["company_logo_path"], 
