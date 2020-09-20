@@ -3,7 +3,6 @@ services:
     mariadb:
         image: mariadb
         restart: always
-        container_name: mariadb
         ports:
         - 3308:3306
         environment:
