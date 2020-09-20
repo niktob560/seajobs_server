@@ -32,11 +32,7 @@ jobs:
 #           port: ${{ secrets.PORT }}
 #           script: whoami
       - name: Geberate SSH keys
-        run: |
-          mkdir -p ~/.ssh/
-          echo "${{DOCKER_SSH_PRIVATE_KEY}}" > ~/.ssh/private.key
-          sudo chmod 600 ~/.ssh/private.key
-          echo "${{SSH_KNOWN_HOSTS}}" > ~/.ssh/known_hosts
+        run: mkdir -p ~/.ssh/ && echo "${{DOCKER_SSH_PRIVATE_KEY}}" > ~/.ssh/private.key && sudo chmod 600 ~/.ssh/private.key && echo "${{SSH_KNOWN_HOSTS}}" > ~/.ssh/known_hosts
         shell: bash
       - name: Deploy
         uses: wshihadeh/docker-deployment-action@v1
