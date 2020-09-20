@@ -235,7 +235,7 @@ def get_profile_user(request):
         if auth["owner_type"] != "user":
             raise ValueError("This is not a user account")
         email = auth["owner"]
-        data = query_db(f"SELECT name, email, birthday_date, mobile_phone, position FROM users WHERE email='{email}' LIMIT 1", args=(), one=True)
+        data = query_db(f"SELECT name, email, DATE_FORMAT(birthday_date, '%d.%m.%Y') as birthday_date, mobile_phone, position FROM users WHERE email='{email}' LIMIT 1", args=(), one=True)
         print(data)
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
@@ -309,7 +309,7 @@ def upload_logo(request):
             con.commit()
 
 @api.post("/add_vacation", auth=AuthBearer())
-def add_vacation(request, position: str, salary: int, fleet_type: str, start_at: str, contract_duration: int, nationality: str, english_level: str, requierments: str, fleet_construct_year: int, fleet_dtw: str, fleet_gd_type: str, fleet_power: int):
+def add_vacation(request, position: str, salary: int, fleet_type: str, start_at: str, contract_duration: int, nationality: str, english_level: str, requierments: str, fleet_construct_year: int, fleet_dwt: str, fleet_gd_type: str, fleet_power: int):
     con = None
     cur = None
     try:
@@ -335,8 +335,8 @@ def add_vacation(request, position: str, salary: int, fleet_type: str, start_at:
             raise ValueError("Bad requierments")
         if fleet_construct_year < 1500:
             raise ValueError("Bad fleet construct year")
-        if not fleet_dtw:
-            raise ValueError("Bad fleet DTW")
+        if not fleet_dwt:
+            raise ValueError("Bad fleet DWT")
         if not fleet_gd_type:
             raise ValueError("Bad GD value")
         if fleet_power <= 0:
@@ -350,7 +350,7 @@ def add_vacation(request, position: str, salary: int, fleet_type: str, start_at:
         post_date = "{Y}-{m}-{d}".format(Y=post_date.year, m=post_date.month, d=post_date.day)
         con = db()
         cur = con.cursor()
-        id = cur.execute(f"INSERT INTO vacations (position, salary, fleet, start_at, contract_duration, company_email, post_date, english_level, nationality) VALUES('{position}', '{salary}', '{fleet_type}', '{start_at}', '{contract_duration}', '{company_email}', '{post_date}', '{english_level}', '{nationality}')", ())
+        id = cur.execute(f"INSERT INTO vacations (position, salary, fleet, start_at, contract_duration, company_email, post_date, english_level, nationality, requierments, fleet_construct_year, fleet_dwt, fleet_gd, fleet_power) VALUES('{position}', '{salary}', '{fleet_type}', '{start_at}', '{contract_duration}', '{company_email}', '{post_date}', '{english_level}', '{nationality}', '{requierments}', '{fleet_construct_year}', '{fleet_dwt}', '{fleet_gd_type}', '{fleet_power}')", ())
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
     else:
@@ -366,7 +366,7 @@ def get_vacation(request, id: int):
     try:
         if id < 1:
             raise ValueError("Invalid id")
-        data = query_db(f"SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_country FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE v.id={id}", one=True)
+        data = query_db(f"SELECT v.position, v.salary, v.fleet, DATE_FORMAT(v.start_at, '%d.%m.%Y'), v.contract_duration, v.company_email, v.requierments, v.fleet_construct_year, v.fleet_dwt, v.fleet_gd, v.fleet_power, DATE_FORMAT(v.post_date, '%d.%m.%Y') as post_date, v.english_level, v.nationality, v.id, c.logo_path as company_logo_path, c.name as company_name, c.country as company_country FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE v.id={id}", one=True)
         data["company"] = {
                                 "name": data["company_name"], 
                                 "logo_path": data["company_logo_path"], 
@@ -559,7 +559,7 @@ def get_vacations(request, position: str, fleet: str, countries: str, salary_fro
         if where_position:
             where_position = "WHERE {}".format(where_position)
         limit = settings.MAX_VACATIONS_DISPLAYED
-        q = f"SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email {where_position} {order_by} LIMIT {limit}"
+        q = f"SELECT v.position, v.salary, v.fleet, DATE_FORMAT(v.start_at, '%d.%m.%Y') as start_at, v.company_email, v.contract_duration, v.id, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email {where_position} {order_by} LIMIT {limit}"
         print(q)
         data = query_db(q)
         for i in range(0, len(data)):
