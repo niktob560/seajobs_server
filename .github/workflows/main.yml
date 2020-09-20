@@ -43,7 +43,7 @@ jobs:
           deployment_mode: docker-compose
           deploy_path: /data/seajobs_ci
           args: up -d
-          docker_prune: 'true'
+          docker_prune: 'false'
           pull_images_first: 'true'
 
 
