@@ -407,7 +407,7 @@ def update_profile_company(request, email: str, password: str, website: str, mob
             raise ValueError("City must be set")
         if not address:
             raise ValueError("Address must be set")
-        if query_db(f"SELECT email FROM companies WHERE email='{email}' LIMIT 1", one=True) or query_db(f"SELECT email FROM users WHERE email='{email}' LIMIT 1", one=True):
+        if query_db(f"SELECT email FROM users WHERE email='{email}' LIMIT 1", one=True) or query_db(f"SELECT email FROM users WHERE email='{email}' LIMIT 1", one=True):
             raise ValueError("Email already exists")
         phone = "+{}{}".format(mobile_phone.country_code, mobile_phone.national_number)
         con = db()
