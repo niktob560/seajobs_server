@@ -32,7 +32,7 @@ jobs:
 #           port: ${{ secrets.PORT }}
 #           script: whoami
       - name: Save host
-        run: ssh-keyscan -H ${{secrets.HOST}}${{secrets.PORT}} > ~/.ssh/known_hosts
+        run: mkdir -p ~/.ssh && ssh-keyscan -H ${{secrets.HOST}}${{secrets.PORT}} > ~/.ssh/known_hosts
       - name: Deploy
         uses: wshihadeh/docker-deployment-action@v1
         with:
