@@ -25,7 +25,6 @@ services:
         container_name: nginx
         ports:
             - 8080:80
-            - 443:443
         volumes:
             - ./Nginx/core:/etc/nginx/conf.d
             - ./Nginx/www:/var/www/
