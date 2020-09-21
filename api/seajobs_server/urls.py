@@ -347,14 +347,16 @@ def add_vacation(request, position: str, salary: int, fleet_type: str, start_at:
             english_level = "Not required"
         company_email = request.auth["owner"]
         post_date = datetime.now()
-        post_date = "{Y}-{m}-{d}".format(Y=post_date.year, m=post_date.month, d=post_date.day)
+#        post_date = "{Y}-{m}-{d}".format(Y=post_date.year, m=post_date.month, d=post_date.day)
+        post_date = post_date.strftime("%Y-%m-%d %H:%M:%S")
+        print(f"{post_date}")
         con = db()
         cur = con.cursor()
         id = cur.execute(f"INSERT INTO vacations (position, salary, fleet, start_at, contract_duration, company_email, post_date, english_level, nationality, requierments, fleet_construct_year, fleet_dwt, fleet_gd, fleet_power) VALUES('{position}', '{salary}', '{fleet_type}', '{start_at}', '{contract_duration}', '{company_email}', '{post_date}', '{english_level}', '{nationality}', '{requierments}', '{fleet_construct_year}', '{fleet_dwt}', '{fleet_gd_type}', '{fleet_power}')", ())
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
     else:
-        return {"result": "ok", "extra": f"{id}"}
+        return {"result": "ok", "extra": f"{post_date}"}
     finally:
         if cur and cur != None:
             cur.close()
@@ -474,7 +476,7 @@ def update_profile_sailor(request, name: str, password: str, birthday_date: str,
         if connection:
             connection.commit()
 
-sort_dict = {"creation": "v.post_date", "start_at_asc": "v.start_at ASC", "start_at_desc": "v.start_at DESC"}
+sort_dict = {"creation": "v.post_date DESC", "start_at_asc": "v.start_at ASC", "start_at_desc": "v.start_at DESC"}
 @api.post("/get_vacations")
 def get_vacations(request, position: str, fleet: str, countries: str, salary_from: int, start_at: str, end_at: str, sort: str):
     try:
@@ -559,7 +561,7 @@ def get_vacations(request, position: str, fleet: str, countries: str, salary_fro
         if where_position:
             where_position = "WHERE {}".format(where_position)
         limit = settings.MAX_VACATIONS_DISPLAYED
-        q = f"SELECT v.position, v.salary, v.fleet, DATE_FORMAT(v.start_at, '%d.%m.%Y') as start_at, v.company_email, v.contract_duration, v.id, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email {where_position} {order_by} LIMIT {limit}"
+        q = f"SELECT DATE_FORMAT(v.post_date, '%d.%m.%Y %H:%i:%s') as post_date, v.position, v.salary, v.fleet, DATE_FORMAT(v.start_at, '%d.%m.%Y') as start_at, v.company_email, v.contract_duration, v.id, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email {where_position} {order_by} LIMIT {limit}"
         print(q)
         data = query_db(q)
         for i in range(0, len(data)):
