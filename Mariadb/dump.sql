@@ -31,7 +31,7 @@ CREATE TABLE vacations (
   fleet_dwt VARCHAR(200) NOT NULL,
   fleet_gd VARCHAR(200) NOT NULL,
   fleet_power INT NOT NULL,
-  post_date DATE NOT NULL,
+  post_date DATETIME NOT NULL,
   english_level ENUM('Not required', 'Elementary(A1)', 'Pre Intermediate(A2)', 'Intermediate(B1)', 'Upper Intermediate(B2)', 'Advanced(C1)') NOT NULL,
   nationality TEXT NOT NULL,
   id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
