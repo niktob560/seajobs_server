@@ -252,6 +252,7 @@ def handle_remove_file(filepath):
 
 @api.post("/upload_cv", auth=AuthBearer())
 def upload_cv(request):
+    print("AAA")
     con = None
     cur = None
     try:
@@ -259,6 +260,8 @@ def upload_cv(request):
             raise ValueError("Only sailor can upload CV")
         email = request.auth["owner"]
         file = request.FILES["cv"]
+        if not file:
+            raise ValueError("Uploaded file with field 'cv' not found")
         filename = secrets.token_hex(64)
         ext = f"{file}".split(".")[1]
         filename += f".{ext}"
@@ -274,7 +277,7 @@ def upload_cv(request):
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
     else:
-        return {"result": "ok", "extra": f"{filename}"}
+        return {"result": "ok", "extra": filename}
     finally:
         if cur and cur != None:
             cur.close()
@@ -295,9 +298,14 @@ def upload_logo(request):
         path = f"{settings.LOGO_ROOT}{filename}"
         handle_uploaded_file(path, file)
         email = request.auth["owner"]
+        oldname = query_db(f"SELECT name FROM files WHERE owner_type='compeny' AND owner='{email}' LIMIT 1", one=True)
         con = db()
         cur = con.cursor()
         cur.execute(f"UPDATE companies SET logo_path='{filename}' WHERE email='{email}' LIMIT 1", ())
+        if oldname:
+            cur.execute(f"UPDATE files SET name='{filename}' WHERE owner='{email}' AND owner_type='company')", ())
+        else:
+            cur.execute(f"INSERT INTO files (name, owner, owner_type) VALUES('{filename}', '{email}', 'company')", ())
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
     else:
