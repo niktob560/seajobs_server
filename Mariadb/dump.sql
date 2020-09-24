@@ -16,7 +16,7 @@ CREATE TABLE companies (
   country VARCHAR(400) NOT NULL,
   city VARCHAR(400) NOT NULL,
   address VARCHAR(400) NOT NULL,
-  logo_path VARCHAR(128) DEFAULT NULL
+  logo_path VARCHAR(200) DEFAULT NULL
 );
 
 CREATE TABLE vacations (
