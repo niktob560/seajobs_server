@@ -32,9 +32,9 @@ import os
 import filetype
 
 # input validity
-import phonenumbers
 from validate_email import validate_email
 from datetime import datetime, timedelta, date
+import re
 
 # random and hashes
 import hashlib
@@ -91,8 +91,7 @@ def register_sailor(request, name: str, password: str, email: str, birthday_date
     cursor = None
     connection = None
     try :
-        mobile_phone = phonenumbers.parse(mobile_phone, "RU")
-        if not mobile_phone or mobile_phone == None:
+        if not mobile_phone or not validate_mobile_phone(mobile_phone):
             raise ValueError("Invalid phone number")
         if not password or password.__len__() < 4:
             raise ValueError("Password must contain at least 4 chars")
@@ -106,7 +105,7 @@ def register_sailor(request, name: str, password: str, email: str, birthday_date
             raise ValueError("Position must be set")
         if not name:
             raise ValueError("Name must be set")
-        phone = "+{}{}".format(mobile_phone.country_code, mobile_phone.national_number)
+        phone = mobile_phone
         try:
             if query_db(f"SELECT email FROM companies WHERE email='{email}'"):
                 raise Exception("Company with such email already exist")
@@ -136,8 +135,7 @@ def register_company(request, company_name: str, password: str, website: str, mo
     cursor = None
     connection = None
     try :
-        mobile_phone = phonenumbers.parse(mobile_phone, "RU")
-        if not mobile_phone or mobile_phone == None:
+        if not mobile_phone or not validate_mobile_phone(mobile_phone):
             raise ValueError("Invalid phone number")
         if not password or password.__len__() < 4:
             raise ValueError("Password must contain at least 4 chars")
@@ -151,7 +149,7 @@ def register_company(request, company_name: str, password: str, website: str, mo
             raise ValueError("City must be set")
         if not address:
             raise ValueError("Address must be set")
-        phone = "+{}{}".format(mobile_phone.country_code, mobile_phone.national_number)
+        phone = mobile_phone
         try:
             if query_db(f"SELECT email FROM users WHERE email='{email}'"):
                 raise Exception("User with such email already exist")
@@ -355,7 +353,6 @@ def add_vacation(request, position: str, salary: int, fleet_type: str, start_at:
             english_level = "Not required"
         company_email = request.auth["owner"]
         post_date = datetime.now()
-#        post_date = "{Y}-{m}-{d}".format(Y=post_date.year, m=post_date.month, d=post_date.day)
         post_date = post_date.strftime("%Y-%m-%d %H:%M:%S")
         print(f"{post_date}")
         con = db()
@@ -364,7 +361,7 @@ def add_vacation(request, position: str, salary: int, fleet_type: str, start_at:
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
     else:
-        return {"result": "ok", "extra": f"{post_date}"}
+        return {"result": "ok", "extra": f"{id}"}
     finally:
         if cur and cur != None:
             cur.close()
@@ -399,8 +396,7 @@ def update_profile_company(request, email: str, password: str, website: str, mob
     try:
         if request.auth["owner_type"] != "company":
             raise ValueError("Only company user can update company profile")
-        mobile_phone = phonenumbers.parse(mobile_phone, "RU")
-        if not mobile_phone or mobile_phone == None:
+        if not mobile_phone or not validate_mobile_phone(mobile_phone):
             raise ValueError("Invalid phone number")
         if password and password.__len__() < 4:
             raise ValueError("Password must contain at least 4 chars")
@@ -419,7 +415,7 @@ def update_profile_company(request, email: str, password: str, website: str, mob
             raise ValueError("Address must be set")
         if request.auth["owner"] != email and (query_db(f"SELECT email FROM companies WHERE email='{email}' LIMIT 1", one=True) or query_db(f"SELECT email FROM users WHERE email='{email}' LIMIT 1", one=True)):
             raise ValueError("Email already exists")
-        phone = "+{}{}".format(mobile_phone.country_code, mobile_phone.national_number)
+        phone = mobile_phone
         con = db()
         cur = con.cursor()
         old_email = request.auth["owner"]
@@ -443,8 +439,7 @@ def update_profile_sailor(request, name: str, password: str, birthday_date: str,
     try :
         if request.auth["owner_type"] != "user":
             raise ValueError("Only sailor can update user profile")
-        mobile_phone = phonenumbers.parse(mobile_phone, "RU")
-        if not mobile_phone or mobile_phone == None:
+        if not mobile_phone or not validate_mobile_phone(mobile_phone):
             raise ValueError("Invalid phone number")
         if password and password.__len__() < 4:
             raise ValueError("Password must contain at least 4 chars")
@@ -462,7 +457,7 @@ def update_profile_sailor(request, name: str, password: str, birthday_date: str,
             raise ValueError("Name must be set")
         if request.auth["owner"] != email and (query_db(f"SELECT email FROM companies WHERE email='{email}' LIMIT 1", one=True) or query_db(f"SELECT email FROM users WHERE email='{email}' LIMIT 1", one=True)):
             raise ValueError("Email already exists")
-        phone = "+{}{}".format(mobile_phone.country_code, mobile_phone.national_number)
+        phone = mobile_phone
         old_email = request.auth["owner"]
         try:
             connection = db()
@@ -593,8 +588,7 @@ def respond_vacation_anonymous(request, name: str, surname: str, birthday_date: 
     try:
         if not request.FILES["cv"]:
             raise ValueError("File not found. Try to send it using multipart form data with name 'cv'")
-        mobile_phone = phonenumbers.parse(mobile_phone, "RU")
-        if not mobile_phone or mobile_phone == None:
+        if not mobile_phone or not validate_mobile_phone(mobile_phone):
             raise ValueError("Invalid phone number")
         if not birthday_date:
             raise ValueError("Birthday date must be set")
@@ -608,7 +602,7 @@ def respond_vacation_anonymous(request, name: str, surname: str, birthday_date: 
             raise ValueError("Surname must be set")
         if not email or not validate_email(email):
             raise ValueError("Invalid email")
-        phone = "+{}{}".format(mobile_phone.country_code, mobile_phone.national_number)
+        phone = mobile_phone
         age = calculate_age(birthday_date)
         vacation = get_vacation(None, vacation_id)["extra"]
         msg = '<style>th, td { padding:15px 60px;font-size:30px; } table{ margin: 0px 25%; } div{ padding: 30px; text-align: center; background: #00246A; color: white; font-size: 30px;} body { padding: 0px; } * { margin: 0px; } </style> <div style="padding: 30px;  text-align: center;  background: #00246A;  color: white;  font-size: 30px;"><h1>New responce</h1></div><table><tr><td>Name:</td><td>' + name + ' ' + surname + '</td></tr><tr><td>Age:</td><td>' + f"{age}" + '</td></tr><tr><td>Position:</td><td>' + vacation["position"] +'</td></tr><tr><td>Email:</td><td>' + email + '</td></tr><tr><td>Mobile phone:</td><td>' + phone + '</td></table>'
@@ -753,3 +747,7 @@ urlpatterns = [
 def calculate_age(born):
     today = date.today()
     return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
+
+def validate_mobile_phone(phone):
+    reg = '^[0-9+][0-9]*[0-9]$'
+    return re.match(reg, phone)
