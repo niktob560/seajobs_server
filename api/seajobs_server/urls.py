@@ -290,18 +290,20 @@ def upload_logo(request):
         if request.auth["owner_type"] != "company":
             raise ValueError("Only company can upload logo")
         file = request.FILES["logo"]
+        if not file:
+            raise ValueError("Uploaded file with field 'logo' not found")
         filename = secrets.token_hex(64)
-        ext = f"{file}".split(".")[1]
+        ext = file.name.split(".")[1]
         filename += f".{ext}"
         path = f"{settings.LOGO_ROOT}{filename}"
         handle_uploaded_file(path, file)
         email = request.auth["owner"]
-        oldname = query_db(f"SELECT name FROM files WHERE owner_type='compeny' AND owner='{email}' LIMIT 1", one=True)
+        oldname = query_db(f"SELECT name FROM files WHERE owner_type='company' AND owner='{email}' LIMIT 1", one=True)
         con = db()
         cur = con.cursor()
         cur.execute(f"UPDATE companies SET logo_path='{filename}' WHERE email='{email}' LIMIT 1", ())
         if oldname:
-            cur.execute(f"UPDATE files SET name='{filename}' WHERE owner='{email}' AND owner_type='company')", ())
+            cur.execute(f"UPDATE files SET name='{filename}' WHERE owner='{email}' AND owner_type='company' LIMIT 1", ())
         else:
             cur.execute(f"INSERT INTO files (name, owner, owner_type) VALUES('{filename}', '{email}', 'company')", ())
     except Exception as e:
