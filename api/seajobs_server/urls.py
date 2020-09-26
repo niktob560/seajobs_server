@@ -398,7 +398,7 @@ def update_profile_company(request, email: str, password: str, website: str, mob
             raise ValueError("Only company user can update company profile")
         if not mobile_phone or not validate_mobile_phone(mobile_phone):
             raise ValueError("Invalid phone number")
-        if password and password.__len__() < 4:
+        if password.strip() and password.__len__() < 4:
             raise ValueError("Password must contain at least 4 chars")
         elif password.strip():
             password_query = f", password='{password}'"
@@ -441,7 +441,7 @@ def update_profile_sailor(request, name: str, password: str, birthday_date: str,
             raise ValueError("Only sailor can update user profile")
         if not mobile_phone or not validate_mobile_phone(mobile_phone):
             raise ValueError("Invalid phone number")
-        if password and password.__len__() < 4:
+        if password.strip() and password.__len__() < 4:
             raise ValueError("Password must contain at least 4 chars")
         elif password.strip():
             password_query = f", password='{password}'"
