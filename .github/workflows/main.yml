@@ -21,32 +21,13 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-#       - name: executing remote ssh commands using password
-#         uses: appleboy/ssh-action@master
-#         with:
-#           host: ${{ secrets.HOST }}
-#           username: ${{ secrets.USERNAME }}
-#           password: ${{ secrets.PASSWORD }}
-#           key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
-#           fingerprint: ${{ secrets.DOCKER_SSH_PUBLIC_KEY }}
-#           port: ${{ secrets.PORT }}
-#           script: whoami
-      - name: Install docker-compose
-#         run: curl -L "https://github.com/docker/compose/releases/download/1.26.0/docker-compose-$(uname -s)-$(uname -m)"  -o /tmp/docker-compose && mv chmod +x /tmp/docker-compose
-        run: which docker-compose
-#         run: mkdir -p ~/.ssh/ && echo "${{secrets.DOCKER_SSH_PRIVATE_KEY}}" > ~/.ssh/private.key && sudo chmod 600 ~/.ssh/private.key && echo "${{secrets.SSH_KNOWN_HOSTS}}" > ~/.ssh/known_hosts
-#         shell: bash
-      - name: Deploy
-        uses: wshihadeh/docker-deployment-action@master
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
         with:
-          remote_docker_host: docker-compose@128.0.129.115:222
-          ssh_private_key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
-          ssh_public_key: ${{ secrets.DOCKER_SSH_PUBLIC_KEY }}
-          deployment_mode: docker-compose
-          args: up -d
-          docker_prune: 'false'
-          pull_images_first: 'true'
-          copy_stack_file: 'true'
-          stack_file_name: docker-compose.yaml
-          deploy_path: /data/seajobs_ci
-
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
+          fingerprint: ${{ secrets.DOCKER_SSH_PUBLIC_KEY }}
+          port: ${{ secrets.PORT }}
+          script: cd /data/seajobs_server && git pull origin master
