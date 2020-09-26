@@ -28,6 +28,6 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
-          fingerprint: ${{ secrets.DOCKER_SSH_PUBLIC_KEY }}
+          fingerprint: ${{ secrets.FINGERPRINT }}
           port: ${{ secrets.PORT }}
           script: cd /data/seajobs_server && git pull origin master
