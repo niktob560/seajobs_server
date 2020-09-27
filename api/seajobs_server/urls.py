@@ -420,8 +420,8 @@ def update_profile_company(request, email: str, password: str, website: str, mob
         cur = con.cursor()
         old_email = request.auth["owner"]
         cur.execute(f"UPDATE companies SET email='{email}'{password_query}, website='{website}', mobile_phone='{phone}', email='{email}', country='{country}', city='{city}', address='{address}' WHERE email='{old_email}' LIMIT 1")
-        cur.execute(f"UPDATE tokens SET owner='{email}' WHERE owner='{old_email}' LIMIT 1")
-        cur.execute(f"UPDATE files SET owner='{email}' WHERE owner='{old_email}' LIMIT 1")
+        cur.execute(f"UPDATE tokens SET owner='{email}' WHERE owner='{old_email}'")
+        cur.execute(f"UPDATE files SET owner='{email}' WHERE owner='{old_email}'")
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
     else:
@@ -463,8 +463,8 @@ def update_profile_sailor(request, name: str, password: str, birthday_date: str,
             connection = db()
             cursor = connection.cursor()
             id = cursor.execute(f"UPDATE users SET name='{name}'{password_query}, birthday_date='{birthday_date}', mobile_phone='{phone}', position='{position}' WHERE email='{old_email}' LIMIT 1", ())
-            cursor.execute(f"UPDATE tokens SET owner='{email}' WHERE owner='{old_email}' LIMIT 1")
-            cursor.execute(f"UPDATE files SET owner='{email}' WHERE owner='{old_email}' LIMIT 1")
+            cursor.execute(f"UPDATE tokens SET owner='{email}' WHERE owner='{old_email}'")
+            cursor.execute(f"UPDATE files SET owner='{email}' WHERE owner='{old_email}'")
             connection.commit()
             cursor.close()
         except mariadb.Error as e:
