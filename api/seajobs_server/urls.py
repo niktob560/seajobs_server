@@ -707,7 +707,7 @@ def _get_user_cv_filename(email: str):
     if filename:
         return filename["name"]
     else:
-        return ""
+        raise ValueError("There is no CV file")
 
 
 def _get_user_cv(email: str):
