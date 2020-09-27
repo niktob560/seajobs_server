@@ -33,4 +33,4 @@ jobs:
           SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
           SSH_KEY_PATH: ${{ github.workspace }}/../private.key
       - name: Pull from repo
-        run: cd /data/seajobs_server && git pull origin master
+        run: ssh -p222 docker-compose@128.0.129.115 "cd /data/seajobs_server && git pull origin master"
