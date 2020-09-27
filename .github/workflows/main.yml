@@ -21,13 +21,16 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      - name: executing remote ssh commands using password
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
-          fingerprint: ${{ secrets.FINGERPRINT }}
-          port: ${{ secrets.PORT }}
-          script: cd /data/seajobs_server && git pull origin master
+      - name: Create SSH key
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$SSH_PRIVATE_KEY" > ../private.key
+          sudo chmod 600 ../private.key
+          echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+        shell: bash
+        env:
+          SSH_PRIVATE_KEY: ${{secrets.DOCKER_SSH_PRIVATE_KEY}}
+          SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
+          SSH_KEY_PATH: ${{ github.workspace }}/../private.key
+      - name: Pull from repo
+        run: cd /data/seajobs_server && git pull origin master
