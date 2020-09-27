@@ -738,6 +738,14 @@ def get_company_logo(request, email: str):
     file_path = os.path.join(settings.LOGO_ROOT, filename)
     return get_file(file_path)
 
+@api.get("/is_company_logo_exists")
+def is_company_logo_exists(request, email: str):
+    name = query_db(f"SELECT name FROM files WHERE owner='{email}' AND owner_type='company' LIMIT 1", one=True)
+    if name:
+        return True
+    else:
+        return False
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", api.urls)
