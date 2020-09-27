@@ -32,9 +32,9 @@ import os
 import filetype
 
 # input validity
-import phonenumbers
 from validate_email import validate_email
 from datetime import datetime, timedelta, date
+import re
 
 # random and hashes
 import hashlib
@@ -91,8 +91,7 @@ def register_sailor(request, name: str, password: str, email: str, birthday_date
     cursor = None
     connection = None
     try :
-        mobile_phone = phonenumbers.parse(mobile_phone, "RU")
-        if not mobile_phone or mobile_phone == None:
+        if not mobile_phone or not validate_mobile_phone(mobile_phone):
             raise ValueError("Invalid phone number")
         if not password or password.__len__() < 4:
             raise ValueError("Password must contain at least 4 chars")
@@ -106,7 +105,7 @@ def register_sailor(request, name: str, password: str, email: str, birthday_date
             raise ValueError("Position must be set")
         if not name:
             raise ValueError("Name must be set")
-        phone = "+{}{}".format(mobile_phone.country_code, mobile_phone.national_number)
+        phone = mobile_phone
         try:
             if query_db(f"SELECT email FROM companies WHERE email='{email}'"):
                 raise Exception("Company with such email already exist")
@@ -136,8 +135,7 @@ def register_company(request, company_name: str, password: str, website: str, mo
     cursor = None
     connection = None
     try :
-        mobile_phone = phonenumbers.parse(mobile_phone, "RU")
-        if not mobile_phone or mobile_phone == None:
+        if not mobile_phone or not validate_mobile_phone(mobile_phone):
             raise ValueError("Invalid phone number")
         if not password or password.__len__() < 4:
             raise ValueError("Password must contain at least 4 chars")
@@ -151,7 +149,7 @@ def register_company(request, company_name: str, password: str, website: str, mo
             raise ValueError("City must be set")
         if not address:
             raise ValueError("Address must be set")
-        phone = "+{}{}".format(mobile_phone.country_code, mobile_phone.national_number)
+        phone = mobile_phone
         try:
             if query_db(f"SELECT email FROM users WHERE email='{email}'"):
                 raise Exception("User with such email already exist")
@@ -292,18 +290,20 @@ def upload_logo(request):
         if request.auth["owner_type"] != "company":
             raise ValueError("Only company can upload logo")
         file = request.FILES["logo"]
+        if not file:
+            raise ValueError("Uploaded file with field 'logo' not found")
         filename = secrets.token_hex(64)
-        ext = f"{file}".split(".")[1]
+        ext = file.name.split(".")[1]
         filename += f".{ext}"
         path = f"{settings.LOGO_ROOT}{filename}"
         handle_uploaded_file(path, file)
         email = request.auth["owner"]
-        oldname = query_db(f"SELECT name FROM files WHERE owner_type='compeny' AND owner='{email}' LIMIT 1", one=True)
+        oldname = query_db(f"SELECT name FROM files WHERE owner_type='company' AND owner='{email}' LIMIT 1", one=True)
         con = db()
         cur = con.cursor()
         cur.execute(f"UPDATE companies SET logo_path='{filename}' WHERE email='{email}' LIMIT 1", ())
         if oldname:
-            cur.execute(f"UPDATE files SET name='{filename}' WHERE owner='{email}' AND owner_type='company')", ())
+            cur.execute(f"UPDATE files SET name='{filename}' WHERE owner='{email}' AND owner_type='company' LIMIT 1", ())
         else:
             cur.execute(f"INSERT INTO files (name, owner, owner_type) VALUES('{filename}', '{email}', 'company')", ())
     except Exception as e:
@@ -349,22 +349,18 @@ def add_vacation(request, position: str, salary: int, fleet_type: str, start_at:
             raise ValueError("Bad GD value")
         if fleet_power <= 0:
             raise ValueError("Fleet power must be grater that 0")
-        print(english_level)
-        if english_level.startswith("Не обязателен"):
-            print("Changing")
-            english_level = "Not required"
         company_email = request.auth["owner"]
         post_date = datetime.now()
-#        post_date = "{Y}-{m}-{d}".format(Y=post_date.year, m=post_date.month, d=post_date.day)
         post_date = post_date.strftime("%Y-%m-%d %H:%M:%S")
         print(f"{post_date}")
         con = db()
         cur = con.cursor()
+        position = position.lower()
         id = cur.execute(f"INSERT INTO vacations (position, salary, fleet, start_at, contract_duration, company_email, post_date, english_level, nationality, requierments, fleet_construct_year, fleet_dwt, fleet_gd, fleet_power) VALUES('{position}', '{salary}', '{fleet_type}', '{start_at}', '{contract_duration}', '{company_email}', '{post_date}', '{english_level}', '{nationality}', '{requierments}', '{fleet_construct_year}', '{fleet_dwt}', '{fleet_gd_type}', '{fleet_power}')", ())
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
     else:
-        return {"result": "ok", "extra": f"{post_date}"}
+        return {"result": "ok", "extra": f"{id}"}
     finally:
         if cur and cur != None:
             cur.close()
@@ -399,10 +395,10 @@ def update_profile_company(request, email: str, password: str, website: str, mob
     try:
         if request.auth["owner_type"] != "company":
             raise ValueError("Only company user can update company profile")
-        mobile_phone = phonenumbers.parse(mobile_phone, "RU")
-        if not mobile_phone or mobile_phone == None:
+        if not mobile_phone or not validate_mobile_phone(mobile_phone):
+            print(mobile_phone)
             raise ValueError("Invalid phone number")
-        if password and password.__len__() < 4:
+        if password.strip() and password.__len__() < 4:
             raise ValueError("Password must contain at least 4 chars")
         elif password.strip():
             password_query = f", password='{password}'"
@@ -419,7 +415,7 @@ def update_profile_company(request, email: str, password: str, website: str, mob
             raise ValueError("Address must be set")
         if request.auth["owner"] != email and (query_db(f"SELECT email FROM companies WHERE email='{email}' LIMIT 1", one=True) or query_db(f"SELECT email FROM users WHERE email='{email}' LIMIT 1", one=True)):
             raise ValueError("Email already exists")
-        phone = "+{}{}".format(mobile_phone.country_code, mobile_phone.national_number)
+        phone = mobile_phone
         con = db()
         cur = con.cursor()
         old_email = request.auth["owner"]
@@ -443,10 +439,9 @@ def update_profile_sailor(request, name: str, password: str, birthday_date: str,
     try :
         if request.auth["owner_type"] != "user":
             raise ValueError("Only sailor can update user profile")
-        mobile_phone = phonenumbers.parse(mobile_phone, "RU")
-        if not mobile_phone or mobile_phone == None:
+        if not mobile_phone or not validate_mobile_phone(mobile_phone):
             raise ValueError("Invalid phone number")
-        if password and password.__len__() < 4:
+        if password.strip() and password.__len__() < 4:
             raise ValueError("Password must contain at least 4 chars")
         elif password.strip():
             password_query = f", password='{password}'"
@@ -462,7 +457,7 @@ def update_profile_sailor(request, name: str, password: str, birthday_date: str,
             raise ValueError("Name must be set")
         if request.auth["owner"] != email and (query_db(f"SELECT email FROM companies WHERE email='{email}' LIMIT 1", one=True) or query_db(f"SELECT email FROM users WHERE email='{email}' LIMIT 1", one=True)):
             raise ValueError("Email already exists")
-        phone = "+{}{}".format(mobile_phone.country_code, mobile_phone.national_number)
+        phone = mobile_phone
         old_email = request.auth["owner"]
         try:
             connection = db()
@@ -488,7 +483,7 @@ sort_dict = {"creation": "v.post_date DESC", "start_at_asc": "v.start_at ASC", "
 @api.post("/get_vacations")
 def get_vacations(request, position: str, fleet: str, countries: str, salary_from: int, start_at: str, end_at: str, sort: str):
     try:
-        position = position.strip()
+        position = position.strip().lower()
         fleet = fleet.strip()
         countries = countries.strip()
         start_at = start_at.strip()
@@ -593,8 +588,7 @@ def respond_vacation_anonymous(request, name: str, surname: str, birthday_date: 
     try:
         if not request.FILES["cv"]:
             raise ValueError("File not found. Try to send it using multipart form data with name 'cv'")
-        mobile_phone = phonenumbers.parse(mobile_phone, "RU")
-        if not mobile_phone or mobile_phone == None:
+        if not mobile_phone or not validate_mobile_phone(mobile_phone):
             raise ValueError("Invalid phone number")
         if not birthday_date:
             raise ValueError("Birthday date must be set")
@@ -608,7 +602,7 @@ def respond_vacation_anonymous(request, name: str, surname: str, birthday_date: 
             raise ValueError("Surname must be set")
         if not email or not validate_email(email):
             raise ValueError("Invalid email")
-        phone = "+{}{}".format(mobile_phone.country_code, mobile_phone.national_number)
+        phone = mobile_phone
         age = calculate_age(birthday_date)
         vacation = get_vacation(None, vacation_id)["extra"]
         msg = '<style>th, td { padding:15px 60px;font-size:30px; } table{ margin: 0px 25%; } div{ padding: 30px; text-align: center; background: #00246A; color: white; font-size: 30px;} body { padding: 0px; } * { margin: 0px; } </style> <div style="padding: 30px;  text-align: center;  background: #00246A;  color: white;  font-size: 30px;"><h1>New responce</h1></div><table><tr><td>Name:</td><td>' + name + ' ' + surname + '</td></tr><tr><td>Age:</td><td>' + f"{age}" + '</td></tr><tr><td>Position:</td><td>' + vacation["position"] +'</td></tr><tr><td>Email:</td><td>' + email + '</td></tr><tr><td>Mobile phone:</td><td>' + phone + '</td></table>'
@@ -629,12 +623,10 @@ def respond_vacation(request, vacation_id: int):
         fo = open(path_to_cv, "rb")
         filecontent = fo.read()
         userdata = query_db(f"SELECT name, birthday_date, mobile_phone, position FROM users WHERE email='{email}' LIMIT 1", one=True)
-        name = userdata["name"].split(" ")[0]
-        surname = userdata["name"].split(" ")[1]
         age = calculate_age(userdata["birthday_date"])
         phone = userdata["mobile_phone"]
         vacation = get_vacation(None, vacation_id)["extra"]
-        msg = '<style>th, td { padding:15px 60px;font-size:30px; } table{ margin: 0px 25%; } div{ padding: 30px; text-align: center; background: #00246A; color: white; font-size: 30px;} body { padding: 0px; } * { margin: 0px; } </style> <div style="padding: 30px;  text-align: center;  background: #00246A;  color: white;  font-size: 30px;"><h1>New responce</h1></div><table><tr><td>Name:</td><td>' + name + ' ' + surname + '</td></tr><tr><td>Age:</td><td>' + f"{age}" + '</td></tr><tr><td>Position:</td><td>' + vacation["position"] +'</td></tr><tr><td>Email:</td><td>' + email + '</td></tr><tr><td>Mobile phone:</td><td>' + phone + '</td></tr><tr><td>CV file</td><td><a href="http://' + request.get_host() + f"/api/get_cv?filename={cv_filename}" + '">' + "cv." + cv_filename.split(".")[1] + '</a></td></tr></table>'
+        msg = '<style>th, td { padding:15px 60px;font-size:30px; } table{ margin: 0px 25%; } div{ padding: 30px; text-align: center; background: #00246A; color: white; font-size: 30px;} body { padding: 0px; } * { margin: 0px; } </style> <div style="padding: 30px;  text-align: center;  background: #00246A;  color: white;  font-size: 30px;"><h1>New responce</h1></div><table><tr><td>Name:</td><td>' + userdata["name"] + '</td></tr><tr><td>Age:</td><td>' + f"{age}" + '</td></tr><tr><td>Position:</td><td>' + vacation["position"] +'</td></tr><tr><td>Email:</td><td>' + email + '</td></tr><tr><td>Mobile phone:</td><td>' + phone + '</td></tr><tr><td>CV file</td><td><a href="http://' + request.get_host() + f"/api/get_cv?filename={cv_filename}" + '">' + "cv." + cv_filename.split(".")[1] + '</a></td></tr></table>'
         sendMail(Mailto(addr=vacation["company"]["email"], name=vacation["company"]["name"]), "CV Responce", msg, filecontent, filename=cv_filename)
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
@@ -713,7 +705,7 @@ def _get_user_cv_filename(email: str):
     if filename:
         return filename["name"]
     else:
-        return ""
+        raise ValueError("There is no CV file")
 
 
 def _get_user_cv(email: str):
@@ -744,6 +736,14 @@ def get_company_logo(request, email: str):
     file_path = os.path.join(settings.LOGO_ROOT, filename)
     return get_file(file_path)
 
+@api.get("/is_company_logo_exists")
+def is_company_logo_exists(request, email: str):
+    name = query_db(f"SELECT name FROM files WHERE owner='{email}' AND owner_type='company' LIMIT 1", one=True)
+    if name:
+        return True
+    else:
+        return False
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", api.urls)
@@ -753,3 +753,7 @@ urlpatterns = [
 def calculate_age(born):
     today = date.today()
     return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
+
+def validate_mobile_phone(phone):
+    reg = '^[0-9+][0-9]*[0-9]$'
+    return re.match(reg, phone)
