@@ -33,4 +33,4 @@ jobs:
           SSH_KNOWN_HOSTS: ${{secrets.SSH_KNOWN_HOSTS}}
           SSH_KEY_PATH: ${{ github.workspace }}/../private.key
       - name: Pull from repo
-        run: ssh -p222 -o StrictHostKeyChecking=no -i ../private.key docker-compose@128.0.129.115 "cd /data/seajobs_server && docker-compose down && git add --all && git reset --hard && git pull origin master && cd Nginx/www && git pull && cd ../.. && docker-compose up -d"
+        run: ssh -p222 -o StrictHostKeyChecking=no -i ../private.key docker-compose@128.0.129.115 "cd /data/seajobs_server && docker-compose down && git add --all && git reset --hard && git pull origin master && cd Nginx/www && git pull origin master && cd ../.. && docker-compose up -d"
