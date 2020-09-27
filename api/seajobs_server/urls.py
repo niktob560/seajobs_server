@@ -349,16 +349,13 @@ def add_vacation(request, position: str, salary: int, fleet_type: str, start_at:
             raise ValueError("Bad GD value")
         if fleet_power <= 0:
             raise ValueError("Fleet power must be grater that 0")
-        print(english_level)
-        if english_level.startswith("Не обязателен"):
-            print("Changing")
-            english_level = "Not required"
         company_email = request.auth["owner"]
         post_date = datetime.now()
         post_date = post_date.strftime("%Y-%m-%d %H:%M:%S")
         print(f"{post_date}")
         con = db()
         cur = con.cursor()
+        position = position.lower()
         id = cur.execute(f"INSERT INTO vacations (position, salary, fleet, start_at, contract_duration, company_email, post_date, english_level, nationality, requierments, fleet_construct_year, fleet_dwt, fleet_gd, fleet_power) VALUES('{position}', '{salary}', '{fleet_type}', '{start_at}', '{contract_duration}', '{company_email}', '{post_date}', '{english_level}', '{nationality}', '{requierments}', '{fleet_construct_year}', '{fleet_dwt}', '{fleet_gd_type}', '{fleet_power}')", ())
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
@@ -399,6 +396,7 @@ def update_profile_company(request, email: str, password: str, website: str, mob
         if request.auth["owner_type"] != "company":
             raise ValueError("Only company user can update company profile")
         if not mobile_phone or not validate_mobile_phone(mobile_phone):
+            print(mobile_phone)
             raise ValueError("Invalid phone number")
         if password.strip() and password.__len__() < 4:
             raise ValueError("Password must contain at least 4 chars")
@@ -485,7 +483,7 @@ sort_dict = {"creation": "v.post_date DESC", "start_at_asc": "v.start_at ASC", "
 @api.post("/get_vacations")
 def get_vacations(request, position: str, fleet: str, countries: str, salary_from: int, start_at: str, end_at: str, sort: str):
     try:
-        position = position.strip()
+        position = position.strip().lower()
         fleet = fleet.strip()
         countries = countries.strip()
         start_at = start_at.strip()
