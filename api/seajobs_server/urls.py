@@ -109,8 +109,9 @@ def register_sailor(request, name: str, password: str, email: str, birthday_date
         birthday_date = "{Y}-{m}-{d}".format(Y=birthday_date.year, m=birthday_date.month, d=birthday_date.day)
         if not position:
             raise ValueError("Position must be set")
-        if not name:
-            raise ValueError("Name must be set")
+        name = name.strip()
+        if not name or (name.count(' ') < 2 and name.count(' ') > 5):
+            raise ValueError("Name must be set" if not name else "Name field must contain name and surname")
         phone = mobile_phone
         try:
             if query_db(f"SELECT email FROM companies WHERE email='{email}'"):
@@ -461,8 +462,9 @@ def update_profile_sailor(request, name: str, password: str, birthday_date: str,
         birthday_date = "{Y}-{m}-{d}".format(Y=birthday_date.year, m=birthday_date.month, d=birthday_date.day)
         if not position:
             raise ValueError("Position must be set")
-        if not name:
-            raise ValueError("Name must be set")
+        name = name.strip()
+        if not name or (name.count(' ') < 2 and name.count(' ') > 5):
+            raise ValueError("Name must be set" if not name else "Name field must contain name and surname")
         if request.auth["owner"] != email and (query_db(f"SELECT email FROM companies WHERE email='{email}' LIMIT 1", one=True) or query_db(f"SELECT email FROM users WHERE email='{email}' LIMIT 1", one=True)):
             raise ValueError("Email already exists")
         phone = mobile_phone
