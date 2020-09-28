@@ -86,6 +86,12 @@ class AuthBearer(HttpBearer):
         if data:
             return data
 
+class AdminAuthBearer(HttpBearer):
+    def authenticate(self, request, token):
+        data = query_db(f"SELECT owner, owner_type FROM tokens WHERE token='{token}' AND owner='{settings.ADMIN_EMAIL}' LIMIT 1", (), one=True)
+        if data:
+            return data
+
 @api.post("/register_sailor")
 def register_sailor(request, name: str, password: str, email: str, birthday_date: str, mobile_phone: str, position: str):
     cursor = None
@@ -130,8 +136,8 @@ def register_sailor(request, name: str, password: str, email: str, birthday_date
         if connection:
             connection.commit()
 
-@api.post("/register_company")
-def register_company(request, company_name: str, password: str, website: str, mobile_phone: str, email: str, country: str, city: str, address: str):
+@api.post("/request_register_company")
+def request_register_company(request, company_name: str, password: str, website: str, mobile_phone: str, email: str, country: str, city: str, address: str):
     cursor = None
     connection = None
     try :
@@ -152,16 +158,18 @@ def register_company(request, company_name: str, password: str, website: str, mo
         phone = mobile_phone
         try:
             if query_db(f"SELECT email FROM users WHERE email='{email}'"):
-                raise Exception("User with such email already exist")
+                raise ValueError("User with such email already exist")
+            if query_db(f"SELECT email FROM companies WHERE email='{email}'"):
+                raise ValueError("Company with such email already exist")
             connection = db()
             cursor = connection.cursor()
-            id = cursor.execute("INSERT INTO companies(name, password, website, mobile_phone, email, country, city, address) VALUES (?, ?, ?, ?, ?, ?, ?, ?) LIMIT 1", (company_name, password, website, phone, email, country, city, address))
+            id = cursor.execute("INSERT INTO companies_requests(name, password, website, mobile_phone, email, country, city, address) VALUES (?, ?, ?, ?, ?, ?, ?, ?) LIMIT 1", (company_name, password, website, phone, email, country, city, address))
             connection.commit()
             cursor.close()
         except mariadb.Error as e:
             print(f"{e}")
             if f"{e}".startswith("Duplicate entry"):
-                raise Exception("Company with such email already exist")
+                raise ValueError("Company with such email already exist")
             else:
                 return HttpResponseServerError()
     except Exception as e:
@@ -203,7 +211,7 @@ def login(request, email: str, password: str):
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
     else:
-        return {"result": "ok", "extra": { "token": f"{token}", "type": type } }
+        return {"result": "ok", "extra": { "token": f"{token}", "type": type }, "admin": True if email == settings.ADMIN_EMAIL else False }
     finally:
         if cur and cur != None:
             cur.close()
@@ -743,6 +751,59 @@ def is_company_logo_exists(request, email: str):
         return True
     else:
         return False
+
+
+@api.get("/get_reg_requests", auth=AdminAuthBearer())
+def get_reg_requests(request):
+    max = settings.MAX_REG_REQUESTS_DISPLAYED
+    try:
+        return query_db(f"SELECT name, website, mobile_phone, email, country, city, address FROM companies_requests LIMIT {max}")
+    except Exception as e:
+        return f"{e}"
+
+@api.post("/apply_reg_request", auth=AdminAuthBearer())
+def apply_reg_request(request, email: str):
+    cursor = None
+    connection = None
+    try:
+        connection = db()
+        cursor = connection.cursor()
+        try:
+            cursor.execute(f"INSERT INTO companies(name, password, website, mobile_phone, email, country, city, address) SELECT * FROM companies_requests WHERE email='{email}' LIMIT 1", ())
+            id = cursor.execute(f"DELETE FROM companies_requests WHERE email='{email}' LIMIT 1", ())
+        except mariadb.Error as e:
+            if f"{e}".startswith("Duplicate entry"):
+                raise ValueError("Company with such email already exist")
+            else:
+                return HttpResponseServerError()
+    except Exception as e:
+        return {"result": "err", "extra": f"{e}"}
+    else:
+        return {"result": "ok", "extra": f"{id}"}
+    finally:
+        if cursor:
+            cursor.close()
+        if connection:
+            connection.commit()
+
+@api.post("/deny_reg_request", auth=AdminAuthBearer())
+def deny_reg_request(request, email: str):
+    cursor = None
+    connection = None
+    try:
+        connection = db()
+        cursor = connection.cursor()
+        id = cursor.execute(f"DELETE FROM companies_requests WHERE email='{email}' LIMIT 1", ())
+    except Exception as e:
+        return {"result": "err", "extra": f"{e}"}
+    else:
+        return {"result": "ok", "extra": f"{id}"}
+    finally:
+        if cursor:
+            cursor.close()
+        if connection:
+            connection.commit()
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),

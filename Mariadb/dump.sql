@@ -19,6 +19,17 @@ CREATE TABLE companies (
   logo_path VARCHAR(200) DEFAULT NULL
 );
 
+CREATE TABLE companies_requests (
+  name VARCHAR(400) NOT NULL,
+  password VARCHAR(400) NOT NULL,
+  website VARCHAR(400) DEFAULT '',
+  mobile_phone TEXT NOT NULL,
+  email VARCHAR(200) PRIMARY KEY,
+  country VARCHAR(400) NOT NULL,
+  city VARCHAR(400) NOT NULL,
+  address VARCHAR(400) NOT NULL
+);
+
 CREATE TABLE vacations (
   position VARCHAR(400),
   salary INT UNSIGNED NOT NULL,
@@ -60,3 +71,5 @@ CREATE UNIQUE INDEX companies_email ON companies(email);
 CREATE UNIQUE INDEX users_email ON users(email);
 CREATE UNIQUE INDEX token ON tokens(token);
 CREATE UNIQUE INDEX files_name ON files(name);
+
+INSERT INTO companies(name, password, website, mobile_phone, email, country, city, address) VALUES ('seajobs', '1234', '', '', 'admin@seajobs.com', '', '', '') LIMIT 1;
