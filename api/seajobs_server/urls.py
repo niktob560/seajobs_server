@@ -755,7 +755,7 @@ def is_company_logo_exists(request, email: str):
         return False
 
 
-@api.get("/get_reg_requests", auth=AdminAuthBearer())
+@api.post("/get_reg_requests", auth=AdminAuthBearer())
 def get_reg_requests(request):
     max = settings.MAX_REG_REQUESTS_DISPLAYED
     try:
