@@ -77,11 +77,21 @@ def query_db(query, args=(), one=False):
     cur.connection.close()
     return (r[0] if r else None) if one else r
 
-
 api = NinjaAPI()
 
 class AuthBearer(HttpBearer):
     def authenticate(self, request, token):
+        cursor = None
+        connection = None
+        try:
+            connection = db()
+            cursor = connection.cursor()
+            cursor.execute("DELETE FROM tokens WHERE expire_at <= NOW()")
+        finally:
+            if cursor:
+                cursor.close()
+            if connection:
+                connection.commit()
         data = query_db(f"SELECT owner, owner_type FROM tokens WHERE token='{token}' LIMIT 1", (), one=True)
         if data:
             return data
