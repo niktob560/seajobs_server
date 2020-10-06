@@ -15,14 +15,14 @@ services:
             - ./DB:/var/lib/mysql
     api:
         build: ./api
-        container_name: seajobs-api
+        restart: always
         volumes: 
             - ./api/:/app
         ports:
             - 8000:80
     nginx:
         image: nginx:latest
-        container_name: nginx
+        restart: always
         ports:
             - 8080:80
         volumes:

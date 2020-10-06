@@ -123,12 +123,15 @@ def register_sailor(request, name: str, password: str, email: str, birthday_date
         if not name or name.count(' ') < 1 or name.count(' ') > 5:
             raise ValueError("Name must be set" if not name else "Name field must contain name and surname")
         phone = mobile_phone
+        tupl = generate_password_hash_and_salt(password)
+        hash = tupl[0]
+        salt = tupl[1]
         try:
             if query_db(f"SELECT email FROM companies WHERE email='{email}'"):
                 raise Exception("Company with such email already exist")
             connection = db()
             cursor = connection.cursor()
-            id = cursor.execute("INSERT INTO users(name, password, email, birthday_date, mobile_phone, position) VALUES (?, ?, ?, ?, ?, ?) LIMIT 1", (name, password, email, birthday_date, phone, position))
+            id = cursor.execute("INSERT INTO users(name, password, salt, email, birthday_date, mobile_phone, position) VALUES (?, ?, ?, ?, ?, ?) LIMIT 1", (name, hash, salt, email, birthday_date, phone, position))
             connection.commit()
             cursor.close()
         except mariadb.Error as e:
@@ -167,6 +170,11 @@ def request_register_company(request, company_name: str, password: str, website:
         if not address:
             raise ValueError("Address must be set")
         phone = mobile_phone
+        tupl = generate_password_hash_and_salt(password)
+        hash = tupl[0]
+        salt = tupl[1]
+        print(tupl)
+        print(f"{hash}, {salt}")
         try:
             if query_db(f"SELECT email FROM users WHERE email='{email}'"):
                 raise ValueError("User with such email already exist")
@@ -174,7 +182,7 @@ def request_register_company(request, company_name: str, password: str, website:
                 raise ValueError("Company with such email already exist")
             connection = db()
             cursor = connection.cursor()
-            id = cursor.execute("INSERT INTO companies_requests(name, password, website, mobile_phone, email, country, city, address) VALUES (?, ?, ?, ?, ?, ?, ?, ?) LIMIT 1", (company_name, password, website, phone, email, country, city, address))
+            id = cursor.execute("INSERT INTO companies_requests(name, password, salt, website, mobile_phone, email, country, city, address) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) LIMIT 1", (company_name, hash, salt, website, phone, email, country, city, address))
             connection.commit()
             cursor.close()
         except mariadb.Error as e:
@@ -202,22 +210,21 @@ def login(request, email: str, password: str):
             raise ValueError("Email invalid")
         if not password or password.__len__() < 4:
             raise ValueError("Password invalid")
-        user = query_db(f"SELECT * FROM users WHERE email='{email}' AND password='{password}' LIMIT 1", one=True)
-        if not user:
-            company = query_db(f"SELECT * FROM companies WHERE email='{email}' AND password='{password}' LIMIT 1", one=True)
-            if not company:
-                raise ValueError("Invalid credentails")
-            else:
-                type = "company"
+
+        info = query_db(f"SELECT * FROM ((SELECT password, salt, email, 'user' as 'type' FROM users) UNION (SELECT password, salt, email, 'company' FROM companies)) AS U WHERE U.email='{email}' LIMIT 1", one=True)
+        print(f"{info}")
+        print(encode_password(password, info['salt']))
+        if verify_password(password, info['password'], info['salt']):
+            type = info['type']
         else:
-            type = "user"
+            raise ValueError("Invalid credentails")
+
         token = secrets.token_hex(256)
         connection = db()
         cur = connection.cursor()
         expire_at = datetime.now() + timedelta(1)
         
         q = f"INSERT INTO tokens (owner_type, owner, token, expire_at) VALUES ('{type}', '{email}', '{token}', '{expire_at}') LIMIT 1"
-        print(q)
         cur.execute(q, ())
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
@@ -781,7 +788,7 @@ def apply_reg_request(request, email: str):
         connection = db()
         cursor = connection.cursor()
         try:
-            cursor.execute(f"INSERT INTO companies(name, password, website, mobile_phone, email, country, city, address) SELECT * FROM companies_requests WHERE email='{email}' LIMIT 1", ())
+            cursor.execute(f"INSERT INTO companies(name, password, salt, website, mobile_phone, email, country, city, address) SELECT * FROM companies_requests WHERE email='{email}' LIMIT 1", ())
             id = cursor.execute(f"DELETE FROM companies_requests WHERE email='{email}' LIMIT 1", ())
         except mariadb.Error as e:
             if f"{e}".startswith("Duplicate entry"):
@@ -830,3 +837,20 @@ def calculate_age(born):
 def validate_mobile_phone(phone):
     reg = '^[0-9+][0-9]*[0-9]$'
     return re.match(reg, phone)
+
+def get_random_salt():
+    ALPHABET = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    chars=[]
+    for i in range(16):
+        chars.append(random.choice(ALPHABET))
+    return "".join(chars)
+
+def encode_password(password: str, salt: str):
+    return hashlib.sha512((salt + password + salt).encode('utf-8')).hexdigest()
+
+def verify_password(password: str, hash: str, salt: str):
+    return encode_password(password, salt) == hash
+
+def generate_password_hash_and_salt(password: str):
+    salt = get_random_salt()
+    return (encode_password(password, salt), salt)

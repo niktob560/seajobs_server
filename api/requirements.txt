@@ -1,4 +1,3 @@
-phonenumbers
 mariadb
 validate_email
 django-ninja
