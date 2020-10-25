@@ -13,6 +13,13 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path("blog/", include("blog.urls"))
 """
+
+"""
+    PROVIDED AS-IS AND WITHOUT WARRANTY
+    Written by  @nikto_b
+                github.com/niktob560
+"""
+
 # Django
 from django.contrib import admin
 from django.urls import path
@@ -26,7 +33,7 @@ from ninja import NinjaAPI
 from ninja.security import HttpBearer
 
 # storage
-import mariadb
+import MySQLdb
 import pathlib
 import os
 import filetype
@@ -62,20 +69,40 @@ class Mailto:
 
 
 def db():
-    return mariadb.connect(
-        user=settings.DB_USER,
-        password=settings.DB_PASSWORD,
-        host=settings.DB_HOST,
-        port=settings.DB_PORT,
-        database=settings.DB_NAME)
+    return MySQLdb.connect(host=settings.DB_HOST,
+                     user=settings.DB_USER,
+                     passwd=settings.DB_PASSWORD,
+                     db=settings.DB_NAME,
+                     port=settings.DB_PORT,
+                     charset='utf8')
+    # return mariadb.connect(
+    #     user=settings.DB_USER,
+    #     password=settings.DB_PASSWORD,
+    #     host=settings.DB_HOST,
+    #     port=settings.DB_PORT,
+    #     database=settings.DB_NAME)
 
-def query_db(query, args=(), one=False):
+def query_db(query, schema, args=(), one=False):
     cur = db().cursor()
-    cur.execute(query, args)
-    r = [dict((cur.description[i][0], value) \
-               for i, value in enumerate(row)) for row in cur.fetchall()]
-    cur.connection.close()
-    return (r[0] if r else None) if one else r
+    try:
+        print(query.encode('utf-8'))
+        print(schema)
+        print(args)
+        cur.execute(query.encode('utf-8'), args)
+        f = cur.fetchall()
+        print(f)
+        if len(f) == 0:
+            return {} if one else []
+        print(f"schema {len(schema)}/{len(f[0])}")
+        print(f"lines {len(f)}")
+        r = [dict((schema[i], value) \
+                for i, value in enumerate(row)) for row in f]
+        return (r[0] if r else None) if one else r
+    except Exception as e:
+        print(f"{e}")
+        raise e
+    finally:
+        cur.connection.close()
 
 api = NinjaAPI()
 
@@ -86,23 +113,23 @@ class AuthBearer(HttpBearer):
         try:
             connection = db()
             cursor = connection.cursor()
-            cursor.execute("DELETE FROM tokens WHERE expire_at <= NOW()")
+            cursor.execute("DELETE FROM tokens WHERE expire_at <= NOW()".encode('utf-8'))
         finally:
             if cursor:
                 cursor.close()
             if connection:
                 connection.commit()
-        data = query_db(f"SELECT owner, owner_type FROM tokens WHERE token='{token}' LIMIT 1", (), one=True)
+        data = query_db(f"SELECT owner, owner_type FROM tokens WHERE token='{token}' LIMIT 1", ("owner", "owner_type"), one=True)
         if data:
             return data
 
 class AdminAuthBearer(HttpBearer):
     def authenticate(self, request, token):
-        data = query_db(f"SELECT owner, owner_type FROM tokens WHERE token='{token}' AND owner='{settings.ADMIN_EMAIL}' LIMIT 1", (), one=True)
+        data = query_db(f"SELECT owner, owner_type FROM tokens WHERE token='{token}' AND owner='{settings.ADMIN_EMAIL}' LIMIT 1", ("owner", "owner_type"), one=True)
         if data:
             return data
 
-@api.post("/register_sailor")
+@api.get("/register_sailor")
 def register_sailor(request, name: str, password: str, email: str, birthday_date: str, mobile_phone: str, position: str):
     cursor = None
     connection = None
@@ -127,14 +154,17 @@ def register_sailor(request, name: str, password: str, email: str, birthday_date
         hash = tupl[0]
         salt = tupl[1]
         try:
-            if query_db(f"SELECT email FROM companies WHERE email='{email}'"):
+            print('try')
+            if query_db(f"SELECT email FROM companies WHERE email='{email}'", ('email')):
                 raise Exception("Company with such email already exist")
             connection = db()
             cursor = connection.cursor()
-            id = cursor.execute("INSERT INTO users(name, password, salt, email, birthday_date, mobile_phone, position) VALUES (?, ?, ?, ?, ?, ?) LIMIT 1", (name, hash, salt, email, birthday_date, phone, position))
+            q = "INSERT INTO users(name, password, salt, email, birthday_date, mobile_phone, position) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')" % (name, hash, salt, email, birthday_date, phone, position)
+            print(f"exec {q}")
+            id = cursor.execute(q.encode('utf-8'))
             connection.commit()
             cursor.close()
-        except mariadb.Error as e:
+        except Exception as e:
             print(f"{e}")
             if f"{e}".startswith("Duplicate entry"):
                 raise Exception("User with such email already exist")
@@ -150,7 +180,7 @@ def register_sailor(request, name: str, password: str, email: str, birthday_date
         if connection:
             connection.commit()
 
-@api.post("/request_register_company")
+@api.get("/request_register_company")
 def request_register_company(request, company_name: str, password: str, website: str, mobile_phone: str, email: str, country: str, city: str, address: str):
     cursor = None
     connection = None
@@ -176,16 +206,18 @@ def request_register_company(request, company_name: str, password: str, website:
         print(tupl)
         print(f"{hash}, {salt}")
         try:
-            if query_db(f"SELECT email FROM users WHERE email='{email}'"):
+            if query_db(f"SELECT email FROM users WHERE email='{email}'", ('email')):
                 raise ValueError("User with such email already exist")
-            if query_db(f"SELECT email FROM companies WHERE email='{email}'"):
+            if query_db(f"SELECT email FROM companies WHERE email='{email}'", ('email')):
                 raise ValueError("Company with such email already exist")
             connection = db()
             cursor = connection.cursor()
-            id = cursor.execute("INSERT INTO companies_requests(name, password, salt, website, mobile_phone, email, country, city, address) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) LIMIT 1", (company_name, hash, salt, website, phone, email, country, city, address))
+            q = "INSERT INTO companies_requests(name, password, salt, website, mobile_phone, email, country, city, address) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')" % (company_name, hash, salt, website, phone, email, country, city, address)
+            print(f"exec {q}")
+            id = cursor.execute(q.encode('utf-8'))
             connection.commit()
             cursor.close()
-        except mariadb.Error as e:
+        except Exception as e:
             print(f"{e}")
             if f"{e}".startswith("Duplicate entry"):
                 raise ValueError("Company with such email already exist")
@@ -201,7 +233,7 @@ def request_register_company(request, company_name: str, password: str, website:
         if connection:
             connection.commit()
 
-@api.post("/login")
+@api.get("/login")
 def login(request, email: str, password: str):
     cur = None
     connection = None
@@ -211,7 +243,7 @@ def login(request, email: str, password: str):
         if not password or password.__len__() < 4:
             raise ValueError("Password invalid")
 
-        info = query_db(f"SELECT * FROM ((SELECT password, salt, email, 'user' as 'type' FROM users) UNION (SELECT password, salt, email, 'company' FROM companies)) AS U WHERE U.email='{email}' LIMIT 1", one=True)
+        info = query_db(f"SELECT * FROM ((SELECT password, salt, email, 'user' as 'type' FROM users) UNION (SELECT password, salt, email, 'company' FROM companies)) AS U WHERE U.email='{email}' LIMIT 1", ('password', 'salt', 'email', 'type'), one=True)
         print(f"{info}")
         print(encode_password(password, info['salt']))
         if verify_password(password, info['password'], info['salt']):
@@ -224,8 +256,8 @@ def login(request, email: str, password: str):
         cur = connection.cursor()
         expire_at = datetime.now() + timedelta(1)
         
-        q = f"INSERT INTO tokens (owner_type, owner, token, expire_at) VALUES ('{type}', '{email}', '{token}', '{expire_at}') LIMIT 1"
-        cur.execute(q, ())
+        q = f"INSERT INTO tokens (owner_type, owner, token, expire_at) VALUES ('{type}', '{email}', '{token}', '{expire_at}')"
+        cur.execute(q.encode('utf-8'))
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
     else:
@@ -236,7 +268,7 @@ def login(request, email: str, password: str):
         if connection and connection != None:
             connection.commit()
 
-@api.post("/get_profile_company", auth=AuthBearer())
+@api.get("/get_profile_company", auth=AuthBearer())
 def get_profile_company(request):
     try:
         auth = request.auth
@@ -244,14 +276,14 @@ def get_profile_company(request):
         if auth["owner_type"] != "company":
             raise ValueError("This is not a company account")
         email = auth["owner"]
-        data = query_db(f"SELECT name, website, mobile_phone, email, country, city, address, logo_path FROM companies WHERE email='{email}' LIMIT 1", args=(), one=True)
+        data = query_db(f"SELECT name, website, mobile_phone, email, country, city, address, logo_path FROM companies WHERE email='{email}' LIMIT 1", ("name", "website", "mobile_phone", "email", "country", "city", "address", "logo_path"), args=(), one=True)
         print(data)
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
     else:
         return {"result": "ok", "extra": data}
 
-@api.post("/get_profile_user", auth=AuthBearer())
+@api.get("/get_profile_user", auth=AuthBearer())
 def get_profile_user(request):
     try:
         auth = request.auth
@@ -259,7 +291,8 @@ def get_profile_user(request):
         if auth["owner_type"] != "user":
             raise ValueError("This is not a user account")
         email = auth["owner"]
-        data = query_db(f"SELECT name, email, DATE_FORMAT(birthday_date, '%d.%m.%Y') as birthday_date, mobile_phone, position FROM users WHERE email='{email}' LIMIT 1", args=(), one=True)
+        data = query_db(f"SELECT name, email, birthday_date, mobile_phone, position FROM users WHERE email='{email}' LIMIT 1", ("name", "email", "birthday_date", "mobile_phone", "position"), args=(), one=True)
+        data["birthday_date"] = data["birthday_date"].strftime("%d.%m.%Y")
         print(data)
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
@@ -291,13 +324,13 @@ def upload_cv(request):
         filename += f".{ext}"
         path = f"{settings.CV_ROOT}{filename}"
         handle_uploaded_file(path, file)
-        oldname = query_db(f"SELECT name FROM files WHERE owner_type='user' AND owner='{email}'", one=True)
+        oldname = query_db(f"SELECT name FROM files WHERE owner_type='user' AND owner='{email}'", ("name",), one=True)
         con = db()
         cur = con.cursor()
         if oldname:
-            cur.execute(f"UPDATE files SET name='{filename}' WHERE owner='{email}' LIMIT 1")
+            cur.execute(f"UPDATE files SET name='{filename}' WHERE owner='{email}' LIMIT 1".encode('utf-8'))
         else:
-            cur.execute(f"INSERT INTO files (owner_type, owner, name) VALUES ('user', '{email}', '{filename}')")
+            cur.execute(f"INSERT INTO files (owner_type, owner, name) VALUES ('user', '{email}', '{filename}')".encode('utf-8'))
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
     else:
@@ -310,6 +343,7 @@ def upload_cv(request):
 
 @api.post("/upload_logo", auth=AuthBearer())
 def upload_logo(request):
+    print("UPLOAD_LOGO")
     con = None
     cur = None
     try:
@@ -324,14 +358,17 @@ def upload_logo(request):
         path = f"{settings.LOGO_ROOT}{filename}"
         handle_uploaded_file(path, file)
         email = request.auth["owner"]
-        oldname = query_db(f"SELECT name FROM files WHERE owner_type='company' AND owner='{email}' LIMIT 1", one=True)
+        oldname = query_db(f"SELECT name FROM files WHERE owner_type='company' AND owner='{email}' LIMIT 1", ("name",), one=True)
         con = db()
         cur = con.cursor()
-        cur.execute(f"UPDATE companies SET logo_path='{filename}' WHERE email='{email}' LIMIT 1", ())
+        cur.execute(f"UPDATE companies SET logo_path='{filename}' WHERE email='{email}' LIMIT 1".encode('utf-8'), ())
         if oldname:
-            cur.execute(f"UPDATE files SET name='{filename}' WHERE owner='{email}' AND owner_type='company' LIMIT 1", ())
+            cur.execute(f"UPDATE files SET name='{filename}' WHERE owner='{email}' AND owner_type='company' LIMIT 1".encode('utf-8'), ())
         else:
-            cur.execute(f"INSERT INTO files (name, owner, owner_type) VALUES('{filename}', '{email}', 'company')", ())
+            cur.execute(f"INSERT INTO files (name, owner, owner_type) VALUES('{filename}', '{email}', 'company')".encode('utf-8'), ())
+        kind = filetype.guess(path)
+        if kind is None:
+            raise ValueError(f"Cannot guess file type")
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
     else:
@@ -342,7 +379,7 @@ def upload_logo(request):
         if con and con != None:
             con.commit()
 
-@api.post("/add_vacation", auth=AuthBearer())
+@api.get("/add_vacation", auth=AuthBearer())
 def add_vacation(request, position: str, salary: int, fleet_type: str, start_at: str, contract_duration: int, nationality: str, english_level: str, requierments: str, fleet_construct_year: int, fleet_dwt: str, fleet_gd_type: str, fleet_power: int):
     con = None
     cur = None
@@ -382,7 +419,7 @@ def add_vacation(request, position: str, salary: int, fleet_type: str, start_at:
         con = db()
         cur = con.cursor()
         position = position.lower()
-        id = cur.execute(f"INSERT INTO vacations (position, salary, fleet, start_at, contract_duration, company_email, post_date, english_level, nationality, requierments, fleet_construct_year, fleet_dwt, fleet_gd, fleet_power) VALUES('{position}', '{salary}', '{fleet_type}', '{start_at}', '{contract_duration}', '{company_email}', '{post_date}', '{english_level}', '{nationality}', '{requierments}', '{fleet_construct_year}', '{fleet_dwt}', '{fleet_gd_type}', '{fleet_power}')", ())
+        id = cur.execute(f"INSERT INTO vacations (position, salary, fleet, start_at, contract_duration, company_email, post_date, english_level, nationality, requierments, fleet_construct_year, fleet_dwt, fleet_gd, fleet_power) VALUES('{position}', '{salary}', '{fleet_type}', '{start_at}', '{contract_duration}', '{company_email}', '{post_date}', '{english_level}', '{nationality}', '{requierments}', '{fleet_construct_year}', '{fleet_dwt}', '{fleet_gd_type}', '{fleet_power}')".encode('utf-8'), ())
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
     else:
@@ -393,12 +430,14 @@ def add_vacation(request, position: str, salary: int, fleet_type: str, start_at:
         if con and con != None:
             con.commit()
 
-@api.post("/get_vacation")
+@api.get("/get_vacation")
 def get_vacation(request, id: int):
     try:
         if id < 1:
             raise ValueError("Invalid id")
-        data = query_db(f"SELECT v.position, v.salary, v.fleet, DATE_FORMAT(v.start_at, '%d.%m.%Y') as start_at, v.contract_duration, v.company_email, v.requierments, v.fleet_construct_year, v.fleet_dwt, v.fleet_gd, v.fleet_power, DATE_FORMAT(v.post_date, '%d.%m.%Y') as post_date, v.english_level, v.nationality, v.id, c.logo_path as company_logo_path, c.name as company_name, c.country as company_country FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE v.id={id}", one=True)
+        data = query_db(f"SELECT v.position, v.salary, v.fleet, v.start_at, v.contract_duration, v.company_email, v.requierments, v.fleet_construct_year, v.fleet_dwt, v.fleet_gd, v.fleet_power, v.post_date, v.english_level, v.nationality, v.id, c.logo_path as company_logo_path, c.name as company_name, c.country as company_country FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE v.id={id}", ("position", "salary", "fleet", "start_at", "contract_duration", "company_email", "requierments", "fleet_construct_year", "fleet_dwt", "fleet_gd", "fleet_power", "post_date", "english_level", "nationality", "id", "company_logo_path", "company_name", "company_country"), one=True)
+        data["start_at"] = data["start_at"].strftime("%d.%m.%Y")
+        data["post_date"] = data["post_date"].strftime("%d.%m.%Y")
         data["company"] = {
                                 "name": data["company_name"], 
                                 "logo_path": data["company_logo_path"], 
@@ -414,7 +453,7 @@ def get_vacation(request, id: int):
     else:
         return {"result": "ok", "extra": data}
 
-@api.post("/update_profile_company", auth=AuthBearer())
+@api.get("/update_profile_company", auth=AuthBearer())
 def update_profile_company(request, email: str, password: str, website: str, mobile_phone: str, country: str, city: str, address: str):
     con = None
     cur = None
@@ -439,15 +478,15 @@ def update_profile_company(request, email: str, password: str, website: str, mob
             raise ValueError("City must be set")
         if not address:
             raise ValueError("Address must be set")
-        if request.auth["owner"] != email and (query_db(f"SELECT email FROM companies WHERE email='{email}' LIMIT 1", one=True) or query_db(f"SELECT email FROM users WHERE email='{email}' LIMIT 1", one=True)):
+        if request.auth["owner"] != email and (query_db(f"SELECT email FROM companies WHERE email='{email}' LIMIT 1", ("email",), one=True) or query_db(f"SELECT email FROM users WHERE email='{email}' LIMIT 1", ("email",), one=True)):
             raise ValueError("Email already exists")
         phone = mobile_phone
         con = db()
         cur = con.cursor()
         old_email = request.auth["owner"]
-        cur.execute(f"UPDATE companies SET email='{email}'{password_query}, website='{website}', mobile_phone='{phone}', email='{email}', country='{country}', city='{city}', address='{address}' WHERE email='{old_email}' LIMIT 1")
-        cur.execute(f"UPDATE tokens SET owner='{email}' WHERE owner='{old_email}'")
-        cur.execute(f"UPDATE files SET owner='{email}' WHERE owner='{old_email}'")
+        cur.execute(f"UPDATE companies SET email='{email}'{password_query}, website='{website}', mobile_phone='{phone}', email='{email}', country='{country}', city='{city}', address='{address}' WHERE email='{old_email}' LIMIT 1".encode('utf-8'), ())
+        cur.execute(f"UPDATE tokens SET owner='{email}' WHERE owner='{old_email}'".encode('utf-8'), ())
+        cur.execute(f"UPDATE files SET owner='{email}' WHERE owner='{old_email}'".encode('utf-8'), ())
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
     else:
@@ -458,7 +497,7 @@ def update_profile_company(request, email: str, password: str, website: str, mob
         if con and con != None:
             con.commit()
 
-@api.post("/update_profile_sailor", auth=AuthBearer())
+@api.get("/update_profile_sailor", auth=AuthBearer())
 def update_profile_sailor(request, name: str, password: str, birthday_date: str, mobile_phone: str, position: str, email: str):
     cursor = None
     connection = None
@@ -482,19 +521,19 @@ def update_profile_sailor(request, name: str, password: str, birthday_date: str,
         name = name.strip()
         if not name or name.count(' ') < 1 or name.count(' ') > 5:
             raise ValueError("Name must be set" if not name else "Name field must contain name and surname")
-        if request.auth["owner"] != email and (query_db(f"SELECT email FROM companies WHERE email='{email}' LIMIT 1", one=True) or query_db(f"SELECT email FROM users WHERE email='{email}' LIMIT 1", one=True)):
+        if request.auth["owner"] != email and (query_db(f"SELECT email FROM companies WHERE email='{email}' LIMIT 1", ("email",), one=True) or query_db(f"SELECT email FROM users WHERE email='{email}' LIMIT 1", ("email",), one=True)):
             raise ValueError("Email already exists")
         phone = mobile_phone
         old_email = request.auth["owner"]
         try:
             connection = db()
             cursor = connection.cursor()
-            id = cursor.execute(f"UPDATE users SET name='{name}'{password_query}, birthday_date='{birthday_date}', mobile_phone='{phone}', position='{position}' WHERE email='{old_email}' LIMIT 1", ())
-            cursor.execute(f"UPDATE tokens SET owner='{email}' WHERE owner='{old_email}'")
-            cursor.execute(f"UPDATE files SET owner='{email}' WHERE owner='{old_email}'")
+            id = cursor.execute(f"UPDATE users SET name='{name}'{password_query}, birthday_date='{birthday_date}', mobile_phone='{phone}', position='{position}' WHERE email='{old_email}' LIMIT 1".encode('utf-8'), ())
+            cursor.execute(f"UPDATE tokens SET owner='{email}' WHERE owner='{old_email}'".encode('utf-8'), ())
+            cursor.execute(f"UPDATE files SET owner='{email}' WHERE owner='{old_email}'".encode('utf-8'), ())
             connection.commit()
             cursor.close()
-        except mariadb.Error as e:
+        except Exception as e:
             raise Exception("User with such email already exist")
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
@@ -507,7 +546,7 @@ def update_profile_sailor(request, name: str, password: str, birthday_date: str,
             connection.commit()
 
 sort_dict = {"creation": "v.post_date DESC", "start_at_asc": "v.start_at ASC", "start_at_desc": "v.start_at DESC"}
-@api.post("/get_vacations")
+@api.get("/get_vacations")
 def get_vacations(request, position: str, fleet: str, countries: str, salary_from: int, start_at: str, end_at: str, sort: str):
     try:
         position = position.strip().lower()
@@ -591,9 +630,10 @@ def get_vacations(request, position: str, fleet: str, countries: str, salary_fro
         if where_position:
             where_position = "WHERE {}".format(where_position)
         limit = settings.MAX_VACATIONS_DISPLAYED
-        q = f"SELECT DATE_FORMAT(v.post_date, '%d.%m.%Y %H:%i:%s') as post_date, v.position, v.salary, v.fleet, DATE_FORMAT(v.start_at, '%d.%m.%Y') as start_at, v.company_email, v.contract_duration, v.id, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email {where_position} {order_by} LIMIT {limit}"
+        q = "SELECT v.post_date, v.position, v.salary, v.fleet, v.start_at, v.company_email, v.contract_duration, v.id, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email {0} {1} LIMIT {2}".format(where_position, order_by, limit, args=("%d", "%i", "%s", "%d"))
         print(q)
-        data = query_db(q)
+        data = query_db(q, ("post_date", "position", "salary", "fleet", "start_at", "company_email", "contract_duration", "id", "company_logo_path", "company_name", "company_contry"), args=())
+        print(data)
         for i in range(0, len(data)):
             data[i]["company"] = {
                                     "name": data[i]["company_name"], 
@@ -605,6 +645,9 @@ def get_vacations(request, position: str, fleet: str, countries: str, salary_fro
             del data[i]["company_logo_path"]
             del data[i]["company_contry"]
             del data[i]["company_email"]
+            data[i]["post_date"] = data[i]["post_date"].strftime("%d.%m.%Y %H:%M:%S")
+            data[i]["start_at"] = data[i]["start_at"].strftime("%d.%m.%Y")
+        print(data)
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
     else:
@@ -639,7 +682,7 @@ def respond_vacation_anonymous(request, name: str, surname: str, birthday_date: 
     else:
         return {"result": "ok", "extra": "0"}
 
-@api.post("/respond_vacation", auth=AuthBearer())
+@api.get("/respond_vacation", auth=AuthBearer())
 def respond_vacation(request, vacation_id: int):
     try:
         if request.auth["owner_type"] != "user":
@@ -649,7 +692,7 @@ def respond_vacation(request, vacation_id: int):
         path_to_cv = os.path.join(settings.CV_ROOT, cv_filename)
         fo = open(path_to_cv, "rb")
         filecontent = fo.read()
-        userdata = query_db(f"SELECT name, birthday_date, mobile_phone, position FROM users WHERE email='{email}' LIMIT 1", one=True)
+        userdata = query_db(f"SELECT name, birthday_date, mobile_phone, position FROM users WHERE email='{email}' LIMIT 1", ("name", "birthday_date", "mobile_phone", "position"), one=True)
         age = calculate_age(userdata["birthday_date"])
         phone = userdata["mobile_phone"]
         vacation = get_vacation(None, vacation_id)["extra"]
@@ -728,7 +771,7 @@ def get_cv(request, filename: str):
     return get_file(file_path)
 
 def _get_user_cv_filename(email: str):
-    filename = query_db(f"SELECT name FROM files WHERE owner='{email}' AND owner_type='user' LIMIT 1", one=True)
+    filename = query_db(f"SELECT name FROM files WHERE owner='{email}' AND owner_type='user' LIMIT 1", ("name",), one=True)
     if filename:
         return filename["name"]
     else:
@@ -736,7 +779,7 @@ def _get_user_cv_filename(email: str):
 
 
 def _get_user_cv(email: str):
-    filename = query_db(f"SELECT name FROM files WHERE owner='{email}' AND owner_type='user' LIMIT 1", one=True)
+    filename = query_db(f"SELECT name FROM files WHERE owner='{email}' AND owner_type='user' LIMIT 1", ("name",), one=True)
     if not filename:
         raise Http404
     filename = filename["name"]
@@ -756,7 +799,7 @@ def get_logo(request, filename: str):
 
 @api.get("/get_company_logo")
 def get_company_logo(request, email: str):
-    filename = query_db(f"SELECT name FROM files WHERE owner='{email}' AND owner_type='company' LIMIT 1", one=True)
+    filename = query_db(f"SELECT name FROM files WHERE owner='{email}' AND owner_type='company' LIMIT 1", ("name",), one=True)
     if not filename:
         raise Http404
     filename = filename["name"]
@@ -765,22 +808,22 @@ def get_company_logo(request, email: str):
 
 @api.get("/is_company_logo_exists")
 def is_company_logo_exists(request, email: str):
-    name = query_db(f"SELECT name FROM files WHERE owner='{email}' AND owner_type='company' LIMIT 1", one=True)
+    name = query_db(f"SELECT name FROM files WHERE owner='{email}' AND owner_type='company' LIMIT 1", ("name",), one=True)
     if name:
         return True
     else:
         return False
 
 
-@api.post("/get_reg_requests", auth=AdminAuthBearer())
+@api.get("/get_reg_requests", auth=AdminAuthBearer())
 def get_reg_requests(request):
     max = settings.MAX_REG_REQUESTS_DISPLAYED
     try:
-        return query_db(f"SELECT name, website, mobile_phone, email, country, city, address FROM companies_requests LIMIT {max}")
+        return query_db(f"SELECT name, website, mobile_phone, email, country, city, address FROM companies_requests LIMIT {max}", ("name", "website", "mobile_phone", "email", "country", "city", "address"))
     except Exception as e:
         return f"{e}"
 
-@api.post("/apply_reg_request", auth=AdminAuthBearer())
+@api.get("/apply_reg_request", auth=AdminAuthBearer())
 def apply_reg_request(request, email: str):
     cursor = None
     connection = None
@@ -788,9 +831,9 @@ def apply_reg_request(request, email: str):
         connection = db()
         cursor = connection.cursor()
         try:
-            cursor.execute(f"INSERT INTO companies(name, password, salt, website, mobile_phone, email, country, city, address) SELECT * FROM companies_requests WHERE email='{email}' LIMIT 1", ())
-            id = cursor.execute(f"DELETE FROM companies_requests WHERE email='{email}' LIMIT 1", ())
-        except mariadb.Error as e:
+            cursor.execute(f"INSERT INTO companies(name, password, salt, website, mobile_phone, email, country, city, address) SELECT * FROM companies_requests WHERE email='{email}'".encode('utf-8'), ())
+            id = cursor.execute(f"DELETE FROM companies_requests WHERE email='{email}' LIMIT 1".encode('utf-8'), ())
+        except Exception as e:
             if f"{e}".startswith("Duplicate entry"):
                 raise ValueError("Company with such email already exist")
             else:
@@ -805,14 +848,14 @@ def apply_reg_request(request, email: str):
         if connection:
             connection.commit()
 
-@api.post("/deny_reg_request", auth=AdminAuthBearer())
+@api.get("/deny_reg_request", auth=AdminAuthBearer())
 def deny_reg_request(request, email: str):
     cursor = None
     connection = None
     try:
         connection = db()
         cursor = connection.cursor()
-        id = cursor.execute(f"DELETE FROM companies_requests WHERE email='{email}' LIMIT 1", ())
+        id = cursor.execute(f"DELETE FROM companies_requests WHERE email='{email}' LIMIT 1".encode('utf-8'), ())
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
     else:

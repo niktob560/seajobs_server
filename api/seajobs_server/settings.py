@@ -23,12 +23,23 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '(#pz(#^q1g0corepo#(5$ov+u6pi_)et=v3%ugu_z3125%!x!5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['crewmarine.eu', 'crewmarine.ru', '*']
 
 
 # Application definition
+
+CORS_ORIGIN_ALLOW_ALL=True
+CORS_ORIGIN_WHITELIST = [
+    'http://google.com',
+    'http://hostname.example.com',
+    'http://localhost:8000',
+    'http://127.0.0.1:9000',
+    'http://crewmarine.eu',
+    'https://crewmarine.eu',
+]
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -37,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -47,6 +59,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'seajobs_server.urls'
@@ -120,19 +134,19 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = '/tmp/'
+MEDIA_ROOT = '/var/www/u1172916/data/'
 CV_ROOT = MEDIA_ROOT + MEDIA_URL
 LOGO_ROOT = MEDIA_ROOT + MEDIA_URL
 
-DB_NAME = "seajobs"
-DB_USER = "root"
-DB_PASSWORD = "QKh8RrWnc51CNcs2DigDsTIxg9J1SXZo"
+DB_NAME = "u1172916_default"
+DB_USER = "u1172916_default"
+DB_PASSWORD = "Ml7i_S4q"
 # For docker startup:
-# DB_HOST = "mariadb"
-# DB_PORT = 3306
+DB_HOST = "localhost"
+DB_PORT = 3306
 # For debug:
-DB_HOST = "128.0.129.115"
-DB_PORT = 3308
+# DB_HOST = "128.0.129.115"
+# DB_PORT = 3308
 MAIL_ADDR = "seajobs.development@gmail.com"
 MAIL_PASS = "Kpl5xKpdzPaHnQ1y"
 ENCODING = "utf-8"
@@ -140,4 +154,4 @@ ENCODING = "utf-8"
 MAX_VACATIONS_DISPLAYED = 100
 MAX_REG_REQUESTS_DISPLAYED = 100
 
-ADMIN_EMAIL = "admin@seajobs.com"
+ADMIN_EMAIL = "admin@admin.admin"
