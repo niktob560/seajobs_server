@@ -932,6 +932,31 @@ def update_vacation(request, id: int, position: str = None, salary: int = None, 
     else:
         return {"query": query}
 
+@api.get("/get_company_vacancies")
+def get_company_vacancies(request, company_email: str, limit: int = settings.MAX_VACATIONS_DISPLAYED):
+    try:
+        if limit < 0 or limit > settings.MAX_VACATIONS_DISPLAYED:
+            limit = settings.MAX_VACATIONS_DISPLAYED
+        q = f"SELECT DATE_FORMAT(v.post_date, '%d.%m.%Y %H:%i:%s') as post_date, v.position, v.salary, v.fleet, DATE_FORMAT(v.start_at, '%d.%m.%Y') as start_at, v.company_email, v.contract_duration, v.id, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE company_email='{company_email}' LIMIT {limit}"
+        print(q)
+        data = query_db(q)
+        for i in range(0, len(data)):
+            data[i]["company"] = {
+                                    "name": data[i]["company_name"], 
+                                    "logo_path": data[i]["company_logo_path"], 
+                                    "contry": data[i]["company_contry"],
+                                    "email": data[i]["company_email"]
+                                }
+            del data[i]["company_name"]
+            del data[i]["company_logo_path"]
+            del data[i]["company_contry"]
+            del data[i]["company_email"]
+    except Exception as e:
+        return {"result": "err", "extra": f"{e}"}
+    else:
+        return {"result": "ok", "extra": data}
+
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", api.urls)
