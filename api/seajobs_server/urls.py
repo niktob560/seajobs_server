@@ -824,6 +824,31 @@ def deny_reg_request(request, email: str):
             connection.commit()
 
 
+@api.delete("/remove_vacation", auth=AuthBearer())
+def remove_vacation(request, id: int):
+    cursor = None
+    connection = None
+    try:
+        company_email = request.auth["owner"]
+        owner_email = query_db(f"SELECT company_email FROM vacations WHERE id={id}", one=True)["company_email"]
+        print(f"company: {company_email}")
+        print(f"owner: {owner_email}")
+        if company_email != owner_email:
+            raise ValueError("You must be a vacation owner")
+        connection = db()
+        cursor = connection.cursor()
+        cursor.execute(f"DELETE FROM vacations WHERE id={id} AND company_email='{company_email}' LIMIT 1", ())
+    except Exception as e:
+        return {"result": "err", "extra": f"{e}"}
+    else:
+        return {"result": "ok", "extra": f"{id}"}
+    finally:
+        if cursor:
+            cursor.close()
+        if connection:
+            connection.commit()
+
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", api.urls)
