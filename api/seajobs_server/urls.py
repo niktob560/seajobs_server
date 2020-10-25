@@ -849,6 +849,89 @@ def remove_vacation(request, id: int):
             connection.commit()
 
 
+
+
+
+@api.patch("/update_vacation", auth=AuthBearer())
+def update_vacation(request, id: int, position: str = None, salary: int = None, fleet_type: str = None, start_at: str = None, contract_duration: int = None, requierments: str = None, fleet_construct_year: int = None, fleet_dwt: str = None, fleet_gd: str = None, fleet_power: int = None, english_level: str = None, nationality: str = None):
+    try:
+        if request.auth["owner_type"] != "company":
+            raise ValueError("Only company can update vacation")
+        query = "UPDATE vacations SET"
+        if position != None:
+            query += f" position='{position}'"
+        if salary != None:
+            if salary <= 0:
+                raise ValueError("Salary can't be less than 0")
+            if "=" in query:
+                query += ","
+            query += f" salary={salary}"
+        if fleet_type != None:
+            if "=" in query:
+                query += ","
+            query += f" fleet_type='{fleet_type}'"
+        if start_at != None:
+            start_at = datetime.strptime(start_at, "%d.%m.%Y")
+            start_at = "{Y}-{m}-{d}".format(Y=start_at.year, m=start_at.month, d=start_at.day)
+            if "=" in query:
+                query += ","
+            query += f" start_at='{start_at}'"
+        if contract_duration != None:
+            if contract_duration <= 0:
+                raise ValueError("Contract duration can't be less than 1")
+            if "=" in query:
+                query += ","
+            query += f" contract_duration={contract_duration}"
+        if requierments != None:
+            if "=" in query:
+                query += ","
+            query += f" requierments='{requierments}'"
+        if fleet_construct_year != None:
+            if fleet_construct_year < 1500:
+                raise ValueError("Bad fleet construct year")
+            if "=" in query:
+                query += ","
+            query += f" fleet_construct_year={fleet_construct_year}"
+        if fleet_dwt != None:
+            if "=" in query:
+                query += ","
+            query += f" fleet_dwt='{fleet_dwt}'"
+        if fleet_gd != None:
+            if "=" in query:
+                query += ","
+            query += f" fleet_gd='{fleet_gd}'"
+        if fleet_power != None:
+            if fleet_power <= 0:
+                raise ValueError("Fleet power must be grater that 0")
+            if "=" in query:
+                query += ","
+            query += f" fleet_power={fleet_power}"
+        if english_level != None:
+            if "=" in query:
+                query += ","
+            query += f" english_level='{english_level}'"
+        if nationality != None:
+            if "=" in query:
+                query += ","
+            query += f" nationality='{nationality}'"
+        if "=" not in query:
+            raise ValueError("Must be at least one parameter to change")
+        company_email = request.auth["owner"]
+        query += f" WHERE id={id} AND company_email='{company_email}' LIMIT 1"
+
+        cursor = None
+        connection = None
+        try:
+            connection = db()
+            cursor = connection.cursor()
+            id = cursor.execute(query, ())
+        except Exception as e:
+            raise SystemError("Failed to update vacancy")
+    except Exception as e:
+        return {"err": f"{e}"}
+    else:
+        return {"query": query}
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", api.urls)
