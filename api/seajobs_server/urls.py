@@ -758,9 +758,13 @@ def get_logo(request, filename: str):
 def get_company_logo(request, email: str):
     filename = query_db(f"SELECT name FROM files WHERE owner='{email}' AND owner_type='company' LIMIT 1", one=True)
     if not filename:
-        raise Http404
-    filename = filename["name"]
+        print("Default logo")
+        filename = "default.png"
+    else:
+        print("Normal logo")
+        filename = filename["name"]
     file_path = os.path.join(settings.LOGO_ROOT, filename)
+    print(f"filepath {file_path}")
     return get_file(file_path)
 
 @api.get("/is_company_logo_exists")

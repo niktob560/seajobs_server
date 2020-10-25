@@ -121,8 +121,8 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = '/tmp/'
-CV_ROOT = MEDIA_ROOT + MEDIA_URL
-LOGO_ROOT = MEDIA_ROOT + MEDIA_URL
+CV_ROOT = MEDIA_ROOT + MEDIA_URL + "/cv/"
+LOGO_ROOT = MEDIA_ROOT + MEDIA_URL + "/logo/"
 
 DB_NAME = "seajobs"
 DB_USER = "root"
