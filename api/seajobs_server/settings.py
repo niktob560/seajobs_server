@@ -143,7 +143,7 @@ DB_NAME = "u1172916_default"
 # DB_NAME = "seajobs"
 DB_USER = "u1172916_default"
 # DB_USER = "username"
-#DB_PASSWORD = "Ml7i_S4q"
+DB_PASSWORD = "Ml7i_S4q"
 # DB_PASSWORD = "QKh8RrWnc51CNcs2DigDsTIxg9J1SXZo"
 # For docker startup:
 if DEBUG:
