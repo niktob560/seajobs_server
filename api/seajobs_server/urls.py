@@ -507,8 +507,8 @@ def update_profile_sailor(request, name: str, password: str, birthday_date: str,
             connection.commit()
 
 sort_dict = {"creation": "v.post_date DESC", "start_at_asc": "v.start_at ASC", "start_at_desc": "v.start_at DESC"}
-@api.post("/get_vacations")
-def get_vacations(request, position: str, fleet: str, countries: str, salary_from: int, start_at: str, end_at: str, sort: str):
+@api.get("/get_vacations")
+def get_vacations(request, position = " ", fleet = " ", countries = " ", salary_from = 0, start_at = " ", end_at = " ", sort = " ", offset = 0, limit = settings.MAX_VACATIONS_DISPLAYED):
     try:
         position = position.strip().lower()
         fleet = fleet.strip()
@@ -590,8 +590,11 @@ def get_vacations(request, position: str, fleet: str, countries: str, salary_fro
         
         if where_position:
             where_position = "WHERE {}".format(where_position)
-        limit = settings.MAX_VACATIONS_DISPLAYED
-        q = f"SELECT DATE_FORMAT(v.post_date, '%d.%m.%Y %H:%i:%s') as post_date, v.position, v.salary, v.fleet, DATE_FORMAT(v.start_at, '%d.%m.%Y') as start_at, v.company_email, v.contract_duration, v.id, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email {where_position} {order_by} LIMIT {limit}"
+        if limit > settings.MAX_VACATIONS_DISPLAYED or limit < 0:
+            limit = settings.MAX_VACATIONS_DISPLAYED
+        if offset < 0:
+            offset = 0
+        q = f"SELECT DATE_FORMAT(v.post_date, '%d.%m.%Y %H:%i:%s') as post_date, v.position, v.salary, v.fleet, DATE_FORMAT(v.start_at, '%d.%m.%Y') as start_at, v.company_email, v.contract_duration, v.id, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email {where_position} {order_by} LIMIT {limit} OFFSET {offset}"
         print(q)
         data = query_db(q)
         for i in range(0, len(data)):
@@ -776,11 +779,14 @@ def is_company_logo_exists(request, email: str):
         return False
 
 
-@api.post("/get_reg_requests", auth=AdminAuthBearer())
-def get_reg_requests(request):
-    max = settings.MAX_REG_REQUESTS_DISPLAYED
+@api.get("/get_reg_requests", auth=AdminAuthBearer())
+def get_reg_requests(request, limit = settings.MAX_REG_REQUESTS_DISPLAYED, offset = 0):
+    if limit > settings.MAX_REG_REQUESTS_DISPLAYED or limit < 0:
+        limit = settings.MAX_REG_REQUESTS_DISPLAYED
+    if offset < 0:
+        offset = 0
     try:
-        return query_db(f"SELECT name, website, mobile_phone, email, country, city, address FROM companies_requests LIMIT {max}")
+        return query_db(f"SELECT name, website, mobile_phone, email, country, city, address FROM companies_requests LIMIT {limit} OFFSET {offset}")
     except Exception as e:
         return f"{e}"
 
