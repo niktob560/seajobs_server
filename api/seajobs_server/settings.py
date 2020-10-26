@@ -23,6 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '(#pz(#^q1g0corepo#(5$ov+u6pi_)et=v3%ugu_z3125%!x!5'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+#TODO: change to False on deploy
 DEBUG = True
 
 ALLOWED_HOSTS = ['crewmarine.eu', 'crewmarine.ru', '*']
@@ -138,15 +139,17 @@ MEDIA_ROOT = '/var/www/u1172916/data/'
 CV_ROOT = MEDIA_ROOT + MEDIA_URL
 LOGO_ROOT = MEDIA_ROOT + MEDIA_URL
 
-#DB_NAME = "u1172916_default"
-DB_NAME = "seajobs"
-#DB_USER = "u1172916_default"
-DB_USER = "username"
+DB_NAME = "u1172916_default"
+# DB_NAME = "seajobs"
+DB_USER = "u1172916_default"
+# DB_USER = "username"
 #DB_PASSWORD = "Ml7i_S4q"
-DB_PASSWORD = "QKh8RrWnc51CNcs2DigDsTIxg9J1SXZo"
+# DB_PASSWORD = "QKh8RrWnc51CNcs2DigDsTIxg9J1SXZo"
 # For docker startup:
-#DB_HOST = "localhost"
-DB_HOST = "mariadb"
+if DEBUG:
+    DB_HOST = "mariadb"
+else:
+    DB_HOST = "localhost"
 DB_PORT = 3306
 # For debug:
 # DB_HOST = "128.0.129.115"
