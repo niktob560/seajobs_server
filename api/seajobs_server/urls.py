@@ -203,23 +203,19 @@ def request_register_company(request, company_name: str, password: str, website:
         tupl = generate_password_hash_and_salt(password)
         hash = tupl[0]
         salt = tupl[1]
-        print(tupl)
-        print(f"{hash}, {salt}")
+        if query_db(f"SELECT email FROM users WHERE email='{email}'", ('email')):
+            raise ValueError("User with such email already exist")
+        if query_db(f"SELECT email FROM companies WHERE email='{email}'", ('email')):
+            raise ValueError("Company with such email already exist")
         try:
-            if query_db(f"SELECT email FROM users WHERE email='{email}'", ('email')):
-                raise ValueError("User with such email already exist")
-            if query_db(f"SELECT email FROM companies WHERE email='{email}'", ('email')):
-                raise ValueError("Company with such email already exist")
             connection = db()
             cursor = connection.cursor()
             q = "INSERT INTO companies_requests(name, password, salt, website, mobile_phone, email, country, city, address) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')" % (company_name, hash, salt, website, phone, email, country, city, address)
-            print(f"exec {q}")
             id = cursor.execute(q.encode('utf-8'))
             connection.commit()
             cursor.close()
         except Exception as e:
-            print(f"{e}")
-            if f"{e}".startswith("Duplicate entry"):
+            if "Duplicate entry" in f"{e}":
                 raise ValueError("Company with such email already exist")
             else:
                 return HttpResponseServerError()
