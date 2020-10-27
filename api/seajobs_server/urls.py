@@ -877,7 +877,7 @@ def deny_reg_request(request, email: str):
             connection.commit()
 
 
-@api.delete("/remove_vacation", auth=AuthBearer())
+@api.get("/remove_vacation", auth=AuthBearer())
 def remove_vacation(request, id: int):
     cursor = None
     connection = None
@@ -905,7 +905,7 @@ def remove_vacation(request, id: int):
 
 
 
-@api.patch("/update_vacation", auth=AuthBearer())
+@api.get("/update_vacation", auth=AuthBearer())
 def update_vacation(request, id: int, position: str = None, salary: int = None, fleet_type: str = None, start_at: str = None, contract_duration: int = None, requierments: str = None, fleet_construct_year: int = None, fleet_dwt: str = None, fleet_gd: str = None, fleet_power: int = None, english_level: str = None, nationality: str = None):
     try:
         if request.auth["owner_type"] != "company":
