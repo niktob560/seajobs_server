@@ -415,7 +415,8 @@ def add_vacation(request, position: str, salary: int, fleet_type: str, start_at:
         con = db()
         cur = con.cursor()
         position = position.lower()
-        id = cur.execute(f"INSERT INTO vacations (position, salary, fleet, start_at, contract_duration, company_email, post_date, english_level, nationality, requierments, fleet_construct_year, fleet_dwt, fleet_gd, fleet_power) VALUES('{position}', '{salary}', '{fleet_type}', '{start_at}', '{contract_duration}', '{company_email}', '{post_date}', '{english_level}', '{nationality}', '{requierments}', '{fleet_construct_year}', '{fleet_dwt}', '{fleet_gd_type}', '{fleet_power}')".encode('utf-8'), ())
+        cur.execute(f"INSERT INTO vacations (position, salary, fleet, start_at, contract_duration, company_email, post_date, english_level, nationality, requierments, fleet_construct_year, fleet_dwt, fleet_gd, fleet_power) VALUES('{position}', '{salary}', '{fleet_type}', '{start_at}', '{contract_duration}', '{company_email}', '{post_date}', '{english_level}', '{nationality}', '{requierments}', '{fleet_construct_year}', '{fleet_dwt}', '{fleet_gd_type}', '{fleet_power}')".encode('utf-8'), ())
+        cur.execute(f"DELETE FROM vacations WHERE post_date < curdate() - INTERVAL DAYOFWEEK(curdate())+7 DAY", ())
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
     else:
@@ -543,7 +544,7 @@ def update_profile_sailor(request, name: str, password: str, birthday_date: str,
 
 sort_dict = {"creation": "v.post_date DESC", "start_at_asc": "v.start_at ASC", "start_at_desc": "v.start_at DESC"}
 @api.get("/get_vacations")
-def get_vacations(request, position: str, fleet: str, countries: str, salary_from: int, start_at: str, end_at: str, sort: str):
+def get_vacations(request, position = " ", fleet = " ", countries = " ", salary_from = 0, start_at = " ", end_at = " ", sort = " ", offset = 0, limit = settings.MAX_VACATIONS_DISPLAYED):
     try:
         position = position.strip().lower()
         fleet = fleet.strip()
@@ -624,9 +625,15 @@ def get_vacations(request, position: str, fleet: str, countries: str, salary_fro
             order_by = ""
         
         if where_position:
-            where_position = "WHERE {}".format(where_position)
-        limit = settings.MAX_VACATIONS_DISPLAYED
-        q = "SELECT v.post_date, v.position, v.salary, v.fleet, v.start_at, v.company_email, v.contract_duration, v.id, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email {0} {1} LIMIT {2}".format(where_position, order_by, limit, args=("%d", "%i", "%s", "%d"))
+            where_position = f"WHERE {where_position} AND post_date >= curdate() - INTERVAL DAYOFWEEK(curdate())+7 DAY"
+        else:
+            where_position = f"WHERE post_date >= curdate() - INTERVAL DAYOFWEEK(curdate())+7 DAY"
+
+        if limit > settings.MAX_VACATIONS_DISPLAYED or limit < 0:
+            limit = settings.MAX_VACATIONS_DISPLAYED
+        if offset < 0:
+            offset = 0
+        q = "SELECT v.post_date, v.position, v.salary, v.fleet, v.start_at, v.company_email, v.contract_duration, v.id, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email {0} {1} LIMIT {2} OFFSET {3}".format(where_position, order_by, limit, offset, args=("%d", "%i", "%s", "%d", "%d"))
         print(q)
         data = query_db(q, ("post_date", "position", "salary", "fleet", "start_at", "company_email", "contract_duration", "id", "company_logo_path", "company_name", "company_contry"), args=())
         print(data)
@@ -797,9 +804,13 @@ def get_logo(request, filename: str):
 def get_company_logo(request, email: str):
     filename = query_db(f"SELECT name FROM files WHERE owner='{email}' AND owner_type='company' LIMIT 1", ("name",), one=True)
     if not filename:
-        raise Http404
-    filename = filename["name"]
+        print("Default logo")
+        filename = "default.png"
+    else:
+        print("Normal logo")
+        filename = filename["name"]
     file_path = os.path.join(settings.LOGO_ROOT, filename)
+    print(f"filepath {file_path}")
     return get_file(file_path)
 
 @api.get("/is_company_logo_exists")
@@ -812,10 +823,13 @@ def is_company_logo_exists(request, email: str):
 
 
 @api.get("/get_reg_requests", auth=AdminAuthBearer())
-def get_reg_requests(request):
-    max = settings.MAX_REG_REQUESTS_DISPLAYED
+def get_reg_requests(request, limit = settings.MAX_REG_REQUESTS_DISPLAYED, offset = 0):
+    if limit > settings.MAX_REG_REQUESTS_DISPLAYED or limit < 0:
+        limit = settings.MAX_REG_REQUESTS_DISPLAYED
+    if offset < 0:
+        offset = 0
     try:
-        return query_db(f"SELECT name, website, mobile_phone, email, country, city, address FROM companies_requests LIMIT {max}", ("name", "website", "mobile_phone", "email", "country", "city", "address"))
+        return query_db(f"SELECT name, website, mobile_phone, email, country, city, address FROM companies_requests LIMIT {limit} OFFSET {offset}", ("name", "website", "mobile_phone", "email", "country", "city", "address"))
     except Exception as e:
         return f"{e}"
 
@@ -861,6 +875,139 @@ def deny_reg_request(request, email: str):
             cursor.close()
         if connection:
             connection.commit()
+
+
+@api.delete("/remove_vacation", auth=AuthBearer())
+def remove_vacation(request, id: int):
+    cursor = None
+    connection = None
+    try:
+        company_email = request.auth["owner"]
+        owner_email = query_db(f"SELECT company_email FROM vacations WHERE id={id}", one=True)["company_email"]
+        print(f"company: {company_email}")
+        print(f"owner: {owner_email}")
+        if company_email != owner_email:
+            raise ValueError("You must be a vacation owner")
+        connection = db()
+        cursor = connection.cursor()
+        cursor.execute(f"DELETE FROM vacations WHERE id={id} AND company_email='{company_email}' LIMIT 1", ())
+    except Exception as e:
+        return {"result": "err", "extra": f"{e}"}
+    else:
+        return {"result": "ok", "extra": f"{id}"}
+    finally:
+        if cursor:
+            cursor.close()
+        if connection:
+            connection.commit()
+
+
+
+
+
+@api.patch("/update_vacation", auth=AuthBearer())
+def update_vacation(request, id: int, position: str = None, salary: int = None, fleet_type: str = None, start_at: str = None, contract_duration: int = None, requierments: str = None, fleet_construct_year: int = None, fleet_dwt: str = None, fleet_gd: str = None, fleet_power: int = None, english_level: str = None, nationality: str = None):
+    try:
+        if request.auth["owner_type"] != "company":
+            raise ValueError("Only company can update vacation")
+        query = "UPDATE vacations SET"
+        if position != None:
+            query += f" position='{position}'"
+        if salary != None:
+            if salary <= 0:
+                raise ValueError("Salary can't be less than 0")
+            if "=" in query:
+                query += ","
+            query += f" salary={salary}"
+        if fleet_type != None:
+            if "=" in query:
+                query += ","
+            query += f" fleet_type='{fleet_type}'"
+        if start_at != None:
+            start_at = datetime.strptime(start_at, "%d.%m.%Y")
+            start_at = "{Y}-{m}-{d}".format(Y=start_at.year, m=start_at.month, d=start_at.day)
+            if "=" in query:
+                query += ","
+            query += f" start_at='{start_at}'"
+        if contract_duration != None:
+            if contract_duration <= 0:
+                raise ValueError("Contract duration can't be less than 1")
+            if "=" in query:
+                query += ","
+            query += f" contract_duration={contract_duration}"
+        if requierments != None:
+            if "=" in query:
+                query += ","
+            query += f" requierments='{requierments}'"
+        if fleet_construct_year != None:
+            if fleet_construct_year < 1500:
+                raise ValueError("Bad fleet construct year")
+            if "=" in query:
+                query += ","
+            query += f" fleet_construct_year={fleet_construct_year}"
+        if fleet_dwt != None:
+            if "=" in query:
+                query += ","
+            query += f" fleet_dwt='{fleet_dwt}'"
+        if fleet_gd != None:
+            if "=" in query:
+                query += ","
+            query += f" fleet_gd='{fleet_gd}'"
+        if fleet_power != None:
+            if fleet_power <= 0:
+                raise ValueError("Fleet power must be grater that 0")
+            if "=" in query:
+                query += ","
+            query += f" fleet_power={fleet_power}"
+        if english_level != None:
+            if "=" in query:
+                query += ","
+            query += f" english_level='{english_level}'"
+        if nationality != None:
+            if "=" in query:
+                query += ","
+            query += f" nationality='{nationality}'"
+        if "=" not in query:
+            raise ValueError("Must be at least one parameter to change")
+        company_email = request.auth["owner"]
+        query += f" WHERE id={id} AND company_email='{company_email}' LIMIT 1"
+
+        cursor = None
+        connection = None
+        try:
+            connection = db()
+            cursor = connection.cursor()
+            id = cursor.execute(query, ())
+        except Exception as e:
+            raise SystemError("Failed to update vacancy")
+    except Exception as e:
+        return {"err": f"{e}"}
+    else:
+        return {"query": query}
+
+@api.get("/get_company_vacancies")
+def get_company_vacancies(request, company_email: str, limit: int = settings.MAX_VACATIONS_DISPLAYED):
+    try:
+        if limit < 0 or limit > settings.MAX_VACATIONS_DISPLAYED:
+            limit = settings.MAX_VACATIONS_DISPLAYED
+        q = f"SELECT DATE_FORMAT(v.post_date, '%d.%m.%Y %H:%i:%s') as post_date, v.position, v.salary, v.fleet, DATE_FORMAT(v.start_at, '%d.%m.%Y') as start_at, v.company_email, v.contract_duration, v.id, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE company_email='{company_email}' LIMIT {limit}"
+        print(q)
+        data = query_db(q)
+        for i in range(0, len(data)):
+            data[i]["company"] = {
+                                    "name": data[i]["company_name"], 
+                                    "logo_path": data[i]["company_logo_path"], 
+                                    "contry": data[i]["company_contry"],
+                                    "email": data[i]["company_email"]
+                                }
+            del data[i]["company_name"]
+            del data[i]["company_logo_path"]
+            del data[i]["company_contry"]
+            del data[i]["company_email"]
+    except Exception as e:
+        return {"result": "err", "extra": f"{e}"}
+    else:
+        return {"result": "ok", "extra": data}
 
 
 urlpatterns = [

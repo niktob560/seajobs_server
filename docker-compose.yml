@@ -18,6 +18,7 @@ services:
         restart: always
         volumes: 
             - ./api/:/app
+            - ./Media:/tmp/media
         ports:
             - 8000:80
     nginx:
