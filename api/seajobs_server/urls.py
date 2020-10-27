@@ -383,7 +383,7 @@ def add_vacation(request, position: str, salary: int, fleet_type: str, start_at:
         cur = con.cursor()
         position = position.lower()
         cur.execute(f"INSERT INTO vacations (position, salary, fleet, start_at, contract_duration, company_email, post_date, english_level, nationality, requierments, fleet_construct_year, fleet_dwt, fleet_gd, fleet_power) VALUES('{position}', '{salary}', '{fleet_type}', '{start_at}', '{contract_duration}', '{company_email}', '{post_date}', '{english_level}', '{nationality}', '{requierments}', '{fleet_construct_year}', '{fleet_dwt}', '{fleet_gd_type}', '{fleet_power}')", ())
-        cur.execute(f"DELETE FROM vacations WHERE post_date < curdate() - INTERVAL DAYOFWEEK(curdate())+7 DAY", ())
+        cur.execute(f"DELETE FROM vacations WHERE post_date not between date_sub(now(), INTERVAL 1 WEEK) and now()", ())
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
     else:
@@ -590,9 +590,9 @@ def get_vacations(request, position = " ", fleet = " ", countries = " ", salary_
             order_by = ""
         
         if where_position:
-            where_position = f"WHERE {where_position} AND post_date >= curdate() - INTERVAL DAYOFWEEK(curdate())+7 DAY"
+            where_position = f"WHERE {where_position} AND post_date between date_sub(now(), INTERVAL 1 WEEK) and now()"
         else:
-            where_position = f"WHERE post_date >= curdate() - INTERVAL DAYOFWEEK(curdate())+7 DAY"
+            where_position = f"WHERE post_date between date_sub(now(), INTERVAL 1 WEEK) and now()"
 
         if limit > settings.MAX_VACATIONS_DISPLAYED or limit < 0:
             limit = settings.MAX_VACATIONS_DISPLAYED
