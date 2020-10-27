@@ -589,7 +589,10 @@ def get_vacations(request, position = " ", fleet = " ", countries = " ", salary_
             order_by = ""
         
         if where_position:
-            where_position = "WHERE {}".format(where_position)
+            where_position = f"WHERE {where_position} AND post_date >= curdate() - INTERVAL DAYOFWEEK(curdate())+7 DAY"
+        else:
+            where_position = f"WHERE post_date >= curdate() - INTERVAL DAYOFWEEK(curdate())+7 DAY"
+
         if limit > settings.MAX_VACATIONS_DISPLAYED or limit < 0:
             limit = settings.MAX_VACATIONS_DISPLAYED
         if offset < 0:
