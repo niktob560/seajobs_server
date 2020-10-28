@@ -428,7 +428,8 @@ def update_profile_company(request, email: str, password: str, website: str, mob
         if password.strip() and password.__len__() < 4:
             raise ValueError("Password must contain at least 4 chars")
         elif password.strip():
-            password_query = f", password='{password}'"
+            (hash, salt) = generate_password_hash_and_salt(password)
+            password_query = f", password='{hash}', salt='{salt}'"
         else:
             password_query = f""
             
@@ -471,7 +472,8 @@ def update_profile_sailor(request, name: str, password: str, birthday_date: str,
         if password.strip() and password.__len__() < 4:
             raise ValueError("Password must contain at least 4 chars")
         elif password.strip():
-            password_query = f", password='{password}'"
+            (hash, salt) = generate_password_hash_and_salt(password)
+            password_query = f", password='{hash}', salt='{salt}'"
         else:
             password_query = f""
         if not birthday_date:
