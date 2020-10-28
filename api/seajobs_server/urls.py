@@ -240,9 +240,7 @@ def login(request, email: str, password: str):
             raise ValueError("Password invalid")
 
         info = query_db(f"SELECT * FROM ((SELECT password, salt, email, 'user' as 'type' FROM users) UNION (SELECT password, salt, email, 'company' FROM companies)) AS U WHERE U.email='{email}' LIMIT 1", ('password', 'salt', 'email', 'type'), one=True)
-        print(f"{info}")
-        print(encode_password(password, info['salt']))
-        if verify_password(password, info['password'], info['salt']):
+        if info and verify_password(password, info['password'], info['salt']):
             type = info['type']
         else:
             raise ValueError("Invalid credentails")
