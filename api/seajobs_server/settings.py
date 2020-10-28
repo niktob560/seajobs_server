@@ -135,15 +135,14 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
-<<<<<<< HEAD
-MEDIA_ROOT = '/var/www/u1172916/data/'
-CV_ROOT = MEDIA_ROOT + MEDIA_URL
-LOGO_ROOT = MEDIA_ROOT + MEDIA_URL
-=======
-MEDIA_ROOT = '/tmp/'
-CV_ROOT = MEDIA_ROOT + MEDIA_URL + "/cv/"
-LOGO_ROOT = MEDIA_ROOT + MEDIA_URL + "/logo/"
->>>>>>> master
+if DEBUG:
+    MEDIA_ROOT = '/tmp/'
+    CV_ROOT = MEDIA_ROOT + MEDIA_URL + "/cv/"
+    LOGO_ROOT = MEDIA_ROOT + MEDIA_URL + "/logo/"
+else:
+    MEDIA_ROOT = '/var/www/u1172916/data/'
+    CV_ROOT = MEDIA_ROOT + MEDIA_URL
+    LOGO_ROOT = MEDIA_ROOT + MEDIA_URL
 
 DB_NAME = "u1172916_default"
 # DB_NAME = "seajobs"
@@ -152,14 +151,11 @@ DB_USER = "u1172916_default"
 DB_PASSWORD = "Ml7i_S4q"
 # DB_PASSWORD = "QKh8RrWnc51CNcs2DigDsTIxg9J1SXZo"
 # For docker startup:
-<<<<<<< HEAD
+
 if DEBUG:
     DB_HOST = "mariadb"
 else:
     DB_HOST = "localhost"
-=======
-DB_HOST = "mariadb"
->>>>>>> master
 DB_PORT = 3306
 # For debug:
 # DB_HOST = "128.0.129.115"
