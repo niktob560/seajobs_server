@@ -668,6 +668,7 @@ def respond_vacation(request, vacation_id: int):
         return {"result": "ok", "exntra": "0"}
 
 def sendMail(mailto: Mailto, subject: str, body: str, filecontent = None, filename: str = "cv"):
+    pseudonim = settings.MAIL_NAME
     if filecontent:
         if "." in filename:
             ext = filename.split(".")[1]
@@ -677,13 +678,13 @@ def sendMail(mailto: Mailto, subject: str, body: str, filecontent = None, filena
         encodedcontent = base64.b64encode(filecontent)
         marker = "AUNIQUEMARKER"
         # Define the main headers.
-        part1 = """From: Seajobs <%s>
+        part1 = """From: %s <%s>
 To: %s <%s>
 Subject: %s
 MIME-Version: 1.0
 Content-Type: multipart/mixed; boundary=%s
 --%s
-""" % (settings.MAIL_ADDR, mailto.name, mailto.addr, subject, marker, marker)
+""" % (pseudonim, settings.MAIL_ADDR, mailto.name, mailto.addr, subject, marker, marker)
 
     # Define the message action
         part2 = """Content-Type: text/html
@@ -704,14 +705,14 @@ Content-Disposition: attachment; filename=%s
         message = part1 + part2 + part3
         s = None
     else:
-        message = """From: Seajobs <%s>
+        message = """From: %s <%s>
 To: %s <%s>
 Subject: %s
 Content-Type: text/html
 Content-Transfer-Encoding:8bit
 
 %s
-""" % (settings.MAIL_ADDR, mailto.name, mailto.addr, subject, body)
+""" % (pseudonim, settings.MAIL_ADDR, mailto.name, mailto.addr, subject, body)
     try:
         s = smtplib.SMTP('smtp.gmail.com', 587)
         s.ehlo()
@@ -1003,7 +1004,8 @@ def req_reset_password(request, email: str):
         q = f"INSERT INTO tokens (owner_type, owner, token, expire_at) VALUES ('{t}', '{email}', '{token}', '{expire_at}')"
         print(q)
         cur.execute(q, ())
-        sendMail(Mailto(addr=email, name=""), "Reset password", f'<a href="https://crewmarine.eu/en/reset_password.html?token={token}">Click to reset password</a>')
+        url = settings.PASSWORD_RESET_URL
+        sendMail(Mailto(addr=email, name=""), "Reset password", f'<a href="{url}?token={token}">Click to reset password</a>')
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
     else:
