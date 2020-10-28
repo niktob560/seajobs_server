@@ -1030,7 +1030,7 @@ def req_reset_password(request, email: str):
         if not email or not validate_email(email):
             raise ValueError("Email invalid")
 
-        info = query_db(f"SELECT * FROM ((SELECT email, 'user' as 'type' FROM users) UNION (SELECT email, 'company' FROM companies)) AS U WHERE U.email='{email}' LIMIT 1", one=True)
+        info = query_db(f"SELECT * FROM ((SELECT email, 'user' as 'type' FROM users) UNION (SELECT email, 'company' FROM companies)) AS U WHERE U.email='{email}' LIMIT 1", ('email', 'type'), one=True)
         if not info:
             raise ValueError('No such company')
         print(info)
