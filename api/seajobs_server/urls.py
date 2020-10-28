@@ -463,7 +463,8 @@ def update_profile_company(request, email: str, password: str, website: str, mob
         if password.strip() and password.__len__() < 4:
             raise ValueError("Password must contain at least 4 chars")
         elif password.strip():
-            password_query = f", password='{password}'"
+            (hash, salt) = generate_password_hash_and_salt(password)
+            password_query = f", password='{hash}', salt='{salt}'"
         else:
             password_query = f""
             
@@ -506,7 +507,8 @@ def update_profile_sailor(request, name: str, password: str, birthday_date: str,
         if password.strip() and password.__len__() < 4:
             raise ValueError("Password must contain at least 4 chars")
         elif password.strip():
-            password_query = f", password='{password}'"
+            (hash, salt) = generate_password_hash_and_salt(password)
+            password_query = f", password='{hash}', salt='{salt}'"
         else:
             password_query = f""
         if not birthday_date:
@@ -700,31 +702,33 @@ def respond_vacation(request, vacation_id: int):
         phone = userdata["mobile_phone"]
         vacation = get_vacation(None, vacation_id)["extra"]
         msg = '<style>th, td { padding:15px 60px;font-size:30px; } table{ margin: 0px 25%; } div{ padding: 30px; text-align: center; background: #00246A; color: white; font-size: 30px;} body { padding: 0px; } * { margin: 0px; } </style> <div style="padding: 30px;  text-align: center;  background: #00246A;  color: white;  font-size: 30px;"><h1>New responce</h1></div><table><tr><td>Name:</td><td>' + userdata["name"] + '</td></tr><tr><td>Age:</td><td>' + f"{age}" + '</td></tr><tr><td>Position:</td><td>' + vacation["position"] +'</td></tr><tr><td>Email:</td><td>' + email + '</td></tr><tr><td>Mobile phone:</td><td>' + phone + '</td></tr><tr><td>CV file</td><td><a href="http://' + request.get_host() + f"/api/get_cv?filename={cv_filename}" + '">' + "cv." + cv_filename.split(".")[1] + '</a></td></tr></table>'
-        sendMail(Mailto(addr=vacation["company"]["email"], name=vacation["company"]["name"]), "CV Responce", msg, filecontent, filename=cv_filename)
+        sendMail(Mailto(addr=vacation["company"]["email"], name=vacation["company"]["name"]), "CV Responce", msg, filecontent=filecontent, filename=cv_filename)
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
     else:
         return {"result": "ok", "exntra": "0"}
 
-def sendMail(mailto: Mailto, subject: str, body: str, filecontent, filename: str = "cv"):
-    if "." in filename:
-        ext = filename.split(".")[1]
-        filename = filename.split(".")[0]
-    else:
-        ext = f"{filecontent}".split(".")[1]
-    encodedcontent = base64.b64encode(filecontent)
-    marker = "AUNIQUEMARKER"
-    # Define the main headers.
-    part1 = """From: Seajobs <%s>
+def sendMail(mailto: Mailto, subject: str, body: str, filecontent = None, filename: str = "cv"):
+    pseudonim = settings.MAIL_NAME
+    if filecontent:
+        if "." in filename:
+            ext = filename.split(".")[1]
+            filename = filename.split(".")[0]
+        else:
+            ext = f"{filecontent}".split(".")[1]
+        encodedcontent = base64.b64encode(filecontent)
+        marker = "AUNIQUEMARKER"
+        # Define the main headers.
+        part1 = """From: %s <%s>
 To: %s <%s>
 Subject: %s
 MIME-Version: 1.0
 Content-Type: multipart/mixed; boundary=%s
 --%s
-""" % (settings.MAIL_ADDR, mailto.name, mailto.addr, subject, marker, marker)
+""" % (pseudonim, settings.MAIL_ADDR, mailto.name, mailto.addr, subject, marker, marker)
 
     # Define the message action
-    part2 = """Content-Type: text/html
+        part2 = """Content-Type: text/html
 Content-Transfer-Encoding:8bit
 
 %s
@@ -732,15 +736,24 @@ Content-Transfer-Encoding:8bit
 """ % (body,marker)
 
     # Define the attachment section
-    part3 = """Content-Type: multipart/mixed; name=\"%s\"
+        part3 = """Content-Type: multipart/mixed; name=\"%s\"
 Content-Transfer-Encoding:base64
 Content-Disposition: attachment; filename=%s
 
 %s
 --%s--
 """ %(f"{filename}.{ext}", f"{filename}.{ext}", f"{encodedcontent}".split("'")[1], marker)
-    message = part1 + part2 + part3
-    s = None
+        message = part1 + part2 + part3
+        s = None
+    else:
+        message = """From: %s <%s>
+To: %s <%s>
+Subject: %s
+Content-Type: text/html
+Content-Transfer-Encoding:8bit
+
+%s
+""" % (pseudonim, settings.MAIL_ADDR, mailto.name, mailto.addr, subject, body)
     try:
         s = smtplib.SMTP('smtp.gmail.com', 587)
         s.ehlo()
@@ -1008,6 +1021,70 @@ def get_company_vacancies(request, company_email: str, limit: int = settings.MAX
         return {"result": "err", "extra": f"{e}"}
     else:
         return {"result": "ok", "extra": data}
+
+@api.get("/request_reset_password")
+def req_reset_password(request, email: str):
+    cur = None
+    connection = None
+    try:
+        if not email or not validate_email(email):
+            raise ValueError("Email invalid")
+
+        info = query_db(f"SELECT * FROM ((SELECT email, 'user' as 'type' FROM users) UNION (SELECT email, 'company' FROM companies)) AS U WHERE U.email='{email}' LIMIT 1", one=True)
+        if not info:
+            raise ValueError('No such company')
+        print(info)
+        t = info['type']
+        print(t)
+
+        token = secrets.token_hex(256)
+        connection = db()
+        cur = connection.cursor()
+        expire_at = datetime.now() + timedelta(1)
+        
+        q = f"INSERT INTO tokens (owner_type, owner, token, expire_at) VALUES ('{t}', '{email}', '{token}', '{expire_at}')"
+        print(q)
+        cur.execute(q, ())
+        url = settings.PASSWORD_RESET_URL
+        sendMail(Mailto(addr=email, name=""), "Reset password", f'<a href="{url}?token={token}">Click to reset password</a>')
+    except Exception as e:
+        return {"result": "err", "extra": f"{e}"}
+    else:
+        return {"result": "ok"}
+    finally:
+        if cur and cur != None:
+            cur.close()
+        if connection and connection != None:
+            connection.commit()
+
+
+@api.get("/reset_password", auth=AuthBearer())
+def reset_password(request, password: str):
+    cur = None
+    connection = None
+    try:
+        email = request.auth['owner']
+        tupl = generate_password_hash_and_salt(password)
+        hash = tupl[0]
+        salt = tupl[1]
+        
+        if request.auth["owner_type"] != "company":
+            table = 'users'
+        else:
+            table = 'companies'
+        q = f"UPDATE {table} SET salt='{salt}', password='{hash}' WHERE email='{email}' LIMIT 1"
+        connection = db()
+        cur = connection.cursor()
+        cur.execute(q, ())
+    except Exception as e:
+        return {"result": "err", "extra": f"{e}"}
+    else:
+        return {"result": "ok"}
+    finally:
+        if cur and cur != None:
+            cur.close()
+        if connection and connection != None:
+            connection.commit()
 
 
 urlpatterns = [

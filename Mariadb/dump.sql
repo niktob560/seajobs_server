@@ -42,7 +42,7 @@ CREATE TABLE vacations (
   company_email VARCHAR(200) NOT NULL,
   requierments VARCHAR(1024) DEFAULT ' ',
   fleet_construct_year INT NOT NULL,
-  fleet_dwt VARCHAR(200) NOT NULL,
+  fleet_dwt VARCHAR(200) NOT NULL,  
   fleet_gd VARCHAR(200) NOT NULL,
   fleet_power INT NOT NULL,
   post_date DATETIME NOT NULL,
