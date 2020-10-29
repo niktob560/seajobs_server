@@ -131,19 +131,20 @@ def register_sailor(request, name: str, password: str, email: str, birthday_date
                 raise Exception("Company with such email already exist")
             connection = db()
             cursor = connection.cursor()
-            id = cursor.execute("INSERT INTO users(name, password, salt, email, birthday_date, mobile_phone, position) VALUES (?, ?, ?, ?, ?, ?) LIMIT 1", (name, hash, salt, email, birthday_date, phone, position))
+            id = cursor.execute("INSERT INTO users(name, password, salt, email, birthday_date, mobile_phone, position) VALUES (?, ?, ?, ?, ?, ?, ?) LIMIT 1", (name, hash, salt, email, birthday_date, phone, position))
             connection.commit()
             cursor.close()
         except mariadb.Error as e:
+            print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
             print(f"{e}")
             if f"{e}".startswith("Duplicate entry"):
                 raise Exception("User with such email already exist")
             else:
                 return HttpResponseServerError()
     except Exception as e:
-        return {"result": "err", "extra": "{}".format(e)}
+        return {"result": "err", "extra": f"{e}"}
     else:
-        return {"result": "ok", "extra": f"{id}"}
+        return {"result": "ok"}
     finally:
         if cursor:
             cursor.close()
