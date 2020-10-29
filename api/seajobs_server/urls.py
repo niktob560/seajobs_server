@@ -77,11 +77,21 @@ def query_db(query, args=(), one=False):
     cur.connection.close()
     return (r[0] if r else None) if one else r
 
-
 api = NinjaAPI()
 
 class AuthBearer(HttpBearer):
     def authenticate(self, request, token):
+        cursor = None
+        connection = None
+        try:
+            connection = db()
+            cursor = connection.cursor()
+            cursor.execute("DELETE FROM tokens WHERE expire_at <= NOW()")
+        finally:
+            if cursor:
+                cursor.close()
+            if connection:
+                connection.commit()
         data = query_db(f"SELECT owner, owner_type FROM tokens WHERE token='{token}' LIMIT 1", (), one=True)
         if data:
             return data
@@ -113,24 +123,28 @@ def register_sailor(request, name: str, password: str, email: str, birthday_date
         if not name or name.count(' ') < 1 or name.count(' ') > 5:
             raise ValueError("Name must be set" if not name else "Name field must contain name and surname")
         phone = mobile_phone
+        tupl = generate_password_hash_and_salt(password)
+        hash = tupl[0]
+        salt = tupl[1]
         try:
             if query_db(f"SELECT email FROM companies WHERE email='{email}'"):
                 raise Exception("Company with such email already exist")
             connection = db()
             cursor = connection.cursor()
-            id = cursor.execute("INSERT INTO users(name, password, email, birthday_date, mobile_phone, position) VALUES (?, ?, ?, ?, ?, ?) LIMIT 1", (name, password, email, birthday_date, phone, position))
+            id = cursor.execute("INSERT INTO users(name, password, salt, email, birthday_date, mobile_phone, position) VALUES (?, ?, ?, ?, ?, ?, ?) LIMIT 1", (name, hash, salt, email, birthday_date, phone, position))
             connection.commit()
             cursor.close()
         except mariadb.Error as e:
+            print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
             print(f"{e}")
             if f"{e}".startswith("Duplicate entry"):
                 raise Exception("User with such email already exist")
             else:
                 return HttpResponseServerError()
     except Exception as e:
-        return {"result": "err", "extra": "{}".format(e)}
+        return {"result": "err", "extra": f"{e}"}
     else:
-        return {"result": "ok", "extra": f"{id}"}
+        return {"result": "ok"}
     finally:
         if cursor:
             cursor.close()
@@ -157,6 +171,11 @@ def request_register_company(request, company_name: str, password: str, website:
         if not address:
             raise ValueError("Address must be set")
         phone = mobile_phone
+        tupl = generate_password_hash_and_salt(password)
+        hash = tupl[0]
+        salt = tupl[1]
+        print(tupl)
+        print(f"{hash}, {salt}")
         try:
             if query_db(f"SELECT email FROM users WHERE email='{email}'"):
                 raise ValueError("User with such email already exist")
@@ -164,7 +183,7 @@ def request_register_company(request, company_name: str, password: str, website:
                 raise ValueError("Company with such email already exist")
             connection = db()
             cursor = connection.cursor()
-            id = cursor.execute("INSERT INTO companies_requests(name, password, website, mobile_phone, email, country, city, address) VALUES (?, ?, ?, ?, ?, ?, ?, ?) LIMIT 1", (company_name, password, website, phone, email, country, city, address))
+            id = cursor.execute("INSERT INTO companies_requests(name, password, salt, website, mobile_phone, email, country, city, address) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) LIMIT 1", (company_name, hash, salt, website, phone, email, country, city, address))
             connection.commit()
             cursor.close()
         except mariadb.Error as e:
@@ -192,22 +211,19 @@ def login(request, email: str, password: str):
             raise ValueError("Email invalid")
         if not password or password.__len__() < 4:
             raise ValueError("Password invalid")
-        user = query_db(f"SELECT * FROM users WHERE email='{email}' AND password='{password}' LIMIT 1", one=True)
-        if not user:
-            company = query_db(f"SELECT * FROM companies WHERE email='{email}' AND password='{password}' LIMIT 1", one=True)
-            if not company:
-                raise ValueError("Invalid credentails")
-            else:
-                type = "company"
+
+        info = query_db(f"SELECT * FROM ((SELECT password, salt, email, 'user' as 'type' FROM users) UNION (SELECT password, salt, email, 'company' FROM companies)) AS U WHERE U.email='{email}' LIMIT 1", one=True)
+        if info and verify_password(password, info['password'], info['salt']):
+            type = info['type']
         else:
-            type = "user"
+            raise ValueError("Invalid credentails")
+
         token = secrets.token_hex(256)
         connection = db()
         cur = connection.cursor()
         expire_at = datetime.now() + timedelta(1)
         
         q = f"INSERT INTO tokens (owner_type, owner, token, expire_at) VALUES ('{type}', '{email}', '{token}', '{expire_at}') LIMIT 1"
-        print(q)
         cur.execute(q, ())
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
@@ -365,7 +381,8 @@ def add_vacation(request, position: str, salary: int, fleet_type: str, start_at:
         con = db()
         cur = con.cursor()
         position = position.lower()
-        id = cur.execute(f"INSERT INTO vacations (position, salary, fleet, start_at, contract_duration, company_email, post_date, english_level, nationality, requierments, fleet_construct_year, fleet_dwt, fleet_gd, fleet_power) VALUES('{position}', '{salary}', '{fleet_type}', '{start_at}', '{contract_duration}', '{company_email}', '{post_date}', '{english_level}', '{nationality}', '{requierments}', '{fleet_construct_year}', '{fleet_dwt}', '{fleet_gd_type}', '{fleet_power}')", ())
+        cur.execute(f"INSERT INTO vacations (position, salary, fleet, start_at, contract_duration, company_email, post_date, english_level, nationality, requierments, fleet_construct_year, fleet_dwt, fleet_gd, fleet_power) VALUES('{position}', '{salary}', '{fleet_type}', '{start_at}', '{contract_duration}', '{company_email}', '{post_date}', '{english_level}', '{nationality}', '{requierments}', '{fleet_construct_year}', '{fleet_dwt}', '{fleet_gd_type}', '{fleet_power}')", ())
+        cur.execute(f"DELETE FROM vacations WHERE post_date not between date_sub(now(), INTERVAL 1 WEEK) and now()", ())
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
     else:
@@ -410,7 +427,8 @@ def update_profile_company(request, email: str, password: str, website: str, mob
         if password.strip() and password.__len__() < 4:
             raise ValueError("Password must contain at least 4 chars")
         elif password.strip():
-            password_query = f", password='{password}'"
+            (hash, salt) = generate_password_hash_and_salt(password)
+            password_query = f", password='{hash}', salt='{salt}'"
         else:
             password_query = f""
             
@@ -453,7 +471,8 @@ def update_profile_sailor(request, name: str, password: str, birthday_date: str,
         if password.strip() and password.__len__() < 4:
             raise ValueError("Password must contain at least 4 chars")
         elif password.strip():
-            password_query = f", password='{password}'"
+            (hash, salt) = generate_password_hash_and_salt(password)
+            password_query = f", password='{hash}', salt='{salt}'"
         else:
             password_query = f""
         if not birthday_date:
@@ -490,8 +509,8 @@ def update_profile_sailor(request, name: str, password: str, birthday_date: str,
             connection.commit()
 
 sort_dict = {"creation": "v.post_date DESC", "start_at_asc": "v.start_at ASC", "start_at_desc": "v.start_at DESC"}
-@api.post("/get_vacations")
-def get_vacations(request, position: str, fleet: str, countries: str, salary_from: int, start_at: str, end_at: str, sort: str):
+@api.get("/get_vacations")
+def get_vacations(request, position = " ", fleet = " ", countries = " ", salary_from = 0, start_at = " ", end_at = " ", sort = " ", offset = 0, limit = settings.MAX_VACATIONS_DISPLAYED):
     try:
         position = position.strip().lower()
         fleet = fleet.strip()
@@ -572,9 +591,15 @@ def get_vacations(request, position: str, fleet: str, countries: str, salary_fro
             order_by = ""
         
         if where_position:
-            where_position = "WHERE {}".format(where_position)
-        limit = settings.MAX_VACATIONS_DISPLAYED
-        q = f"SELECT DATE_FORMAT(v.post_date, '%d.%m.%Y %H:%i:%s') as post_date, v.position, v.salary, v.fleet, DATE_FORMAT(v.start_at, '%d.%m.%Y') as start_at, v.company_email, v.contract_duration, v.id, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email {where_position} {order_by} LIMIT {limit}"
+            where_position = f"WHERE {where_position} AND post_date between date_sub(now(), INTERVAL 1 WEEK) and now()"
+        else:
+            where_position = f"WHERE post_date between date_sub(now(), INTERVAL 1 WEEK) and now()"
+
+        if limit > settings.MAX_VACATIONS_DISPLAYED or limit < 0:
+            limit = settings.MAX_VACATIONS_DISPLAYED
+        if offset < 0:
+            offset = 0
+        q = f"SELECT DATE_FORMAT(v.post_date, '%d.%m.%Y %H:%i:%s') as post_date, v.position, v.salary, v.fleet, DATE_FORMAT(v.start_at, '%d.%m.%Y') as start_at, v.company_email, v.contract_duration, v.id, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email {where_position} {order_by} LIMIT {limit} OFFSET {offset}"
         print(q)
         data = query_db(q)
         for i in range(0, len(data)):
@@ -637,31 +662,33 @@ def respond_vacation(request, vacation_id: int):
         phone = userdata["mobile_phone"]
         vacation = get_vacation(None, vacation_id)["extra"]
         msg = '<style>th, td { padding:15px 60px;font-size:30px; } table{ margin: 0px 25%; } div{ padding: 30px; text-align: center; background: #00246A; color: white; font-size: 30px;} body { padding: 0px; } * { margin: 0px; } </style> <div style="padding: 30px;  text-align: center;  background: #00246A;  color: white;  font-size: 30px;"><h1>New responce</h1></div><table><tr><td>Name:</td><td>' + userdata["name"] + '</td></tr><tr><td>Age:</td><td>' + f"{age}" + '</td></tr><tr><td>Position:</td><td>' + vacation["position"] +'</td></tr><tr><td>Email:</td><td>' + email + '</td></tr><tr><td>Mobile phone:</td><td>' + phone + '</td></tr><tr><td>CV file</td><td><a href="http://' + request.get_host() + f"/api/get_cv?filename={cv_filename}" + '">' + "cv." + cv_filename.split(".")[1] + '</a></td></tr></table>'
-        sendMail(Mailto(addr=vacation["company"]["email"], name=vacation["company"]["name"]), "CV Responce", msg, filecontent, filename=cv_filename)
+        sendMail(Mailto(addr=vacation["company"]["email"], name=vacation["company"]["name"]), "CV Responce", msg, filecontent=filecontent, filename=cv_filename)
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
     else:
         return {"result": "ok", "exntra": "0"}
 
-def sendMail(mailto: Mailto, subject: str, body: str, filecontent, filename: str = "cv"):
-    if "." in filename:
-        ext = filename.split(".")[1]
-        filename = filename.split(".")[0]
-    else:
-        ext = f"{filecontent}".split(".")[1]
-    encodedcontent = base64.b64encode(filecontent)
-    marker = "AUNIQUEMARKER"
-    # Define the main headers.
-    part1 = """From: Seajobs <%s>
+def sendMail(mailto: Mailto, subject: str, body: str, filecontent = None, filename: str = "cv"):
+    pseudonim = settings.MAIL_NAME
+    if filecontent:
+        if "." in filename:
+            ext = filename.split(".")[1]
+            filename = filename.split(".")[0]
+        else:
+            ext = f"{filecontent}".split(".")[1]
+        encodedcontent = base64.b64encode(filecontent)
+        marker = "AUNIQUEMARKER"
+        # Define the main headers.
+        part1 = """From: %s <%s>
 To: %s <%s>
 Subject: %s
 MIME-Version: 1.0
 Content-Type: multipart/mixed; boundary=%s
 --%s
-""" % (settings.MAIL_ADDR, mailto.name, mailto.addr, subject, marker, marker)
+""" % (pseudonim, settings.MAIL_ADDR, mailto.name, mailto.addr, subject, marker, marker)
 
     # Define the message action
-    part2 = """Content-Type: text/html
+        part2 = """Content-Type: text/html
 Content-Transfer-Encoding:8bit
 
 %s
@@ -669,15 +696,24 @@ Content-Transfer-Encoding:8bit
 """ % (body,marker)
 
     # Define the attachment section
-    part3 = """Content-Type: multipart/mixed; name=\"%s\"
+        part3 = """Content-Type: multipart/mixed; name=\"%s\"
 Content-Transfer-Encoding:base64
 Content-Disposition: attachment; filename=%s
 
 %s
 --%s--
 """ %(f"{filename}.{ext}", f"{filename}.{ext}", f"{encodedcontent}".split("'")[1], marker)
-    message = part1 + part2 + part3
-    s = None
+        message = part1 + part2 + part3
+        s = None
+    else:
+        message = """From: %s <%s>
+To: %s <%s>
+Subject: %s
+Content-Type: text/html
+Content-Transfer-Encoding:8bit
+
+%s
+""" % (pseudonim, settings.MAIL_ADDR, mailto.name, mailto.addr, subject, body)
     try:
         s = smtplib.SMTP('smtp.gmail.com', 587)
         s.ehlo()
@@ -741,9 +777,13 @@ def get_logo(request, filename: str):
 def get_company_logo(request, email: str):
     filename = query_db(f"SELECT name FROM files WHERE owner='{email}' AND owner_type='company' LIMIT 1", one=True)
     if not filename:
-        raise Http404
-    filename = filename["name"]
+        print("Default logo")
+        filename = "default.png"
+    else:
+        print("Normal logo")
+        filename = filename["name"]
     file_path = os.path.join(settings.LOGO_ROOT, filename)
+    print(f"filepath {file_path}")
     return get_file(file_path)
 
 @api.get("/is_company_logo_exists")
@@ -755,11 +795,14 @@ def is_company_logo_exists(request, email: str):
         return False
 
 
-@api.post("/get_reg_requests", auth=AdminAuthBearer())
-def get_reg_requests(request):
-    max = settings.MAX_REG_REQUESTS_DISPLAYED
+@api.get("/get_reg_requests", auth=AdminAuthBearer())
+def get_reg_requests(request, limit = settings.MAX_REG_REQUESTS_DISPLAYED, offset = 0):
+    if limit > settings.MAX_REG_REQUESTS_DISPLAYED or limit < 0:
+        limit = settings.MAX_REG_REQUESTS_DISPLAYED
+    if offset < 0:
+        offset = 0
     try:
-        return query_db(f"SELECT name, website, mobile_phone, email, country, city, address FROM companies_requests LIMIT {max}")
+        return query_db(f"SELECT name, website, mobile_phone, email, country, city, address FROM companies_requests LIMIT {limit} OFFSET {offset}")
     except Exception as e:
         return f"{e}"
 
@@ -771,7 +814,7 @@ def apply_reg_request(request, email: str):
         connection = db()
         cursor = connection.cursor()
         try:
-            cursor.execute(f"INSERT INTO companies(name, password, website, mobile_phone, email, country, city, address) SELECT * FROM companies_requests WHERE email='{email}' LIMIT 1", ())
+            cursor.execute(f"INSERT INTO companies(name, password, salt, website, mobile_phone, email, country, city, address) SELECT * FROM companies_requests WHERE email='{email}' LIMIT 1", ())
             id = cursor.execute(f"DELETE FROM companies_requests WHERE email='{email}' LIMIT 1", ())
         except mariadb.Error as e:
             if f"{e}".startswith("Duplicate entry"):
@@ -807,6 +850,203 @@ def deny_reg_request(request, email: str):
             connection.commit()
 
 
+@api.delete("/remove_vacation", auth=AuthBearer())
+def remove_vacation(request, id: int):
+    cursor = None
+    connection = None
+    try:
+        company_email = request.auth["owner"]
+        owner_email = query_db(f"SELECT company_email FROM vacations WHERE id={id}", one=True)["company_email"]
+        print(f"company: {company_email}")
+        print(f"owner: {owner_email}")
+        if company_email != owner_email:
+            raise ValueError("You must be a vacation owner")
+        connection = db()
+        cursor = connection.cursor()
+        cursor.execute(f"DELETE FROM vacations WHERE id={id} AND company_email='{company_email}' LIMIT 1", ())
+    except Exception as e:
+        return {"result": "err", "extra": f"{e}"}
+    else:
+        return {"result": "ok", "extra": f"{id}"}
+    finally:
+        if cursor:
+            cursor.close()
+        if connection:
+            connection.commit()
+
+
+
+
+
+@api.patch("/update_vacation", auth=AuthBearer())
+def update_vacation(request, id: int, position: str = None, salary: int = None, fleet_type: str = None, start_at: str = None, contract_duration: int = None, requierments: str = None, fleet_construct_year: int = None, fleet_dwt: str = None, fleet_gd: str = None, fleet_power: int = None, english_level: str = None, nationality: str = None):
+    try:
+        if request.auth["owner_type"] != "company":
+            raise ValueError("Only company can update vacation")
+        query = "UPDATE vacations SET"
+        if position != None:
+            query += f" position='{position}'"
+        if salary != None:
+            if salary <= 0:
+                raise ValueError("Salary can't be less than 0")
+            if "=" in query:
+                query += ","
+            query += f" salary={salary}"
+        if fleet_type != None:
+            if "=" in query:
+                query += ","
+            query += f" fleet_type='{fleet_type}'"
+        if start_at != None:
+            start_at = datetime.strptime(start_at, "%d.%m.%Y")
+            start_at = "{Y}-{m}-{d}".format(Y=start_at.year, m=start_at.month, d=start_at.day)
+            if "=" in query:
+                query += ","
+            query += f" start_at='{start_at}'"
+        if contract_duration != None:
+            if contract_duration <= 0:
+                raise ValueError("Contract duration can't be less than 1")
+            if "=" in query:
+                query += ","
+            query += f" contract_duration={contract_duration}"
+        if requierments != None:
+            if "=" in query:
+                query += ","
+            query += f" requierments='{requierments}'"
+        if fleet_construct_year != None:
+            if fleet_construct_year < 1500:
+                raise ValueError("Bad fleet construct year")
+            if "=" in query:
+                query += ","
+            query += f" fleet_construct_year={fleet_construct_year}"
+        if fleet_dwt != None:
+            if "=" in query:
+                query += ","
+            query += f" fleet_dwt='{fleet_dwt}'"
+        if fleet_gd != None:
+            if "=" in query:
+                query += ","
+            query += f" fleet_gd='{fleet_gd}'"
+        if fleet_power != None:
+            if fleet_power <= 0:
+                raise ValueError("Fleet power must be grater that 0")
+            if "=" in query:
+                query += ","
+            query += f" fleet_power={fleet_power}"
+        if english_level != None:
+            if "=" in query:
+                query += ","
+            query += f" english_level='{english_level}'"
+        if nationality != None:
+            if "=" in query:
+                query += ","
+            query += f" nationality='{nationality}'"
+        if "=" not in query:
+            raise ValueError("Must be at least one parameter to change")
+        company_email = request.auth["owner"]
+        query += f" WHERE id={id} AND company_email='{company_email}' LIMIT 1"
+
+        cursor = None
+        connection = None
+        try:
+            connection = db()
+            cursor = connection.cursor()
+            id = cursor.execute(query, ())
+        except Exception as e:
+            raise SystemError("Failed to update vacancy")
+    except Exception as e:
+        return {"err": f"{e}"}
+    else:
+        return {"query": query}
+
+@api.get("/get_company_vacancies")
+def get_company_vacancies(request, company_email: str, limit: int = settings.MAX_VACATIONS_DISPLAYED):
+    try:
+        if limit < 0 or limit > settings.MAX_VACATIONS_DISPLAYED:
+            limit = settings.MAX_VACATIONS_DISPLAYED
+        q = f"SELECT DATE_FORMAT(v.post_date, '%d.%m.%Y %H:%i:%s') as post_date, v.position, v.salary, v.fleet, DATE_FORMAT(v.start_at, '%d.%m.%Y') as start_at, v.company_email, v.contract_duration, v.id, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE company_email='{company_email}' LIMIT {limit}"
+        print(q)
+        data = query_db(q)
+        for i in range(0, len(data)):
+            data[i]["company"] = {
+                                    "name": data[i]["company_name"], 
+                                    "logo_path": data[i]["company_logo_path"], 
+                                    "contry": data[i]["company_contry"],
+                                    "email": data[i]["company_email"]
+                                }
+            del data[i]["company_name"]
+            del data[i]["company_logo_path"]
+            del data[i]["company_contry"]
+            del data[i]["company_email"]
+    except Exception as e:
+        return {"result": "err", "extra": f"{e}"}
+    else:
+        return {"result": "ok", "extra": data}
+
+@api.get("/request_reset_password")
+def req_reset_password(request, email: str):
+    cur = None
+    connection = None
+    try:
+        if not email or not validate_email(email):
+            raise ValueError("Email invalid")
+
+        info = query_db(f"SELECT * FROM ((SELECT email, 'user' as 'type' FROM users) UNION (SELECT email, 'company' FROM companies)) AS U WHERE U.email='{email}' LIMIT 1", one=True)
+        if not info:
+            raise ValueError('No such company')
+        print(info)
+        t = info['type']
+        print(t)
+
+        token = secrets.token_hex(256)
+        connection = db()
+        cur = connection.cursor()
+        expire_at = datetime.now() + timedelta(1)
+        
+        q = f"INSERT INTO tokens (owner_type, owner, token, expire_at) VALUES ('{t}', '{email}', '{token}', '{expire_at}')"
+        print(q)
+        cur.execute(q, ())
+        url = settings.PASSWORD_RESET_URL
+        sendMail(Mailto(addr=email, name=""), "Reset password", f'<a href="{url}?token={token}">Click to reset password</a>')
+    except Exception as e:
+        return {"result": "err", "extra": f"{e}"}
+    else:
+        return {"result": "ok"}
+    finally:
+        if cur and cur != None:
+            cur.close()
+        if connection and connection != None:
+            connection.commit()
+
+
+@api.get("/reset_password", auth=AuthBearer())
+def reset_password(request, password: str):
+    cur = None
+    connection = None
+    try:
+        email = request.auth['owner']
+        tupl = generate_password_hash_and_salt(password)
+        hash = tupl[0]
+        salt = tupl[1]
+        
+        if request.auth["owner_type"] != "company":
+            table = 'users'
+        else:
+            table = 'companies'
+        q = f"UPDATE {table} SET salt='{salt}', password='{hash}' WHERE email='{email}' LIMIT 1"
+        connection = db()
+        cur = connection.cursor()
+        cur.execute(q, ())
+    except Exception as e:
+        return {"result": "err", "extra": f"{e}"}
+    else:
+        return {"result": "ok"}
+    finally:
+        if cur and cur != None:
+            cur.close()
+        if connection and connection != None:
+            connection.commit()
+
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", api.urls)
@@ -820,3 +1060,20 @@ def calculate_age(born):
 def validate_mobile_phone(phone):
     reg = '^[0-9+][0-9]*[0-9]$'
     return re.match(reg, phone)
+
+def get_random_salt():
+    ALPHABET = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    chars=[]
+    for i in range(16):
+        chars.append(random.choice(ALPHABET))
+    return "".join(chars)
+
+def encode_password(password: str, salt: str):
+    return hashlib.sha512((salt + password + salt).encode('utf-8')).hexdigest()
+
+def verify_password(password: str, hash: str, salt: str):
+    return encode_password(password, salt) == hash
+
+def generate_password_hash_and_salt(password: str):
+    salt = get_random_salt()
+    return (encode_password(password, salt), salt)

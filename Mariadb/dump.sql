@@ -1,6 +1,7 @@
 CREATE TABLE users (
   name TEXT NOT NULL,
-  password VARCHAR(400) NOT NULL,
+  password VARCHAR(1024) NOT NULL,
+  salt VARCHAR(32) NOT NULL,
   email VARCHAR(200) PRIMARY KEY,
   birthday_date DATE NOT NULL,
   mobile_phone TEXT NOT NULL,
@@ -9,7 +10,8 @@ CREATE TABLE users (
 
 CREATE TABLE companies (
   name VARCHAR(400) NOT NULL,
-  password VARCHAR(400) NOT NULL,
+  password VARCHAR(1024) NOT NULL,
+  salt VARCHAR(32) NOT NULL,
   website VARCHAR(400) DEFAULT '',
   mobile_phone TEXT NOT NULL,
   email VARCHAR(200) PRIMARY KEY,
@@ -21,7 +23,8 @@ CREATE TABLE companies (
 
 CREATE TABLE companies_requests (
   name VARCHAR(400) NOT NULL,
-  password VARCHAR(400) NOT NULL,
+  password VARCHAR(1024) NOT NULL,
+  salt VARCHAR(32) NOT NULL,
   website VARCHAR(400) DEFAULT '',
   mobile_phone TEXT NOT NULL,
   email VARCHAR(200) PRIMARY KEY,
@@ -39,7 +42,7 @@ CREATE TABLE vacations (
   company_email VARCHAR(200) NOT NULL,
   requierments VARCHAR(1024) DEFAULT ' ',
   fleet_construct_year INT NOT NULL,
-  fleet_dwt VARCHAR(200) NOT NULL,
+  fleet_dwt VARCHAR(200) NOT NULL,  
   fleet_gd VARCHAR(200) NOT NULL,
   fleet_power INT NOT NULL,
   post_date DATETIME NOT NULL,
@@ -72,4 +75,6 @@ CREATE UNIQUE INDEX users_email ON users(email);
 CREATE UNIQUE INDEX token ON tokens(token);
 CREATE UNIQUE INDEX files_name ON files(name);
 
-INSERT INTO companies(name, password, website, mobile_phone, email, country, city, address) VALUES ('seajobs', '1234', '', '', 'admin@seajobs.com', '', '', '') LIMIT 1;
+-- Password is 1234
+-- TODO: change
+INSERT INTO companies(name, password, salt, website, mobile_phone, email, country, city, address) VALUES ('seajobs', '5da37d7dbe98e16b5207813ced7da51d5025e200a5c3ca4ea966a4bac02c62d1ac8cff8028bdd6054bfb5ab0b67033e66fcb6a6bb487e8a0e10f31a9bf78c105', 'h78FjKOHydIoKRDS', '', '', 'admin@seajobs.com', '', '', '') LIMIT 1;

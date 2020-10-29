@@ -121,20 +121,22 @@ STATIC_URL = '/static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = '/tmp/'
-CV_ROOT = MEDIA_ROOT + MEDIA_URL
-LOGO_ROOT = MEDIA_ROOT + MEDIA_URL
+CV_ROOT = MEDIA_ROOT + MEDIA_URL + "/cv/"
+LOGO_ROOT = MEDIA_ROOT + MEDIA_URL + "/logo/"
 
 DB_NAME = "seajobs"
 DB_USER = "root"
 DB_PASSWORD = "QKh8RrWnc51CNcs2DigDsTIxg9J1SXZo"
 # For docker startup:
-# DB_HOST = "mariadb"
-# DB_PORT = 3306
+DB_HOST = "mariadb"
+DB_PORT = 3306
 # For debug:
-DB_HOST = "128.0.129.115"
-DB_PORT = 3308
+# DB_HOST = "128.0.129.115"
+# DB_PORT = 3308
 MAIL_ADDR = "seajobs.development@gmail.com"
 MAIL_PASS = "Kpl5xKpdzPaHnQ1y"
+MAIL_NAME = "Crewmarine"
+PASSWORD_RESET_URL = "https://crewmarine.eu/en/reset_password.html"
 ENCODING = "utf-8"
 
 MAX_VACATIONS_DISPLAYED = 100
