@@ -1,0 +1,1939 @@
+Watching for file changes with StatReloader
+[19/Sep/2020 14:30:56] "GET /api/docs HTTP/1.0" 200 768
+[19/Sep/2020 14:30:56] "GET /api/openapi.json HTTP/1.0" 200 9483
+[19/Sep/2020 14:31:56] "POST /api/get_vacations?position=my%20some%20position&fleet=my%20fleet&countries=my%20countries&salary_from=0&start_at=day%20starts&end_at=0&sort=%20 HTTP/1.0" 200 29
+[19/Sep/2020 14:32:00] "POST /api/get_vacations?position=my%20some%20position&fleet=my%20fleet&countries=my%20countries&salary_from=0&start_at=day%20starts&end_at=0&sort=%20 HTTP/1.0" 200 29
+[19/Sep/2020 14:32:19] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 885
+[19/Sep/2020 14:55:57] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+[19/Sep/2020 14:58:01] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+[19/Sep/2020 14:58:06] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+[19/Sep/2020 14:58:10] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+[19/Sep/2020 15:01:22] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+[19/Sep/2020 15:01:56] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+[19/Sep/2020 15:02:53] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+[19/Sep/2020 15:08:53] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+[19/Sep/2020 15:13:19] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+[19/Sep/2020 15:14:00] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+[19/Sep/2020 15:55:18] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[19/Sep/2020 15:55:18] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[19/Sep/2020 15:57:18] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[19/Sep/2020 15:57:19] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[19/Sep/2020 15:58:14] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[19/Sep/2020 15:58:14] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+[19/Sep/2020 15:58:14] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+[19/Sep/2020 15:58:46] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[19/Sep/2020 16:11:04] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[19/Sep/2020 16:11:04] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[19/Sep/2020 16:11:41] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[19/Sep/2020 16:11:41] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+[19/Sep/2020 16:11:41] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[19/Sep/2020 16:11:41] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[19/Sep/2020 16:11:59] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[19/Sep/2020 16:11:59] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+[19/Sep/2020 16:11:59] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+[19/Sep/2020 16:11:59] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[19/Sep/2020 16:12:45] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[19/Sep/2020 16:12:46] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[19/Sep/2020 16:12:46] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[19/Sep/2020 16:12:46] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[19/Sep/2020 16:16:22] "POST /api/register_company?email=1@2.2&password=12345&company_name=23&mobile_phone=234&website=23&city=1&country=1&address=1 HTTP/1.0" 200 33
+[19/Sep/2020 16:16:22] "POST /api/login?email=1@2.2&password=12345 HTTP/1.0" 200 571
+Unauthorized: /api/get_profile_company
+[19/Sep/2020 16:16:24] "POST /api/get_profile_company HTTP/1.0" 401 26
+[19/Sep/2020 16:18:54] "POST /api/get_profile_company HTTP/1.0" 200 167
+[19/Sep/2020 16:20:41] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[19/Sep/2020 16:20:41] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[19/Sep/2020 16:20:41] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[19/Sep/2020 16:20:41] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[19/Sep/2020 16:41:10] "POST /api/get_profile_company HTTP/1.0" 200 167
+[19/Sep/2020 19:20:04] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[19/Sep/2020 19:20:04] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[19/Sep/2020 19:20:04] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[19/Sep/2020 19:20:04] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[19/Sep/2020 19:24:46] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[19/Sep/2020 19:24:46] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+[19/Sep/2020 19:24:46] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+[19/Sep/2020 19:24:46] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[19/Sep/2020 19:25:01] "POST /api/login?email=1@1.1&password=1111 HTTP/1.0" 200 571
+[19/Sep/2020 19:25:01] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 19:25:17] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 19:26:02] "POST /api/register_sailor?email=2@2.22&password=1111&name=1&birthday_date=22.12.2012&mobile_phone=222&position=22 HTTP/1.0" 200 33
+[19/Sep/2020 19:26:02] "POST /api/login?email=2@2.22&password=1111 HTTP/1.0" 200 568
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 18 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+September 19, 2020 - 14:30:54
+Django version 3.1.1, using settings 'seajobs_server.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+0
+A
+i 0 pos my some position
+A
+i 0 fleet my fleet
+A
+i 0 country my countries
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE (v.position='my some position') AND (v.fleet='my fleet') AND (c.country='my countries')  LIMIT 100
+0
+A
+i 0 pos my some position
+A
+i 0 fleet my fleet
+A
+i 0 country my countries
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE (v.position='my some position') AND (v.fleet='my fleet') AND (c.country='my countries')  LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+INSERT INTO tokens (owner_type, owner, token, expire_at) VALUES ('company', '1@2.2', '945dc8bcf2c950ebb40ed384c9c7bef8a30970145b916722d042e6ac65c7dc2634add83ffddde21fbbdb169356c8e0e02c8601524b997f8e011b22eb793d660c27ff93d6fadb714a81d9a2784a07f10275c27babfb930df860b51e6606e5d2433008c9aa3c32be3082c9ac45952779361b620c79421dd54dd70ef8db820f817cb9c53465fefbed50458ef38e41a8d158696a72aaea7638613204ef62977f2123dd09eabeda6f75376e16a4e375c4947d1a30baeaac2d72a77acc49e3c8ac9f1e923a34d125c6b162cdf2cb847efb8b577b493914e0ef78a31174933572df68f75d3a6eabed6f2edc44d6f5f1ef20294c48fc4e14cb366cce6d34ab6909657b92', '2020-09-20 16:16:22.316899') LIMIT 1
+{'owner': '1@2.2', 'owner_type': 'company'}
+{'name': '23', 'website': '23', 'mobile_phone': '+7234', 'email': '1@2.2', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+{'owner': '1@2.2', 'owner_type': 'company'}
+{'name': '23', 'website': '23', 'mobile_phone': '+7234', 'email': '1@2.2', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+INSERT INTO tokens (owner_type, owner, token, expire_at) VALUES ('company', '1@1.1', 'e67a256b3f4231dc37f751026cfba897a145fb5a8398280959f3aefd704e93ab19101763f16509316a34cc4479753c540c2a549bcd07e3b5d02e3e03e10a80b808e41a8bd42086cb3bc0b2df0126b95e90911be3eff983d06729abdc4f9875cdc5780380ec162fa7c1f1a9ea2f59928854b3b202de032853c29aff3ba2c562c4dd427b890b84a1555b95b3f7486fa3797d07f5660fbebbe1922d72e83612eb3ab6c7219199ca48b39375100f721c119fbaf12be1bed4a794ed5d19fe9b4de921b3cdc492390cafe913f18c125f1ba4c5cd44cde120ce79d532d43fc0910dde77e357d13b9f0ed30c390629f932e1cb77919ba942b11bf4fc2eb218a70bbc666e', '2020-09-20 19:25:01.551418') LIMIT 1
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+INSERT INTO tokens (owner_type, owner, token, expire_at) VALUES ('user', '2@2.22', 'a412c02fe5d073782ebc9a6efa90b72c67a74ce1e6412fbf4344947c48375408c39a8458edb91aba0d964b12c9dce154fab41b8dc5a0255249c0aebba75d20a98c8d54cf66d242c024a382be7309994e9a97852fad197fc49ea43882d4267b5590f91a2ae2f4de790a6a21b7488b45df8fe2ca15b6fb51bb6811b9de66ece6000c5e80ded2693b66e998948bc82055b152ed9f9e099ffc52349d00448d355c2f824aaf78023ae176c6e702535d105f34634ef3f350a1f726d9d4e773058c474e66f50c6fbe72362326173c41c36eb5dde8c9bd3c1e7bf1a85f7dabeef8b97f4a5365f31a8a9b93ed05fa9edd89850750cd705c525168e4ea1f551ff584d3e081', '2020-09-20 19:26:02.172071') LIMIT 1
+INSERT INTO tokens (owner_type, owner, token, expire_at) VALUES ('company', '1@1.1', '4b63f6076c3168515e98f590a72c7c4fcedd8ae2e139495b0ca82ebd00d65cd3dede5d70c29bc9c038b3cb6aeeae38fc47929e518d684d64e618561c74d97c292c2f690dc0a207ddfe12930b9b22ba14722da0c3ecadca987a12085bd458b7022fd1a1476d8154cffb8a5949eee6908b3bb2ee6d4c4ca7106261d94d3ce9d0ed5a7cb7a1fd5dae2920437acf00b3f16a5c9fe12757f2201b3bc4a2356b5a91395f60d118db3c603327a97d86268b6493daa0f937fe9b0c614eccb6cb9b4bcadfa69c94ef80764c8e96a004ad9b6198eeb6f9d9c05a43284b3695fef0c74d015efa772dde50be5241be529a96064b03bac71cb2815bb429f496b52b70313ed2c4', '2020-09-20 19:31:47.024056') LIMIT 1[19/Sep/2020 19:31:47] "POST /api/login?email=1@1.1&password=1111 HTTP/1.0" 200 571
+[19/Sep/2020 19:31:47] "POST /api/get_profile_company HTTP/1.0" 200 166
+Unprocessable Entity: /api/update_profile_company
+[19/Sep/2020 19:32:56] "POST /api/update_profile_company?email=email&password=ifie&mobile_phone=9923929923&website=www..&country=jnd&city=ifie HTTP/1.0" 422 99
+[19/Sep/2020 19:32:56] "POST /api/upload_logo HTTP/1.0" 200 36
+[19/Sep/2020 19:35:08] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 19:36:15] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 19:36:36] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 19:36:39] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 19:37:20] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 19:39:30] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 19:40:05] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 19:40:12] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 19:40:27] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 19:40:58] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 19:42:45] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 20:29:09] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 20:29:14] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 20:54:24] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 20:54:57] "POST /api/upload_logo HTTP/1.0" 200 36
+Unprocessable Entity: /api/update_profile_company
+[19/Sep/2020 20:54:57] "POST /api/update_profile_company?email=undefined&password=12345678&mobile_phone=undefined&website=undefined&country=undefined&city=undefined HTTP/1.0" 422 99
+[19/Sep/2020 20:55:04] "POST /api/upload_logo HTTP/1.0" 200 36
+Unprocessable Entity: /api/update_profile_company
+[19/Sep/2020 20:55:04] "POST /api/update_profile_company?email=undefined&password=12345678&mobile_phone=undefined&website=undefined&country=undefined&city=undefined HTTP/1.0" 422 99
+[19/Sep/2020 20:55:07] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 20:55:10] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 20:55:16] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 20:55:17] "POST /api/upload_logo HTTP/1.0" 200 36
+Unprocessable Entity: /api/update_profile_company
+[19/Sep/2020 20:55:17] "POST /api/update_profile_company?email=undefined&password=12345678&mobile_phone=undefined&website=undefined&country=undefined&city=undefined HTTP/1.0" 422 99
+[19/Sep/2020 20:55:52] "POST /api/login?email=1@1.1&password=1111 HTTP/1.0" 200 571
+[19/Sep/2020 20:55:52] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 20:55:57] "POST /api/upload_logo HTTP/1.0" 200 36
+Unprocessable Entity: /api/update_profile_company
+[19/Sep/2020 20:55:57] "POST /api/update_profile_company?email=undefined&password=12345678&mobile_phone=undefined&website=undefined&country=undefined&city=undefined HTTP/1.0" 422 99
+[19/Sep/2020 20:56:32] "POST /api/upload_logo HTTP/1.0" 200 36
+Unprocessable Entity: /api/update_profile_company
+[19/Sep/2020 20:56:32] "POST /api/update_profile_company?email=1@1.1&password=12345678&mobile_phone=789&website=89&country=sd&city=sd HTTP/1.0" 422 99
+[19/Sep/2020 20:59:58] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 21:01:00] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 21:04:13] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 21:04:30] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 21:04:46] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 21:06:10] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 21:06:40] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 21:07:16] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 21:07:28] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 21:07:51] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 21:08:50] "POST /api/upload_logo HTTP/1.0" 200 36
+Unprocessable Entity: /api/update_profile_company
+[19/Sep/2020 21:08:50] "POST /api/update_profile_company?email=undefined&password=12345678&mobile_phone=undefined&website=undefined&country=undefined&city=undefined HTTP/1.0" 422 99
+[19/Sep/2020 21:08:56] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 21:08:57] "POST /api/upload_logo HTTP/1.0" 200 36
+Unprocessable Entity: /api/update_profile_company
+[19/Sep/2020 21:08:57] "POST /api/update_profile_company?email=undefined&password=12345678&mobile_phone=undefined&website=undefined&country=undefined&city=undefined HTTP/1.0" 422 99
+[19/Sep/2020 21:09:14] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 21:09:14] "POST /api/upload_logo HTTP/1.0" 200 36
+Unprocessable Entity: /api/update_profile_company
+[19/Sep/2020 21:09:14] "POST /api/update_profile_company?email=undefined&password=12345678&mobile_phone=undefined&website=undefined&country=undefined&city=undefined HTTP/1.0" 422 99
+[19/Sep/2020 21:09:16] "POST /api/upload_logo HTTP/1.0" 200 36
+Unprocessable Entity: /api/update_profile_company
+[19/Sep/2020 21:09:16] "POST /api/update_profile_company?email=undefined&password=12345678&mobile_phone=undefined&website=undefined&country=undefined&city=undefined HTTP/1.0" 422 99
+[19/Sep/2020 21:09:16] "POST /api/upload_logo HTTP/1.0" 200 36
+Unprocessable Entity: /api/update_profile_company
+[19/Sep/2020 21:09:16] "POST /api/update_profile_company?email=undefined&password=12345678&mobile_phone=undefined&website=undefined&country=undefined&city=undefined HTTP/1.0" 422 99
+[19/Sep/2020 21:09:17] "POST /api/upload_logo HTTP/1.0" 200 36
+Unprocessable Entity: /api/update_profile_company
+[19/Sep/2020 21:09:17] "POST /api/update_profile_company?email=undefined&password=12345678&mobile_phone=undefined&website=undefined&country=undefined&city=undefined HTTP/1.0" 422 99
+[19/Sep/2020 21:09:59] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 21:10:00] "POST /api/upload_logo HTTP/1.0" 200 36
+Unprocessable Entity: /api/update_profile_company
+[19/Sep/2020 21:10:00] "POST /api/update_profile_company?email=undefined&password=12345678&mobile_phone=undefined&website=undefined&country=undefined&city=undefined HTTP/1.0" 422 99
+[19/Sep/2020 21:10:23] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 21:10:24] "POST /api/upload_logo HTTP/1.0" 200 36
+Unprocessable Entity: /api/update_profile_company
+[19/Sep/2020 21:10:24] "POST /api/update_profile_company?email=undefined&password=12345678&mobile_phone=undefined&website=undefined&country=undefined&city=undefined HTTP/1.0" 422 99
+[19/Sep/2020 21:11:24] "POST /api/get_profile_company HTTP/1.0" 200 166
+Unprocessable Entity: /api/update_profile_company
+[19/Sep/2020 21:11:25] "POST /api/upload_logo HTTP/1.0" 200 36
+[19/Sep/2020 21:11:25] "POST /api/update_profile_company?email=undefined&password=12345678&mobile_phone=undefined&website=undefined&country=undefined&city=undefined HTTP/1.0" 422 99
+[19/Sep/2020 21:12:14] "POST /api/upload_logo HTTP/1.0" 200 36
+Unprocessable Entity: /api/update_profile_company
+[19/Sep/2020 21:12:14] "POST /api/update_profile_company?email=undefined&password=12345678&mobile_phone=undefined&website=undefined&country=undefined&city=undefined HTTP/1.0" 422 99
+[19/Sep/2020 21:12:15] "POST /api/upload_logo HTTP/1.0" 200 36
+Unprocessable Entity: /api/update_profile_company
+[19/Sep/2020 21:12:15] "POST /api/update_profile_company?email=undefined&password=12345678&mobile_phone=undefined&website=undefined&country=undefined&city=undefined HTTP/1.0" 422 99
+[19/Sep/2020 21:27:56] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 21:28:45] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 21:29:08] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 21:29:33] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 21:31:32] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 21:31:39] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 21:31:49] "POST /api/get_profile_company HTTP/1.0" 200 166
+
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+INSERT INTO tokens (owner_type, owner, token, expire_at) VALUES ('company', '1@1.1', 'aea58c52f54d3872e327ac14fc7c9f98d13b43e73c4d8e97a7d5eab091098cc1e118049cb7675872bd8bc99d2fd86548fb87c73587a37d39196542d4e64981df5db29051b9f63025df2d3f712feaeb6a6e8071e1265fa06c3db0c7c81b10ff369fb3aa07f1e85d9972914ddfe94625385081f1c3962e9aed85b2ef72203d4ff73d52906b106e314401f80df19baed5341b6caf40e41105bcbcd581195b1cc0370023166d7328e3772c0db82469a0e0df40b5540872c7399d924aeb30dd7451a07033b60adff0c6241663f771e64a0e5fd7d76e02ba87433e8a2ec7961192940aced0437f428a8f4e3817c3376ba908c8888e9148098b9f728f97b17c2dc84734', '2020-09-20 20:55:52.066243') LIMIT 1
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}[19/Sep/2020 21:32:16] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 21:36:20] "POST /api/get_profile_company HTTP/1.0" 200 166
+[19/Sep/2020 21:36:20] "POST /api/get_profile_user HTTP/1.0" 200 56
+[19/Sep/2020 21:41:39] "POST /api/get_profile_user HTTP/1.0" 200 56
+[19/Sep/2020 21:42:16] "POST /api/get_profile_user HTTP/1.0" 200 56
+[19/Sep/2020 21:42:26] "POST /api/get_profile_user HTTP/1.0" 200 56
+[19/Sep/2020 21:42:32] "POST /api/get_profile_user HTTP/1.0" 200 56
+[19/Sep/2020 21:46:03] "POST /api/get_profile_user HTTP/1.0" 200 56
+[19/Sep/2020 21:46:04] "POST /api/upload_cv HTTP/1.0" 200 55
+Unprocessable Entity: /api/update_profile_sailor
+[19/Sep/2020 21:46:04] "POST /api/update_profile_sailor?email=%D0%98%D0%B2%D0%B0%D0%BD%20%D0%98%D0%B2%D0%B0%D0%BD%D0%BE%D0%B2&password=%D0%98%D0%B2%D0%B0%D0%BD%20%D0%98%D0%B2%D0%B0%D0%BD%D0%BE%D0%B2&name=%D0%98%D0%B2%D0%B0%D0%BD%20%D0%98%D0%B2%D0%B0%D0%BD%D0%BE%D0%B2&birthday_date=&mobile_phone=9923929923 HTTP/1.0" 422 100
+[19/Sep/2020 21:46:20] "POST /api/upload_cv HTTP/1.0" 200 55
+Unprocessable Entity: /api/update_profile_sailor
+[19/Sep/2020 21:46:20] "POST /api/update_profile_sailor?email=%D0%98%D0%B2%D0%B0%D0%BD%20%D0%98%D0%B2%D0%B0%D0%BD%D0%BE%D0%B2&password=%D0%98%D0%B2%D0%B0%D0%BD%20%D0%98%D0%B2%D0%B0%D0%BD%D0%BE%D0%B2&name=%D0%98%D0%B2%D0%B0%D0%BD%20%D0%98%D0%B2%D0%B0%D0%BD%D0%BE%D0%B2&birthday_date=2020-09-08&mobile_phone=9923929923 HTTP/1.0" 422 100
+[19/Sep/2020 21:46:22] "POST /api/upload_cv HTTP/1.0" 200 55
+Unprocessable Entity: /api/update_profile_sailor
+[19/Sep/2020 21:46:22] "POST /api/update_profile_sailor?email=%D0%98%D0%B2%D0%B0%D0%BD%20%D0%98%D0%B2%D0%B0%D0%BD%D0%BE%D0%B2&password=%D0%98%D0%B2%D0%B0%D0%BD%20%D0%98%D0%B2%D0%B0%D0%BD%D0%BE%D0%B2&name=%D0%98%D0%B2%D0%B0%D0%BD%20%D0%98%D0%B2%D0%B0%D0%BD%D0%BE%D0%B2&birthday_date=2020-09-08&mobile_phone=9923929923 HTTP/1.0" 422 100
+[19/Sep/2020 21:47:49] "POST /api/upload_cv HTTP/1.0" 200 55
+Unprocessable Entity: /api/update_profile_sailor
+[19/Sep/2020 21:47:49] "POST /api/update_profile_sailor?email=%D0%98%D0%B2%D0%B0%D0%BD%20%D0%98%D0%B2%D0%B0%D0%BD%D0%BE%D0%B2&password=%D0%98%D0%B2%D0%B0%D0%BD%20%D0%98%D0%B2%D0%B0%D0%BD%D0%BE%D0%B2&name=%D0%98%D0%B2%D0%B0%D0%BD%20%D0%98%D0%B2%D0%B0%D0%BD%D0%BE%D0%B2&birthday_date=2020-09-08&mobile_phone=9923929923 HTTP/1.0" 422 100
+[19/Sep/2020 21:51:09] "POST /api/get_profile_user HTTP/1.0" 200 56
+[19/Sep/2020 21:53:00] "POST /api/get_profile_user HTTP/1.0" 200 56
+[19/Sep/2020 21:53:11] "POST /api/get_profile_user HTTP/1.0" 200 56
+[19/Sep/2020 21:53:24] "POST /api/get_profile_user HTTP/1.0" 200 56
+[19/Sep/2020 21:53:34] "POST /api/get_profile_user HTTP/1.0" 200 56
+[19/Sep/2020 21:53:40] "POST /api/upload_cv HTTP/1.0" 200 55
+Unprocessable Entity: /api/update_profile_sailor
+[19/Sep/2020 21:53:40] "POST /api/update_profile_sailor?email=%D0%98%D0%B2%D0%B0%D0%BD%20%D0%98%D0%B2%D0%B0%D0%BD%D0%BE%D0%B2&password=%D0%98%D0%B2%D0%B0%D0%BD%20%D0%98%D0%B2%D0%B0%D0%BD%D0%BE%D0%B2&name=%D0%98%D0%B2%D0%B0%D0%BD%20%D0%98%D0%B2%D0%B0%D0%BD%D0%BE%D0%B2&birthday_date=2020-09-08&mobile_phone=9923929923 HTTP/1.0" 422 100
+[19/Sep/2020 21:54:06] "POST /api/get_profile_user HTTP/1.0" 200 56
+[19/Sep/2020 21:54:55] "POST /api/register_sailor?email=1111111111@1.1&password=1&name=1&birthday_date=11.11.1111&mobile_phone=111111&position=123 HTTP/1.0" 200 68
+[19/Sep/2020 21:55:01] "POST /api/register_sailor?email=1111111111@1.1&password=1111&name=1&birthday_date=11.11.1111&mobile_phone=111111&position=123 HTTP/1.0" 200 33
+[19/Sep/2020 21:55:01] "POST /api/login?email=1111111111@1.1&password=1111 HTTP/1.0" 200 568
+[19/Sep/2020 21:58:30] "POST /api/register_sailor?email=1111111111@1.1&password=1111&name=1&birthday_date=11.11.1111&mobile_phone=111111&position=123 HTTP/1.0" 200 64
+[19/Sep/2020 21:58:35] "POST /api/register_sailor?email=1111111111@1.1&password=1111&name=1&birthday_date=11.11.1111&mobile_phone=111111&position=123 HTTP/1.0" 200 64
+[19/Sep/2020 21:58:43] "POST /api/register_sailor?email=1111111111@11.1&password=1111&name=1&birthday_date=11.11.1111&mobile_phone=111111&position=123 HTTP/1.0" 200 33
+[19/Sep/2020 21:58:43] "POST /api/login?email=1111111111@11.1&password=1111 HTTP/1.0" 200 568
+[19/Sep/2020 21:58:43] "POST /api/get_profile_user HTTP/1.0" 200 163
+[19/Sep/2020 22:18:33] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[19/Sep/2020 22:18:33] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[19/Sep/2020 22:18:33] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[19/Sep/2020 22:18:33] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[19/Sep/2020 22:26:50] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[19/Sep/2020 22:26:50] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[19/Sep/2020 22:26:51] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[19/Sep/2020 22:26:51] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[19/Sep/2020 22:27:20] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[19/Sep/2020 22:27:20] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[19/Sep/2020 22:27:20] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+[19/Sep/2020 22:27:20] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[19/Sep/2020 22:37:20] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[19/Sep/2020 22:37:20] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+[19/Sep/2020 22:37:20] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+[19/Sep/2020 22:37:20] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[19/Sep/2020 22:40:57] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[19/Sep/2020 22:40:58] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[19/Sep/2020 22:40:58] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+[19/Sep/2020 22:40:59] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[19/Sep/2020 22:44:36] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[19/Sep/2020 22:44:36] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+Not Found: /api/get_company_logo
+[19/Sep/2020 22:44:36] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[19/Sep/2020 22:44:36] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[19/Sep/2020 22:57:09] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[19/Sep/2020 22:57:09] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[19/Sep/2020 22:57:09] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[19/Sep/2020 22:57:09] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[19/Sep/2020 23:06:55] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[19/Sep/2020 23:06:55] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[19/Sep/2020 23:06:55] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+Not Found: /api/get_company_logo
+[19/Sep/2020 23:06:55] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[19/Sep/2020 23:37:39] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[19/Sep/2020 23:37:39] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+[19/Sep/2020 23:37:39] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+[19/Sep/2020 23:37:39] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[19/Sep/2020 23:40:51] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[19/Sep/2020 23:40:51] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[19/Sep/2020 23:40:51] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+Not Found: /api/get_company_logo
+[19/Sep/2020 23:40:52] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[19/Sep/2020 23:41:16] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[19/Sep/2020 23:41:16] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[19/Sep/2020 23:41:16] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[19/Sep/2020 23:41:16] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[19/Sep/2020 23:45:09] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[19/Sep/2020 23:45:09] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[19/Sep/2020 23:45:09] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[19/Sep/2020 23:45:09] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[19/Sep/2020 23:52:12] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[19/Sep/2020 23:52:12] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[19/Sep/2020 23:52:12] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[19/Sep/2020 23:52:12] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[19/Sep/2020 23:52:46] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[19/Sep/2020 23:52:47] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[19/Sep/2020 23:52:47] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[19/Sep/2020 23:52:47] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[19/Sep/2020 23:52:58] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[19/Sep/2020 23:52:58] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[19/Sep/2020 23:52:58] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[19/Sep/2020 23:52:58] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[19/Sep/2020 23:55:14] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[19/Sep/2020 23:55:15] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+[19/Sep/2020 23:55:15] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+[19/Sep/2020 23:55:15] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 00:02:47] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 00:02:47] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 00:02:47] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+[20/Sep/2020 00:02:47] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 00:03:26] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[20/Sep/2020 00:03:26] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 00:03:26] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 00:03:26] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 00:09:00] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[20/Sep/2020 00:09:00] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 00:09:00] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 00:09:00] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 00:20:49] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[20/Sep/2020 00:20:49] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 00:20:49] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 00:20:49] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 00:26:49] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 00:26:49] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+[20/Sep/2020 00:26:49] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 00:26:49] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 00:29:53] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 00:29:53] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+[20/Sep/2020 00:29:53] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 00:29:53] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 01:11:12] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[20/Sep/2020 01:11:13] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+[20/Sep/2020 01:11:13] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+Not Found: /api/get_company_logo
+[20/Sep/2020 01:11:13] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 01:11:30] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 01:11:31] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+Not Found: /api/get_company_logo
+[20/Sep/2020 01:11:31] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 01:11:31] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 01:11:52] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 01:11:52] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 01:11:52] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+[20/Sep/2020 01:11:52] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 01:23:28] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 01:23:28] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+[20/Sep/2020 01:23:28] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 01:23:28] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 01:25:11] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[20/Sep/2020 01:25:11] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 01:25:11] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 01:25:11] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 01:25:16] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[20/Sep/2020 01:25:16] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 01:25:16] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 01:25:16] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 01:25:30] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[20/Sep/2020 01:25:30] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 01:25:30] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 01:25:30] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 01:25:55] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 01:25:55] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 01:25:55] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+Not Found: /api/get_company_logo
+[20/Sep/2020 01:25:55] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 01:27:15] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 01:27:15] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 01:27:15] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+[20/Sep/2020 01:27:15] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 01:27:38] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 01:27:38] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 01:27:38] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 01:27:38] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'owner': '1@1.1', 'owner_type': 'company'}
+INSERT INTO tokens (owner_type, owner, token, expire_at) VALUES ('user', '1111111111@1.1', '273e9678cbf41c85cab21023ae323d5e36fd0286706d12ad0a3d9ff57ab870da05521a0ff71b77e2c7d89649cd9f965a664c008b8e3924c1dd633df5f823a43590a3a9e923c4034e73da4d43ee9bedafb4ca0b5b030dda5b4957c22e31e6514f7bb78489ef965e910f4dbb7eae777165e9c67b95e37d79c6416221660f7c71486cd551271d9f69464da3e76a3a941484ab0427c7a4b285a1528a98dc9b5ff9e5801256dcc698417e895704ee6773a47d28006985abef525fcce4d99677a76ec04ca6d0cab5d214d1eacb349245386d83dbd9647a808d1b958fedc72ef5412e71f7fcfbd8d256b4f2397d1e755ce537d1244d9242e998f0485d64f482d41d23ef', '2020-09-20 21:55:01.363816') LIMIT 1
+Duplicate entry '1111111111@1.1' for key 'PRIMARY'
+Duplicate entry '1111111111@1.1' for key 'PRIMARY'
+INSERT INTO tokens (owner_type, owner, token, expire_at) VALUES ('user', '1111111111@11.1', 'b2456e519f91aac792d17909eb6596dd35c669a954d7c4790c9d881fc5da201889a231e9a98b47230dffbe927f6cd27e06d4f149a522ef70d2dd25191a81db0da7f08bea18fc900514e52c7e7086657294680c18c253adbde852922ce3b60b9b752b375ed655ce26e349f6b6ee643f52c9365a462366c4221a73ed6bb4ded566197f34d75ecbfe0eee1de8986d35319a2195f4127bcbf75cfec00080594a9ead5b4667b809a80be72428825d5009bb2371975631fc191115e337a38396d07f2540ae7e8f5b7768e28650c98a7bb96913b5367279f9b512cb2dd5ec1e0ce41164cf16e98187ef5cb7898fd91ac1d8b5f73ffc95c1872153ca929f6f6406d04d91', '2020-09-20 21:58:43.336124') LIMIT 1
+{'owner': '1111111111@11.1', 'owner_type': 'user'}
+{'name': '1', 'email': '1111111111@11.1', 'birthday_date': datetime.date(1111, 11, 11), 'mobile_phone': '+7111111', 'position': '123'}
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100[20/Sep/2020 01:28:15] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 01:28:16] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 01:28:16] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 01:28:16] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 01:28:23] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 01:28:24] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+[20/Sep/2020 01:28:24] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 01:28:24] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 01:28:55] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 01:28:55] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 01:28:55] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 01:28:55] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 01:29:20] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 01:29:20] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 01:29:20] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 01:29:20] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 01:40:36] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[20/Sep/2020 01:40:36] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 01:40:36] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 01:40:36] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 02:01:00] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:01:00] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 02:01:00] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 02:01:00] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 02:01:39] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:01:39] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:01:39] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 02:01:39] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 02:02:44] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:02:44] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 02:02:44] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:02:44] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 02:02:58] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:02:58] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:02:58] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:02:58] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 02:03:29] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:03:29] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:03:29] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:03:29] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 02:03:48] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:03:48] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 02:03:48] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 02:03:48] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 02:03:57] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:03:58] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 02:03:58] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:03:58] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 02:04:16] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:04:16] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:04:16] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 02:04:16] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 02:04:38] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:04:38] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:04:38] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 02:04:38] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 02:05:42] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:05:42] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 02:05:42] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:05:42] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 02:05:53] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:05:53] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 02:05:53] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 02:05:53] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 02:06:08] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:06:08] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:06:08] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:06:08] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 02:06:20] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:06:20] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:06:20] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:06:20] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 02:10:05] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:10:06] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 02:10:06] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:10:06] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 02:10:44] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:10:44] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 02:10:44] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 02:10:44] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 02:10:59] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:10:59] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 02:10:59] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 02:10:59] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 02:13:10] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:13:10] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 02:13:10] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:13:10] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 02:13:24] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:13:24] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:13:24] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:13:24] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 02:19:40] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:19:40] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:19:40] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 02:19:40] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 02:21:27] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:21:27] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 02:21:27] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 02:21:27] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 02:21:57] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:21:57] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:21:57] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 02:21:57] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 02:31:08] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:31:08] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:31:08] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 02:31:08] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 02:31:46] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:31:47] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:31:47] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:31:47] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 02:32:02] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:32:02] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:32:02] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 02:32:02] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 02:32:17] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:32:18] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:32:18] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:32:18] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 02:35:54] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:35:54] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 02:35:54] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 02:35:54] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 02:36:27] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:36:27] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:36:27] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:36:27] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 02:38:07] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:38:07] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:38:07] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 02:38:07] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 02:40:00] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:40:00] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:40:00] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 02:40:00] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 02:40:37] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:40:37] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 02:40:37] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:40:37] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 02:41:26] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:41:26] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:41:26] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 02:41:26] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 02:42:28] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:42:28] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:42:28] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 02:42:28] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 02:43:00] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:43:00] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:43:00] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 02:43:00] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 02:48:22] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:48:22] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:48:22] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:48:22] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 02:49:09] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:49:09] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:49:09] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:49:09] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 02:54:11] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:54:11] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 02:54:11] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:54:11] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 02:56:09] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:56:09] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 02:56:09] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 02:56:09] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 02:57:28] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:57:28] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 02:57:28] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+Not Found: /api/get_company_logo
+[20/Sep/2020 02:57:28] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 03:07:50] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 03:07:50] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 03:07:50] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+Not Found: /api/get_company_logo
+[20/Sep/2020 03:07:50] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 03:12:01] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+[20/Sep/2020 03:12:02] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 03:12:02] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 03:12:02] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 03:12:10] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 885
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 03:12:10] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+[20/Sep/2020 03:12:10] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 03:12:10] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100[20/Sep/2020 03:24:20] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 1195
+Not Found: /api/get_company_logo
+[20/Sep/2020 03:24:20] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 03:24:20] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+[20/Sep/2020 03:24:20] "GET /api/get_company_logo?email=niktob560@yandex.ru HTTP/1.0" 404 1746
+[20/Sep/2020 03:24:20] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+Unprocessable Entity: /api/get_vacations
+[20/Sep/2020 03:25:04] "POST /api/get_vacations?position=&countries=Iraq,Mexico,Belize,Aruba,Bhutan&salary_from=null&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 422 201
+[20/Sep/2020 03:25:04] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 1195
+Not Found: /api/get_company_logo
+[20/Sep/2020 03:25:04] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 03:25:04] "GET /api/get_company_logo?email=niktob560@yandex.ru HTTP/1.0" 404 1746
+[20/Sep/2020 03:25:04] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+Not Found: /api/get_company_logo
+[20/Sep/2020 03:25:04] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Unprocessable Entity: /api/get_vacations
+[20/Sep/2020 03:25:08] "POST /api/get_vacations?position=&countries=Iraq,Mexico,Belize,Aruba,Bhutan&salary_from=null&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 422 201
+Unprocessable Entity: /api/get_vacations
+[20/Sep/2020 03:25:46] "POST /api/get_vacations?position=Deck,Cruise%20Ships%20Positions,Rigs,FPSO,Safety,Security,Medical,1st%20Officer,2nd%20Officer,3rd%20Officer,AB%20/%20Crane%20Operator,AB%20/%20Welder,AB%20Seaman,AB-Cook,Anchor%20Foreman,Barge%20Master,Boatswain,Carpenter,Chief%20Officer,Crane%20Operator,Deck%20Cadet,Deck%20Fitter,DP%20Officer,Fish-Processor,HLO,Junior%20DP%20Officer,Junior%20officer,Master,Mooring%20Master,Navigation%20Officer,OIM,OS,OS%20/%20Welder,OS-Cook,Painter,Pilot,Radio%20Officer,Safety%20Officer,Senior%20DP%20Engineer,Senior%20DPO,Staff%20Captain,Trainee%20Officer,Trawler,Watchkeeping%20Officer,Yacht%20Master,Animateure/Entertainer,Assistant%20Casino%20Manager,Assistant%20Chief%20Housekeeper,Assistant%20Cook,Assistant%20Hotel%20Manager,Assistant%20Housekeeper,Assistant%20Maitred%20Hotel,Assistant%20Restaurant%20Manager,Assistant%20Shore%20Excursions%20Manager,Baker,Bar%20Manager,Bar%20Stewardess,Bartender,Barwaiteress,Bedroom%20Steward,Buffet%20attendant,Buffet%20Steward,Bus%20boy,Butcher,Cabin%20Steward%20assistant,Cabin%20Stewardess,Cashier,Casino%20Manager,Chef%20de%20Partie,Chief%20Housekeeper,Chief%20Purser/Hotel%20Manager,Cleaner,Cosmetologist,Croupier,Cruise%20Director,Dancer,Deck%20Supervisor,Deckhand,Dining%20Room%20Head%20Waiter,Dining%20Room%20Junior%20Waiter,Dining%20Room%20Waiter,Dishwasher,Executive%20Chef,Executive%20Sous%20Chef,First%20Cook,Fitness%20Trainer,Floor%20Supervisor,Galley%20Cleaner,Gift%20Shop%20Assistant,Hairdresser,Head%20Waiter,Hostess,Hotel%20Director,Hotel%20Engineer,Hotel%20Manager,Hotel%20Service%20Engineer,Inventory%20Manager,Jewellery%20sales%20person,Junior%20Assistant%20Purser,Laundry%20Man,Laundry%20Supervisor,Lifeguard,Light%20Technician,Maitre%20Hotel,Massage%20Therapist,Medical%20Officer,Medical%20Staff,Mess%20Boy,Musician,Naturalist,Pastry%20Chef,Pastry%20Man,Photographer,Pool%20Attendant,Purser,Receptionist,Restaurant%20Manager,Restaurant%20Steward,Room%20Service%20Attendant,Second%20Cook,Shop%20staff,Shops%20Salesperson,Shore%20Excursion%20Manager,Sous%20Chef,Staff%20Engineer,Stage%20Staff,Steward,Store%20Keeper,Utility,Waiter,Waitress,Wine%20Steward,Youth%20Staff,Administrator,Administrator,Ballast%20Control%20Operator,Cargo%20Operator,Cargo%20Superintendent,Cargo%20Supervisor,Chief%20Electrician,Derrickhand,Diver,Driller,Elect%20&%20Instr%20Supervisor,Electrical%20Technician,Electronic%20Technician,Engine%20Room%20Supervisor,Foreman,Instrument%20Technician,Maintenance%20Engineer,Maintenance%20Operator,Maintenance%20Superintendent,Maintenance%20Supervisor,Mechanical%20Supervisor,Mechanical%20Technician,Plant%20Operator,Production%20Engineer,Production%20Operator,Production%20Technician,Rigger,Roughneck,Roustabout,Scaffolder,Superintendant,Winch%20Operator,Doctor,Environmental%20Officer,Nurse,Security%20Staff,Ship%20Security%20Officer&countries=Iraq,Mexico,Belize,Aruba,Bhutan&salary_from=null&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 422 201
+Unprocessable Entity: /api/get_vacations
+[20/Sep/2020 03:27:32] "POST /api/get_vacations?position=Catering,2nd%20Cook,Camp%20Boss,Chief%20Cook,Chief%20Steward,Cook,Cook%20Assistant,Laundress,Messman,Stewardess&countries=Iraq,Mexico,Belize,Aruba,Bhutan&salary_from=null&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 422 201
+Unprocessable Entity: /api/get_vacations
+[20/Sep/2020 03:30:09] "POST /api/get_vacations?position=Catering,2nd%20Cook,Camp%20Boss,Chief%20Cook,Chief%20Steward,Cook,Cook%20Assistant,Laundress,Messman,Stewardess&countries=Iraq,Mexico,Belize,Aruba,Bhutan&salary_from=null&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 422 201
+[20/Sep/2020 03:30:17] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 1195
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 03:30:17] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 03:30:17] "GET /api/get_company_logo?email=niktob560@yandex.ru HTTP/1.0" 404 1746
+[20/Sep/2020 03:30:17] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 03:30:17] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Unprocessable Entity: /api/get_vacations
+[20/Sep/2020 03:32:07] "POST /api/get_vacations?position=&countries=Iraq,Mexico,Belize,Aruba,Bhutan&salary_from=5678&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 422 97
+[20/Sep/2020 03:32:07] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 1195
+Not Found: /api/get_company_logo
+[20/Sep/2020 03:32:07] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+[20/Sep/2020 03:32:07] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+[20/Sep/2020 03:32:07] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+Not Found: /api/get_company_logo
+[20/Sep/2020 03:32:07] "GET /api/get_company_logo?email=niktob560@yandex.ru HTTP/1.0" 404 1746
+Unprocessable Entity: /api/get_vacations
+[20/Sep/2020 03:32:10] "POST /api/get_vacations?position=&countries=Iraq,Mexico,Belize,Aruba,Bhutan&salary_from=5678&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 422 97
+Unprocessable Entity: /api/get_vacations
+[20/Sep/2020 03:32:37] "POST /api/get_vacations?position=&countries=&salary_from=0&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 422 97
+[20/Sep/2020 03:32:37] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 1195
+Not Found: /api/get_company_logo
+[20/Sep/2020 03:32:37] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+[20/Sep/2020 03:32:37] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+[20/Sep/2020 03:32:37] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+Not Found: /api/get_company_logo
+[20/Sep/2020 03:32:37] "GET /api/get_company_logo?email=niktob560@yandex.ru HTTP/1.0" 404 1746
+Unprocessable Entity: /api/get_vacations
+[20/Sep/2020 03:33:14] "POST /api/get_vacations?position=Catering,2nd%20Cook,Camp%20Boss,Chief%20Cook,Chief%20Steward,Cook,Cook%20Assistant,Laundress,Messman,Stewardess&countries=Georgia,Belize&salary_from=567&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 422 97
+Unprocessable Entity: /api/get_vacations
+[20/Sep/2020 04:10:19] "POST /api/get_vacations?position=&countries=&salary_from=0&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 422 97
+[20/Sep/2020 04:10:19] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 1195
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:10:19] "GET /api/get_company_logo?email=niktob560@yandex.ru HTTP/1.0" 404 1746
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:10:19] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 04:10:19] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:10:19] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Unprocessable Entity: /api/get_vacations
+[20/Sep/2020 04:11:57] "POST /api/get_vacations?position=Catering,Deck,Cruise%20Ships%20Positions,2nd%20Cook,Camp%20Boss,Chief%20Cook,Chief%20Steward,Cook,Cook%20Assistant,Laundress,Messman,Stewardess,1st%20Officer,2nd%20Officer,3rd%20Officer,AB%20/%20Crane%20Operator,AB%20/%20Welder,AB%20Seaman,AB-Cook,Anchor%20Foreman,Barge%20Master,Boatswain,Carpenter,Chief%20Officer,Crane%20Operator,Deck%20Cadet,Deck%20Fitter,DP%20Officer,Fish-Processor,HLO,Junior%20DP%20Officer,Junior%20officer,Master,Mooring%20Master,Navigation%20Officer,OIM,OS,OS%20/%20Welder,OS-Cook,Painter,Pilot,Radio%20Officer,Safety%20Officer,Senior%20DP%20Engineer,Senior%20DPO,Staff%20Captain,Trainee%20Officer,Trawler,Watchkeeping%20Officer,Yacht%20Master,Animateure/Entertainer,Assistant%20Casino%20Manager,Assistant%20Chief%20Housekeeper,Assistant%20Cook,Assistant%20Hotel%20Manager,Assistant%20Housekeeper,Assistant%20Maitred%20Hotel,Assistant%20Restaurant%20Manager,Assistant%20Shore%20Excursions%20Manager,Baker,Bar%20Manager,Bar%20Stewardess,Bartender,Barwaiteress,Bedroom%20Steward,Buffet%20attendant,Buffet%20Steward,Bus%20boy,Butcher,Cabin%20Steward%20assistant,Cabin%20Stewardess,Cashier,Casino%20Manager,Chef%20de%20Partie,Chief%20Housekeeper,Chief%20Purser/Hotel%20Manager,Cleaner,Cosmetologist,Croupier,Cruise%20Director,Dancer,Deck%20Supervisor,Deckhand,Dining%20Room%20Head%20Waiter,Dining%20Room%20Junior%20Waiter,Dining%20Room%20Waiter,Dishwasher,Executive%20Chef,Executive%20Sous%20Chef,First%20Cook,Fitness%20Trainer,Floor%20Supervisor,Galley%20Cleaner,Gift%20Shop%20Assistant,Hairdresser,Head%20Waiter,Hostess,Hotel%20Director,Hotel%20Engineer,Hotel%20Manager,Hotel%20Service%20Engineer,Inventory%20Manager,Jewellery%20sales%20person,Junior%20Assistant%20Purser,Laundry%20Man,Laundry%20Supervisor,Lifeguard,Light%20Technician,Maitre%20Hotel,Massage%20Therapist,Medical%20Officer,Medical%20Staff,Mess%20Boy,Musician,Naturalist,Pastry%20Chef,Pastry%20Man,Photographer,Pool%20Attendant,Purser,Receptionist,Restaurant%20Manager,Restaurant%20Steward,Room%20Service%20Attendant,Second%20Cook,Shop%20staff,Shops%20Salesperson,Shore%20Excursion%20Manager,Sous%20Chef,Staff%20Engineer,Stage%20Staff,Steward,Store%20Keeper,Utility,Waiter,Waitress,Wine%20Steward,Youth%20Staff,Administrator&countries=Georgia&salary_from=123444&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 422 97
+Unprocessable Entity: /api/get_vacations
+[20/Sep/2020 04:12:34] "POST /api/get_vacations?position=Catering,Deck,Cruise%20Ships%20Positions,2nd%20Cook,Camp%20Boss,Chief%20Cook,Chief%20Steward,Cook,Cook%20Assistant,Laundress,Messman,Stewardess,1st%20Officer,2nd%20Officer,3rd%20Officer,AB%20/%20Crane%20Operator,AB%20/%20Welder,AB%20Seaman,AB-Cook,Anchor%20Foreman,Barge%20Master,Boatswain,Carpenter,Chief%20Officer,Crane%20Operator,Deck%20Cadet,Deck%20Fitter,DP%20Officer,Fish-Processor,HLO,Junior%20DP%20Officer,Junior%20officer,Master,Mooring%20Master,Navigation%20Officer,OIM,OS,OS%20/%20Welder,OS-Cook,Painter,Pilot,Radio%20Officer,Safety%20Officer,Senior%20DP%20Engineer,Senior%20DPO,Staff%20Captain,Trainee%20Officer,Trawler,Watchkeeping%20Officer,Yacht%20Master,Animateure/Entertainer,Assistant%20Casino%20Manager,Assistant%20Chief%20Housekeeper,Assistant%20Cook,Assistant%20Hotel%20Manager,Assistant%20Housekeeper,Assistant%20Maitred%20Hotel,Assistant%20Restaurant%20Manager,Assistant%20Shore%20Excursions%20Manager,Baker,Bar%20Manager,Bar%20Stewardess,Bartender,Barwaiteress,Bedroom%20Steward,Buffet%20attendant,Buffet%20Steward,Bus%20boy,Butcher,Cabin%20Steward%20assistant,Cabin%20Stewardess,Cashier,Casino%20Manager,Chef%20de%20Partie,Chief%20Housekeeper,Chief%20Purser/Hotel%20Manager,Cleaner,Cosmetologist,Croupier,Cruise%20Director,Dancer,Deck%20Supervisor,Deckhand,Dining%20Room%20Head%20Waiter,Dining%20Room%20Junior%20Waiter,Dining%20Room%20Waiter,Dishwasher,Executive%20Chef,Executive%20Sous%20Chef,First%20Cook,Fitness%20Trainer,Floor%20Supervisor,Galley%20Cleaner,Gift%20Shop%20Assistant,Hairdresser,Head%20Waiter,Hostess,Hotel%20Director,Hotel%20Engineer,Hotel%20Manager,Hotel%20Service%20Engineer,Inventory%20Manager,Jewellery%20sales%20person,Junior%20Assistant%20Purser,Laundry%20Man,Laundry%20Supervisor,Lifeguard,Light%20Technician,Maitre%20Hotel,Massage%20Therapist,Medical%20Officer,Medical%20Staff,Mess%20Boy,Musician,Naturalist,Pastry%20Chef,Pastry%20Man,Photographer,Pool%20Attendant,Purser,Receptionist,Restaurant%20Manager,Restaurant%20Steward,Room%20Service%20Attendant,Second%20Cook,Shop%20staff,Shops%20Salesperson,Shore%20Excursion%20Manager,Sous%20Chef,Staff%20Engineer,Stage%20Staff,Steward,Store%20Keeper,Utility,Waiter,Waitress,Wine%20Steward,Youth%20Staff,Administrator&countries=Georgia&salary_from=123444&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 422 97
+Unprocessable Entity: /api/get_vacations
+[20/Sep/2020 04:13:08] "POST /api/get_vacations?position=Catering,2nd%20Cook,Camp%20Boss,Chief%20Cook,Chief%20Steward,Cook,Cook%20Assistant,Laundress,Messman,Stewardess&countries=Georgia&salary_from=123444&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 422 97
+Unprocessable Entity: /api/get_vacations
+[20/Sep/2020 04:13:18] "POST /api/get_vacations?position=&countries=Georgia&salary_from=123444&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 422 97
+[20/Sep/2020 04:13:18] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 1195
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:13:18] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 04:13:18] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:13:18] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:13:18] "GET /api/get_company_logo?email=niktob560@yandex.ru HTTP/1.0" 404 1746
+Unprocessable Entity: /api/get_vacations
+[20/Sep/2020 04:13:34] "POST /api/get_vacations?position=Catering,2nd%20Cook,Camp%20Boss,Chief%20Cook,Chief%20Steward,Cook,Cook%20Assistant,Laundress,Messman,Stewardess&countries=Georgia&salary_from=123444&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 422 97
+[20/Sep/2020 04:19:43] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 1195
+Unprocessable Entity: /api/get_vacations
+[20/Sep/2020 04:23:32] "POST /api/get_vacations?fleet=%20&position=&countries=Congo&salary_from=undefined&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 422 116
+[20/Sep/2020 04:23:32] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 1195
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:23:32] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:23:32] "GET /api/get_company_logo?email=niktob560@yandex.ru HTTP/1.0" 404 1746
+[20/Sep/2020 04:23:32] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 04:23:32] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Unprocessable Entity: /api/get_vacations
+[20/Sep/2020 04:23:37] "POST /api/get_vacations?fleet=%20&position=&countries=Congo&salary_from=undefined&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 422 116
+[20/Sep/2020 04:23:37] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 1195
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:23:37] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:23:37] "GET /api/get_company_logo?email=niktob560@yandex.ru HTTP/1.0" 404 1746
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:23:37] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 04:23:37] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+Unprocessable Entity: /api/get_vacations
+[20/Sep/2020 04:30:32] "POST /api/get_vacations?fleet=%20&position=&countries=&salary_from=undefined&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 422 116
+[20/Sep/2020 04:30:32] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 1195
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:30:32] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:30:32] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:30:32] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 04:30:32] "GET /api/get_company_logo?email=niktob560@yandex.ru HTTP/1.0" 404 1746
+[20/Sep/2020 04:36:47] "POST /api/get_vacations?fleet=%20&position=&countries=&salary_from=0&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 1195
+[20/Sep/2020 04:36:47] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 1195
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:36:47] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 04:36:47] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:36:47] "GET /api/get_company_logo?email=niktob560@yandex.ru HTTP/1.0" 404 1746
+[20/Sep/2020 04:36:47] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 04:36:49] "POST /api/get_vacations?fleet=%20&position=&countries=&salary_from=0&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 1195
+[20/Sep/2020 04:36:49] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 1195
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:36:49] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:36:49] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 04:36:49] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 04:36:49] "GET /api/get_company_logo?email=niktob560@yandex.ru HTTP/1.0" 404 1746
+[20/Sep/2020 04:37:10] "POST /api/get_vacations?fleet=%20&position=&countries=&salary_from=0&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 1195
+[20/Sep/2020 04:37:10] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 1195
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:37:11] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:37:11] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:37:11] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 04:37:11] "GET /api/get_company_logo?email=niktob560@yandex.ru HTTP/1.0" 404 1746
+[20/Sep/2020 04:38:19] "POST /api/get_vacations?fleet=%20&position=&countries=&salary_from=0&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 1195
+[20/Sep/2020 04:38:19] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 1195
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:38:19] "GET /api/get_company_logo?email=niktob560@yandex.ru HTTP/1.0" 404 1746
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:38:19] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 04:38:19] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 04:38:19] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 04:40:27] "POST /api/get_vacations?fleet=%20&position=&countries=&salary_from=0&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 1195
+[20/Sep/2020 04:40:27] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 1195
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:40:27] "GET /api/get_company_logo?email=niktob560@yandex.ru HTTP/1.0" 404 1746
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:40:27] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:40:27] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 04:40:27] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 04:41:41] "POST /api/get_vacations?fleet=%20&position=&countries=&salary_from=0&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 1195
+[20/Sep/2020 04:41:41] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 1195
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:41:41] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:41:41] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:41:41] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 04:41:41] "GET /api/get_company_logo?email=niktob560@yandex.ru HTTP/1.0" 404 1746
+[20/Sep/2020 04:44:50] "POST /api/get_vacations?fleet=%20&position=&countries=&salary_from=0&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 1195
+[20/Sep/2020 04:44:50] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 1195
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:44:50] "GET /api/get_company_logo?email=niktob560@yandex.ru HTTP/1.0" 404 1746
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:44:50] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 04:44:50] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 04:44:50] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 04:45:04] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 1195
+[20/Sep/2020 04:45:04] "POST /api/get_vacations?fleet=%20&position=&countries=&salary_from=0&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 1195
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:45:04] "GET /api/get_company_logo?email=niktob560@yandex.ru HTTP/1.0" 404 1746
+[20/Sep/2020 04:45:04] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 04:45:04] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:45:04] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 04:45:28] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 1195
+[20/Sep/2020 04:45:28] "POST /api/get_vacations?fleet=%20&position=&countries=&salary_from=0&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 1195
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:45:28] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:45:28] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 04:45:28] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 04:45:28] "GET /api/get_company_logo?email=niktob560@yandex.ru HTTP/1.0" 404 1746
+[20/Sep/2020 04:46:28] "POST /api/get_vacations?fleet=%20&position=Catering,2nd%20Cook,Camp%20Boss,Chief%20Cook,Chief%20Steward,Cook,Cook%20Assistant,Laundress,Messman,Stewardess&countries=Iraq&salary_from=2&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 29
+[20/Sep/2020 04:54:15] "POST /api/get_vacations?fleet=%20&position=&countries=Congo&salary_from=0&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 29
+[20/Sep/2020 04:54:15] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 1195
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:54:15] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:54:15] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:54:15] "GET /api/get_company_logo?email=niktob560@yandex.ru HTTP/1.0" 404 1746
+[20/Sep/2020 04:54:15] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 04:54:35] "POST /api/get_vacations?fleet=%20&position=Catering,2nd%20Cook,Camp%20Boss,Chief%20Cook,Chief%20Steward,Cook,Cook%20Assistant,Laundress,Messman,Stewardess&countries=Congo&salary_from=123&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 29
+[20/Sep/2020 04:54:37] "POST /api/get_vacations?fleet=%20&position=Catering,2nd%20Cook,Camp%20Boss,Chief%20Cook,Chief%20Steward,Cook,Cook%20Assistant,Laundress,Messman,Stewardess&countries=Congo&salary_from=123&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 29
+
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+9
+A
+i 0 pos Catering
+i 1 pos 2nd Cook
+i 2 pos Camp Boss
+i 3 pos Chief Cook
+i 4 pos Chief Steward
+i 5 pos Cook
+i 6 pos Cook Assistant
+i 7 pos Laundress
+i 8 pos Messman
+i 9 pos Stewardess
+A
+i 0 country Iraq
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE (v.position='Catering' OR v.position='2nd Cook' OR v.position='Camp Boss' OR v.position='Chief Cook' OR v.position='Chief Steward' OR v.position='Cook' OR v.position='Cook Assistant' OR v.position='Laundress' OR v.position='Messman' OR v.position='Stewardess') AND (c.country='Iraq') AND v.salary >= 2  LIMIT 100
+0
+A
+i 0 country Congo
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE (c.country='Congo')  LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+9
+A
+i 0 pos Catering
+i 1 pos 2nd Cook
+i 2 pos Camp Boss
+i 3 pos Chief Cook
+i 4 pos Chief Steward
+i 5 pos Cook
+i 6 pos Cook Assistant
+i 7 pos Laundress
+i 8 pos Messman
+i 9 pos Stewardess
+A
+i 0 country Congo
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE (v.position='Catering' OR v.position='2nd Cook' OR v.position='Camp Boss' OR v.position='Chief Cook' OR v.position='Chief Steward' OR v.position='Cook' OR v.position='Cook Assistant' OR v.position='Laundress' OR v.position='Messman' OR v.position='Stewardess') AND (c.country='Congo') AND v.salary >= 123  LIMIT 100
+9
+A
+i 0 pos Catering
+i 1 pos 2nd Cook
+i 2 pos Camp Boss
+i 3 pos Chief Cook
+i 4 pos Chief Steward
+i 5 pos Cook
+i 6 pos Cook Assistant
+i 7 pos Laundress
+i 8 pos Messman
+i 9 pos Stewardess
+A
+i 0 country Congo
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE (v.position='Catering' OR v.position='2nd Cook' OR v.position='Camp Boss' OR v.position='Chief Cook' OR v.position='Chief Steward' OR v.position='Cook' OR v.position='Cook Assistant' OR v.position='Laundress' OR v.position='Messman' OR v.position='Stewardess') AND (c.country='Congo') AND v.salary >= 123  LIMIT 100
+9
+A
+i 0 pos Catering
+i 1 pos 2nd Cook
+i 2 pos Camp Boss
+i 3 pos Chief Cook
+i 4 pos Chief Steward
+i 5 pos Cook
+i 6 pos Cook Assistant
+i 7 pos Laundress
+i 8 pos Messman
+i 9 pos Stewardess
+A
+i 0 country Congo
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE (v.position='Catering' OR v.position='2nd Cook' OR v.position='Camp Boss' OR v.position='Chief Cook' OR v.position='Chief Steward' OR v.position='Cook' OR v.position='Cook Assistant' OR v.position='Laundress' OR v.position='Messman' OR v.position='Stewardess') AND (c.country='Congo') AND v.salary >= 123  LIMIT 100[20/Sep/2020 04:54:52] "POST /api/get_vacations?fleet=%20&position=Catering,2nd%20Cook,Camp%20Boss,Chief%20Cook,Chief%20Steward,Cook,Cook%20Assistant,Laundress,Messman,Stewardess&countries=Congo&salary_from=123&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 29
+[20/Sep/2020 04:54:55] "POST /api/get_vacations?fleet=%20&position=&countries=Congo&salary_from=123&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 29
+[20/Sep/2020 04:54:55] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 1195
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:54:55] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 04:54:55] "GET /api/get_company_logo?email=niktob560@yandex.ru HTTP/1.0" 404 1746
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:54:55] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 04:54:55] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 04:55:01] "POST /api/get_vacations?fleet=%20&position=Catering,2nd%20Cook,Camp%20Boss,Chief%20Cook,Chief%20Steward,Cook,Cook%20Assistant,Laundress,Messman,Stewardess&countries=Congo&salary_from=123&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 29
+[20/Sep/2020 04:55:03] "POST /api/get_vacations?fleet=%20&position=Catering,2nd%20Cook,Camp%20Boss,Chief%20Cook,Chief%20Steward,Cook,Cook%20Assistant,Laundress,Messman,Stewardess&countries=Congo&salary_from=123&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 29
+[20/Sep/2020 04:55:04] "POST /api/get_vacations?fleet=%20&position=Catering,2nd%20Cook,Camp%20Boss,Chief%20Cook,Chief%20Steward,Cook,Cook%20Assistant,Laundress,Messman,Stewardess&countries=Congo&salary_from=123&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 29
+[20/Sep/2020 04:57:13] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 1195
+[20/Sep/2020 04:57:13] "POST /api/get_vacations?fleet=%20&position=&countries=Congo&salary_from=123&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 29
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:57:13] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:57:13] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 04:57:13] "GET /api/get_company_logo?email=niktob560@yandex.ru HTTP/1.0" 404 1746
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:57:13] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 04:57:28] "POST /api/get_vacations?fleet=%20&position=Catering,2nd%20Cook,Camp%20Boss,Chief%20Cook,Chief%20Steward,Cook,Cook%20Assistant,Laundress,Messman,Stewardess&countries=Congo&salary_from=123&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 29
+[20/Sep/2020 04:57:29] "POST /api/get_vacations?fleet=%20&position=Catering,2nd%20Cook,Camp%20Boss,Chief%20Cook,Chief%20Steward,Cook,Cook%20Assistant,Laundress,Messman,Stewardess&countries=Congo&salary_from=123&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 29
+[20/Sep/2020 04:58:23] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 1195
+[20/Sep/2020 04:58:23] "POST /api/get_vacations?fleet=%20&position=&countries=Congo&salary_from=123&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 29
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:58:23] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:58:23] "GET /api/get_company_logo?email=niktob560@yandex.ru HTTP/1.0" 404 1746
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:58:23] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 04:58:23] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 04:58:29] "POST /api/get_vacations?fleet=%20&position=Catering,2nd%20Cook,Camp%20Boss,Chief%20Cook,Chief%20Steward,Cook,Cook%20Assistant,Laundress,Messman,Stewardess&countries=Congo&salary_from=123&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 29
+[20/Sep/2020 04:58:30] "POST /api/get_vacations?fleet=%20&position=Catering,2nd%20Cook,Camp%20Boss,Chief%20Cook,Chief%20Steward,Cook,Cook%20Assistant,Laundress,Messman,Stewardess&countries=Congo&salary_from=123&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 29
+[20/Sep/2020 04:58:32] "POST /api/get_vacations?fleet=%20&position=Catering,2nd%20Cook,Camp%20Boss,Chief%20Cook,Chief%20Steward,Cook,Cook%20Assistant,Laundress,Messman,Stewardess&countries=Congo&salary_from=123&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 29
+[20/Sep/2020 04:59:01] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 1195
+[20/Sep/2020 04:59:01] "POST /api/get_vacations?fleet=%20&position=&countries=Congo&salary_from=123&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 29
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:59:01] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:59:01] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:59:01] "GET /api/get_company_logo?email=niktob560@yandex.ru HTTP/1.0" 404 1746
+[20/Sep/2020 04:59:01] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 04:59:03] "POST /api/get_vacations?fleet=%20&position=&countries=Congo&salary_from=123&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 29
+[20/Sep/2020 04:59:05] "POST /api/get_vacations?fleet=%20&position=&countries=Congo&salary_from=123&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 29
+[20/Sep/2020 04:59:35] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 1195
+[20/Sep/2020 04:59:35] "POST /api/get_vacations?fleet=%20&position=&countries=Congo&salary_from=123&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 29
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:59:35] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:59:35] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:59:35] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+Not Found: /api/get_company_logo
+[20/Sep/2020 04:59:35] "GET /api/get_company_logo?email=niktob560@yandex.ru HTTP/1.0" 404 1746
+
+0
+A
+i 0 country Congo
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE (c.country='Congo') AND v.salary >= 123  LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+9
+A
+i 0 pos Catering
+i 1 pos 2nd Cook
+i 2 pos Camp Boss
+i 3 pos Chief Cook
+i 4 pos Chief Steward
+i 5 pos Cook
+i 6 pos Cook Assistant
+i 7 pos Laundress
+i 8 pos Messman
+i 9 pos Stewardess
+A
+i 0 country Congo
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE (v.position='Catering' OR v.position='2nd Cook' OR v.position='Camp Boss' OR v.position='Chief Cook' OR v.position='Chief Steward' OR v.position='Cook' OR v.position='Cook Assistant' OR v.position='Laundress' OR v.position='Messman' OR v.position='Stewardess') AND (c.country='Congo') AND v.salary >= 123  LIMIT 100
+9
+A
+i 0 pos Catering
+i 1 pos 2nd Cook
+i 2 pos Camp Boss
+i 3 pos Chief Cook
+i 4 pos Chief Steward
+i 5 pos Cook
+i 6 pos Cook Assistant
+i 7 pos Laundress
+i 8 pos Messman
+i 9 pos Stewardess
+A
+i 0 country Congo
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE (v.position='Catering' OR v.position='2nd Cook' OR v.position='Camp Boss' OR v.position='Chief Cook' OR v.position='Chief Steward' OR v.position='Cook' OR v.position='Cook Assistant' OR v.position='Laundress' OR v.position='Messman' OR v.position='Stewardess') AND (c.country='Congo') AND v.salary >= 123  LIMIT 100
+9
+A
+i 0 pos Catering
+i 1 pos 2nd Cook
+i 2 pos Camp Boss
+i 3 pos Chief Cook
+i 4 pos Chief Steward
+i 5 pos Cook
+i 6 pos Cook Assistant
+i 7 pos Laundress
+i 8 pos Messman
+i 9 pos Stewardess
+A
+i 0 country Congo
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE (v.position='Catering' OR v.position='2nd Cook' OR v.position='Camp Boss' OR v.position='Chief Cook' OR v.position='Chief Steward' OR v.position='Cook' OR v.position='Cook Assistant' OR v.position='Laundress' OR v.position='Messman' OR v.position='Stewardess') AND (c.country='Congo') AND v.salary >= 123  LIMIT 100
+0
+A
+i 0 country Congo
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE (c.country='Congo') AND v.salary >= 123  LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+9
+A
+i 0 pos Catering
+i 1 pos 2nd Cook
+i 2 pos Camp Boss
+i 3 pos Chief Cook
+i 4 pos Chief Steward
+i 5 pos Cook
+i 6 pos Cook Assistant
+i 7 pos Laundress
+i 8 pos Messman
+i 9 pos Stewardess
+A
+i 0 country Congo
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE (v.position='Catering' OR v.position='2nd Cook' OR v.position='Camp Boss' OR v.position='Chief Cook' OR v.position='Chief Steward' OR v.position='Cook' OR v.position='Cook Assistant' OR v.position='Laundress' OR v.position='Messman' OR v.position='Stewardess') AND (c.country='Congo') AND v.salary >= 123  LIMIT 100
+9
+A
+i 0 pos Catering
+i 1 pos 2nd Cook
+i 2 pos Camp Boss
+i 3 pos Chief Cook
+i 4 pos Chief Steward
+i 5 pos Cook
+i 6 pos Cook Assistant
+i 7 pos Laundress
+i 8 pos Messman
+i 9 pos Stewardess
+A
+i 0 country Congo
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE (v.position='Catering' OR v.position='2nd Cook' OR v.position='Camp Boss' OR v.position='Chief Cook' OR v.position='Chief Steward' OR v.position='Cook' OR v.position='Cook Assistant' OR v.position='Laundress' OR v.position='Messman' OR v.position='Stewardess') AND (c.country='Congo') AND v.salary >= 123  LIMIT 100
+0
+A
+i 0 country Congo
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE (c.country='Congo') AND v.salary >= 123  LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+9
+A
+i 0 pos Catering
+i 1 pos 2nd Cook
+i 2 pos Camp Boss
+i 3 pos Chief Cook
+i 4 pos Chief Steward
+i 5 pos Cook
+i 6 pos Cook Assistant
+i 7 pos Laundress
+i 8 pos Messman
+i 9 pos Stewardess
+A
+i 0 country Congo
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE (v.position='Catering' OR v.position='2nd Cook' OR v.position='Camp Boss' OR v.position='Chief Cook' OR v.position='Chief Steward' OR v.position='Cook' OR v.position='Cook Assistant' OR v.position='Laundress' OR v.position='Messman' OR v.position='Stewardess') AND (c.country='Congo') AND v.salary >= 123  LIMIT 100
+9
+A
+i 0 pos Catering
+i 1 pos 2nd Cook
+i 2 pos Camp Boss
+i 3 pos Chief Cook
+i 4 pos Chief Steward
+i 5 pos Cook
+i 6 pos Cook Assistant
+i 7 pos Laundress
+i 8 pos Messman
+i 9 pos Stewardess
+A
+i 0 country Congo
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE (v.position='Catering' OR v.position='2nd Cook' OR v.position='Camp Boss' OR v.position='Chief Cook' OR v.position='Chief Steward' OR v.position='Cook' OR v.position='Cook Assistant' OR v.position='Laundress' OR v.position='Messman' OR v.position='Stewardess') AND (c.country='Congo') AND v.salary >= 123  LIMIT 100
+9
+A
+i 0 pos Catering
+i 1 pos 2nd Cook
+i 2 pos Camp Boss
+i 3 pos Chief Cook
+i 4 pos Chief Steward
+i 5 pos Cook
+i 6 pos Cook Assistant
+i 7 pos Laundress
+i 8 pos Messman
+i 9 pos Stewardess
+A
+i 0 country Congo
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE (v.position='Catering' OR v.position='2nd Cook' OR v.position='Camp Boss' OR v.position='Chief Cook' OR v.position='Chief Steward' OR v.position='Cook' OR v.position='Cook Assistant' OR v.position='Laundress' OR v.position='Messman' OR v.position='Stewardess') AND (c.country='Congo') AND v.salary >= 123  LIMIT 100
+0
+A
+i 0 country Congo
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE (c.country='Congo') AND v.salary >= 123  LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+0
+A
+i 0 country Congo
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE (c.country='Congo') AND v.salary >= 123  LIMIT 100
+0
+A
+i 0 country Congo
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE (c.country='Congo') AND v.salary >= 123  LIMIT 100
+0
+A
+i 0 country Congo
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE (c.country='Congo') AND v.salary >= 123  LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+9
+A
+i 0 pos Catering[20/Sep/2020 04:59:39] "POST /api/get_vacations?fleet=%20&position=Catering,2nd%20Cook,Camp%20Boss,Chief%20Cook,Chief%20Steward,Cook,Cook%20Assistant,Laundress,Messman,Stewardess&countries=Congo&salary_from=123&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 29
+[20/Sep/2020 05:00:43] "POST /api/get_vacations?fleet=%20&position=&countries=Congo&salary_from=123&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 29
+[20/Sep/2020 05:00:43] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 1195
+Not Found: /api/get_company_logo
+[20/Sep/2020 05:00:43] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 05:00:43] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 05:00:43] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 05:00:43] "GET /api/get_company_logo?email=niktob560@yandex.ru HTTP/1.0" 404 1746
+[20/Sep/2020 05:00:52] "POST /api/get_vacations?fleet=%20&position=Catering,2nd%20Cook,Camp%20Boss,Chief%20Cook,Chief%20Steward,Cook,Cook%20Assistant,Laundress,Messman,Stewardess&countries=Congo&salary_from=123&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 29
+[20/Sep/2020 05:01:18] "POST /api/get_vacations?fleet=%20&position=&countries=Congo&salary_from=123&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 29
+[20/Sep/2020 05:01:19] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 1195
+Not Found: /api/get_company_logo
+[20/Sep/2020 05:01:19] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 05:01:19] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+[20/Sep/2020 05:01:19] "GET /api/get_company_logo?email=niktob560@yandex.ru HTTP/1.0" 404 1746
+Not Found: /api/get_company_logo
+[20/Sep/2020 05:01:19] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 05:01:25] "POST /api/get_vacations?fleet=%20&position=Catering,2nd%20Cook,Camp%20Boss,Chief%20Cook,Chief%20Steward,Cook,Cook%20Assistant,Laundress,Messman,Stewardess&countries=Congo&salary_from=123&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 29
+[20/Sep/2020 05:02:00] "POST /api/get_vacations?fleet=%20&position=&countries=Congo&salary_from=123&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 29
+[20/Sep/2020 05:02:00] "POST /api/get_vacations?position=%20&fleet=%20&countries=%20&salary_from=0&start_at=%20&end_at=0&sort=%20 HTTP/1.0" 200 1195
+Not Found: /api/get_company_logo
+[20/Sep/2020 05:02:01] "GET /api/get_company_logo?email=111111@1.1 HTTP/1.0" 404 1737
+Not Found: /api/get_company_logo
+Not Found: /api/get_company_logo
+[20/Sep/2020 05:02:01] "GET /api/get_company_logo?email=niktob560@yandex.ru HTTP/1.0" 404 1746
+Not Found: /api/get_company_logo
+[20/Sep/2020 05:02:01] "GET /api/get_company_logo?email=11111@1.1 HTTP/1.0" 404 1736
+[20/Sep/2020 05:02:01] "GET /api/get_company_logo?email=0@1.1 HTTP/1.0" 404 1732
+[20/Sep/2020 05:02:07] "POST /api/get_vacations?fleet=%20&position=Catering,2nd%20Cook,Camp%20Boss,Chief%20Cook,Chief%20Steward,Cook,Cook%20Assistant,Laundress,Messman,Stewardess&countries=Congo&salary_from=123&start_at=%20&end_at=%20&sort=%20 HTTP/1.0" 200 29
+[20/Sep/2020 05:07:19] "POST /api/login?email=1@1.1&password=1111 HTTP/1.0" 200 571
+[20/Sep/2020 05:07:19] "POST /api/get_profile_company HTTP/1.0" 200 166
+[20/Sep/2020 05:13:00] "POST /api/get_profile_company HTTP/1.0" 200 166
+[20/Sep/2020 05:18:06] "POST /api/get_profile_company HTTP/1.0" 200 166
+[20/Sep/2020 05:18:08] "POST /api/get_profile_company HTTP/1.0" 200 166
+Unprocessable Entity: /api/update_profile_company
+[20/Sep/2020 05:18:39] "POST /api/update_profile_company?email=undefined&password=12345678&mobile_phone=undefined&website=undefined&country=undefined&city=undefined HTTP/1.0" 422 99
+[20/Sep/2020 05:18:39] "POST /api/upload_logo HTTP/1.0" 200 209
+[20/Sep/2020 13:13:01] "POST /api/login?email=1@1.1&password=1111 HTTP/1.0" 200 571
+[20/Sep/2020 13:13:02] "POST /api/get_profile_company HTTP/1.0" 200 166
+[20/Sep/2020 13:18:54] "POST /api/get_profile_company HTTP/1.0" 200 166
+[20/Sep/2020 13:26:23] "POST /api/upload_logo HTTP/1.0" 200 36
+Unprocessable Entity: /api/update_profile_company
+[20/Sep/2020 13:26:23] "POST /api/update_profile_company?email=undefined&password=12345678&mobile_phone=undefined&website=undefined&country=undefined&city= HTTP/1.0" 422 99
+[20/Sep/2020 13:27:22] "POST /api/upload_logo HTTP/1.0" 200 36
+Unprocessable Entity: /api/update_profile_company
+[20/Sep/2020 13:27:22] "POST /api/update_profile_company?email=undefin@e.d&password=12345678&mobile_phone=undefined&website=undefined&country=undefined&city=%D1%80%D0%BE%D0%BB HTTP/1.0" 422 99
+Unprocessable Entity: /api/update_profile_company
+[20/Sep/2020 13:27:55] "POST /api/upload_logo HTTP/1.0" 200 36
+[20/Sep/2020 13:27:55] "POST /api/update_profile_company?email=undefin@e.d&password=12345678&mobile_phone=7890&website=undefined&country=undefined&city=%D1%80%D0%BE%D0%BB HTTP/1.0" 422 99
+[20/Sep/2020 13:28:09] "POST /api/upload_logo HTTP/1.0" 200 209
+Unprocessable Entity: /api/update_profile_company
+[20/Sep/2020 13:28:09] "POST /api/update_profile_company?email=undefin@e.d&password=12345678&mobile_phone=7890&website=undefined&country=undefined&city=%D1%80%D0%BE%D0%BB HTTP/1.0" 422 99
+[20/Sep/2020 13:30:21] "POST /api/get_profile_company HTTP/1.0" 200 166
+[20/Sep/2020 13:34:26] "POST /api/get_profile_company HTTP/1.0" 200 166
+[20/Sep/2020 13:34:30] "POST /api/get_profile_company HTTP/1.0" 200 166
+[20/Sep/2020 13:34:39] "POST /api/get_profile_company HTTP/1.0" 200 166
+[20/Sep/2020 13:35:10] "POST /api/get_profile_company HTTP/1.0" 200 166
+/home/proger00/Documents/seajobs_server/api/seajobs_server/urls.py changed, reloading.
+
+i 1 pos 2nd Cook
+i 2 pos Camp Boss
+i 3 pos Chief Cook
+i 4 pos Chief Steward
+i 5 pos Cook
+i 6 pos Cook Assistant
+i 7 pos Laundress
+i 8 pos Messman
+i 9 pos Stewardess
+A
+i 0 country Congo
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE (v.position='Catering' OR v.position='2nd Cook' OR v.position='Camp Boss' OR v.position='Chief Cook' OR v.position='Chief Steward' OR v.position='Cook' OR v.position='Cook Assistant' OR v.position='Laundress' OR v.position='Messman' OR v.position='Stewardess') AND (c.country='Congo') AND v.salary >= 123  LIMIT 100
+0
+A
+i 0 country Congo
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE (c.country='Congo') AND v.salary >= 123  LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+9
+A
+i 0 pos Catering
+i 1 pos 2nd Cook
+i 2 pos Camp Boss
+i 3 pos Chief Cook
+i 4 pos Chief Steward
+i 5 pos Cook
+i 6 pos Cook Assistant
+i 7 pos Laundress
+i 8 pos Messman
+i 9 pos Stewardess
+A
+i 0 country Congo
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE (v.position='Catering' OR v.position='2nd Cook' OR v.position='Camp Boss' OR v.position='Chief Cook' OR v.position='Chief Steward' OR v.position='Cook' OR v.position='Cook Assistant' OR v.position='Laundress' OR v.position='Messman' OR v.position='Stewardess') AND (c.country='Congo') AND v.salary >= 123  LIMIT 100
+0
+A
+i 0 country Congo
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE (c.country='Congo') AND v.salary >= 123  LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+9
+A
+i 0 pos Catering
+i 1 pos 2nd Cook
+i 2 pos Camp Boss
+i 3 pos Chief Cook
+i 4 pos Chief Steward
+i 5 pos Cook
+i 6 pos Cook Assistant
+i 7 pos Laundress
+i 8 pos Messman
+i 9 pos Stewardess
+A
+i 0 country Congo
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE (v.position='Catering' OR v.position='2nd Cook' OR v.position='Camp Boss' OR v.position='Chief Cook' OR v.position='Chief Steward' OR v.position='Cook' OR v.position='Cook Assistant' OR v.position='Laundress' OR v.position='Messman' OR v.position='Stewardess') AND (c.country='Congo') AND v.salary >= 123  LIMIT 100
+0
+A
+i 0 country Congo
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE (c.country='Congo') AND v.salary >= 123  LIMIT 100
+0
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email   LIMIT 100
+9
+A
+i 0 pos Catering
+i 1 pos 2nd Cook
+i 2 pos Camp Boss
+i 3 pos Chief Cook
+i 4 pos Chief Steward
+i 5 pos Cook
+i 6 pos Cook Assistant
+i 7 pos Laundress
+i 8 pos Messman
+i 9 pos Stewardess
+A
+i 0 country Congo
+SELECT v.*, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE (v.position='Catering' OR v.position='2nd Cook' OR v.position='Camp Boss' OR v.position='Chief Cook' OR v.position='Chief Steward' OR v.position='Cook' OR v.position='Cook Assistant' OR v.position='Laundress' OR v.position='Messman' OR v.position='Stewardess') AND (c.country='Congo') AND v.salary >= 123  LIMIT 100
+INSERT INTO tokens (owner_type, owner, token, expire_at) VALUES ('company', '1@1.1', '3d9fb3198a636a7bea0e1b284c9b7ad77e42fcb928a40921defea7c34b1026c147f0db062204f1c45b27b9e979fe6808ff2d9d2d9e23110634eb9457681d90cf33a9826502cc4f5a33880683b6bad76d41dad78cae935ff3a6638ae387a9d2c60a0fd0413a5bba2994074b65de189289b2605d70ff4d42a586b614e6e997de1a71c4bad5cbddf9feb953a9ed755890ca40029f7ba191555a3f0e3cc67f874d9d9f6c51a3d219b46ee6b827e83e4d36e0d091ec100cfb458669cdf22c3d33d0150cd711919e14ba89ea25ca9002b12b6fde6e5815bf046eaf1d3086848208c80d25f8c54b5a4726909f3ed4ad1584b5a27a49c9876dc10c2e90d6d778fa894f68', '2020-09-21 05:07:19.061191') LIMIT 1
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+INSERT INTO tokens (owner_type, owner, token, expire_at) VALUES ('company', '1@1.1', 'e84d75ba03c008853ac588ed31e4d221cc581ab80b2350d3422238c1d92494c2952c6613dbbce41c94e7c46752c9b4bd583fbb83f31e87e8e7b76ece4fef537d85b4aee190ac3f8ae9bcb1c2514871c26fd5c9a837194a37e871f6805078c54b253a109531f90dc628f9eec2cd0ab81163ba8a8f781589aa81524125df0c3cc30029a14a8471d5a6534f92c74bc1ee4590c119b67a146d8cc012e7386b44ad9e1744baa9e59d378e5c319cf397d4b578a42c60c33a2979cd5bdc7af9ff5f186e71ab88b278e87c108e75fcc3759999ff660c568316a86e02bc924c92beec279c1b285e72f5e9910fb4ed52410c5011191da0c31fd62d1b424797df8e8027153e', '2020-09-21 13:13:01.606693') LIMIT 1
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+{'owner': '1@1.1', 'owner_type': 'company'}
+{'name': '1', 'website': '1', 'mobile_phone': '+71111', 'email': '1@1.1', 'country': '1', 'city': '1', 'address': '1', 'logo_path': None}
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+/home/proger00/Documents/seajobs_server/api/seajobs_server/settings.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 18 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+September 27, 2020 - 21:25:46
+Django version 3.1.1, using settings 'seajobs_server.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+Watching for file changes with StatReloader
+Internal Server Error: /api/get_profile_company
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/lib/python3.8/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/lib/python3.8/site-packages/ninja/operation.py", line 145, in _sync_view
+    return operation.run(request, *a, **kw)
+  File "/usr/lib/python3.8/site-packages/ninja/operation.py", line 35, in run
+    unauthorized = self._run_authentication(request)
+  File "/usr/lib/python3.8/site-packages/ninja/operation.py", line 49, in _run_authentication
+    result = callback(request)
+  File "/usr/lib/python3.8/site-packages/ninja/security/http.py", line 26, in __call__
+    return self.authenticate(request, token)
+  File "/home/proger00/Documents/seajobs_server/api/seajobs_server/urls.py", line 85, in authenticate
+    data = query_db(f"SELECT owner, owner_type FROM tokens WHERE token='{token}' LIMIT 1", (), one=True)
+  File "/home/proger00/Documents/seajobs_server/api/seajobs_server/urls.py", line 73, in query_db
+    cur = db().cursor()
+  File "/home/proger00/Documents/seajobs_server/api/seajobs_server/urls.py", line 65, in db
+    return mariadb.connect(
+mariadb.OperationalError: Unknown MySQL server host 'mariadb' (-2)
+[27/Sep/2020 21:26:24] "POST /api/get_profile_company HTTP/1.0" 500 98492
+Internal Server Error: /api/get_profile_company
+Traceback (most recent call last):
+  File "/usr/lib/python3.8/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/usr/lib/python3.8/site-packages/django/core/handlers/base.py", line 179, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/usr/lib/python3.8/site-packages/ninja/operation.py", line 145, in _sync_view
+    return operation.run(request, *a, **kw)
+  File "/usr/lib/python3.8/site-packages/ninja/operation.py", line 35, in run
+    unauthorized = self._run_authentication(request)
+  File "/usr/lib/python3.8/site-packages/ninja/operation.py", line 49, in _run_authentication
+    result = callback(request)
+  File "/usr/lib/python3.8/site-packages/ninja/security/http.py", line 26, in __call__
+    return self.authenticate(request, token)
+  File "/home/proger00/Documents/seajobs_server/api/seajobs_server/urls.py", line 85, in authenticate
+    data = query_db(f"SELECT owner, owner_type FROM tokens WHERE token='{token}' LIMIT 1", (), one=True)
+  File "/home/proger00/Documents/seajobs_server/api/seajobs_server/urls.py", line 73, in query_db
+    cur = db().cursor()
+  File "/home/proger00/Documents/seajobs_server/api/seajobs_server/urls.py", line 65, in db
+    return mariadb.connect(
+mariadb.OperationalError: Unknown MySQL server host 'mariadb' (-2)
+[27/Sep/2020 21:26:30] "POST /api/get_profile_company HTTP/1.0" 500 98492
+/home/proger00/Documents/seajobs_server/api/seajobs_server/settings.py changed, reloading.
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 18 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+Run 'python manage.py migrate' to apply them.
+September 27, 2020 - 21:26:19
+Django version 3.1.1, using settings 'seajobs_server.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+Traceback (most recent call last):
+  File "/home/proger00/Documents/seajobs_server/api/manage.py", line 21, in <module>
+    main()
+  File "/home/proger00/Documents/seajobs_server/api/manage.py", line 17, in main
+    execute_from_command_line(sys.argv)
+  File "/usr/lib/python3.8/site-packages/django/core/management/__init__.py", line 401, in execute_from_command_line
+    utility.execute()
+  File "/usr/lib/python3.8/site-packages/django/core/management/__init__.py", line 345, in execute
+    settings.INSTALLED_APPS
+  File "/usr/lib/python3.8/site-packages/django/conf/__init__.py", line 83, in __getattr__
+    self._setup(name)
+  File "/usr/lib/python3.8/site-packages/django/conf/__init__.py", line 70, in _setup
+    self._wrapped = Settings(settings_module)
+  File "/usr/lib/python3.8/site-packages/django/conf/__init__.py", line 177, in __init__
+    mod = importlib.import_module(self.SETTINGS_MODULE)
+  File "/usr/lib/python3.8/importlib/__init__.py", line 127, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1014, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 991, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 975, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 671, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 779, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 916, in get_code
+  File "<frozen importlib._bootstrap_external>", line 846, in source_to_code
+  File "<frozen importlib._bootstrap>", line 219, in _call_with_frames_removed
+  File "/home/proger00/Documents/seajobs_server/api/seajobs_server/settings.py", line 134
+    DB_HOST = "128.0.129.115"
+    ^
+IndentationError: unexpected indent

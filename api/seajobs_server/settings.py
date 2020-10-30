@@ -163,7 +163,7 @@ DB_PORT = 3306
 MAIL_ADDR = "seajobs.development@gmail.com"
 MAIL_PASS = "Kpl5xKpdzPaHnQ1y"
 MAIL_NAME = "Crewmarine"
-PASSWORD_RESET_URL = "https://crewmarine.eu/en/reset_password.html"
+PASSWORD_RESET_URL = "https://proger00.ddns.net/en/reset_password.html"
 ENCODING = "utf-8"
 
 MAX_VACATIONS_DISPLAYED = 100
