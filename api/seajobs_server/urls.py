@@ -997,7 +997,7 @@ def update_vacation(request, id: int, position: str = None, salary: int = None, 
     else:
         return {"query": query}
 
-@api.post("/send_feedback")
+@api.get("/send_feedback")
 def send_feedback(request, name, email, subject, body:str):
     msg = '<style>th, td { padding:15px 60px;font-size:30px; } table{ margin: 0px 25%; } div{ padding: 30px; text-align: center; background: #00246A; color: white; font-size: 30px;} body { padding: 0px; } * { margin: 0px; } </style> <div style="padding: 30px;  text-align: center;  background: #00246A;  color: white;  font-size: 30px;"><h1>New feedback</h1></div><table><tr><td>Name:</td><td>' + name + '</td></tr><tr><td>Email:</td><td>' + email + '</td></tr><tr><td>Subject:</td><td>' + subject +'</td></tr><tr><td>Body:</td><td>' + body + '</td></tr></table>'
     sendMail(Mailto(addr="info@crewmarine.eu", name=""), subject: "Feedback", msg)
