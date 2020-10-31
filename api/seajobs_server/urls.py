@@ -1008,9 +1008,8 @@ def get_company_vacancies(request, company_email: str, limit: int = settings.MAX
     try:
         if limit < 0 or limit > settings.MAX_VACATIONS_DISPLAYED:
             limit = settings.MAX_VACATIONS_DISPLAYED
-        q = f"SELECT DATE_FORMAT(v.post_date, '%d.%m.%Y %H:%i:%s') as post_date, v.position, v.salary, v.fleet, DATE_FORMAT(v.start_at, '%d.%m.%Y') as start_at, v.company_email, v.contract_duration, v.id, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE company_email='{company_email}' LIMIT {limit}"
-        print(q)
-        data = query_db(q)
+        q = f"SELECT v.post_date, v.position, v.salary, v.fleet, v.start_at, v.company_email, v.contract_duration, v.id, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE company_email='{company_email}' LIMIT {limit}"
+        data = query_db(q, ("post_date", "position", "salary", "fleet", "start_at", "company_email", "contract_duration", "id", "company_logo_path", "company_name", "company_contry"))
         for i in range(0, len(data)):
             data[i]["company"] = {
                                     "name": data[i]["company_name"], 
@@ -1022,6 +1021,8 @@ def get_company_vacancies(request, company_email: str, limit: int = settings.MAX
             del data[i]["company_logo_path"]
             del data[i]["company_contry"]
             del data[i]["company_email"]
+            data[i]["post_date"] = data[i]["post_date"].strftime("%d.%m.%Y %H:%M:%S")
+            data[i]["start_at"] = data[i]["start_at"].strftime("%d.%m.%Y")
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
     else:
