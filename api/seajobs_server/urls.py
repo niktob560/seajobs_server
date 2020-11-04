@@ -894,7 +894,7 @@ def remove_vacation(request, id: int):
     connection = None
     try:
         company_email = request.auth["owner"]
-        owner_email = query_db(f"SELECT company_email FROM vacations WHERE id={id}", one=True)["company_email"]
+        owner_email = query_db(f"SELECT company_email FROM vacations WHERE id={id}", ('company_email',), one=True)["company_email"]
         print(f"company: {company_email}")
         print(f"owner: {owner_email}")
         if company_email != owner_email:
