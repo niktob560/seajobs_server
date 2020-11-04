@@ -952,11 +952,17 @@ def update_vacation(request, id: int, position: str = None, salary: int = None, 
             cursor = connection.cursor()
             id = cursor.execute(query, ())
         except Exception as e:
+            print(f"{e}")
             raise SystemError("Failed to update vacancy")
+        finally:
+            if cursor and cursor != None:
+                cursor.close()
+            if connection and connection != None:
+                connection.commit()
     except Exception as e:
         return {"err": f"{e}"}
     else:
-        return {"query": query}
+        return {"result": "ok"}
 
 @api.post("/send_feedback")
 def send_feedback(request, name, email, subject, body:str):
