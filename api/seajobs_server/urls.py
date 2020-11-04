@@ -171,9 +171,9 @@ def register_sailor(request, name: str, password: str, email: str, birthday_date
             else:
                 return HttpResponseServerError()
     except Exception as e:
-        return {"result": "err", "extra": "{}".format(e)}
+        return {"result": "err", "extra": f"{e}"}
     else:
-        return {"result": "ok", "extra": f"{id}"}
+        return {"result": "ok"}
     finally:
         if cursor:
             cursor.close()
@@ -990,11 +990,23 @@ def update_vacation(request, id: int, position: str = None, salary: int = None, 
             cursor = connection.cursor()
             id = cursor.execute(query, ())
         except Exception as e:
+            print(f"{e}")
             raise SystemError("Failed to update vacancy")
+        finally:
+            if cursor and cursor != None:
+                cursor.close()
+            if connection and connection != None:
+                connection.commit()
     except Exception as e:
         return {"err": f"{e}"}
     else:
-        return {"query": query}
+        return {"result": "ok"}
+
+@api.post("/send_feedback")
+def send_feedback(request, name, email, subject, body:str):
+    msg = '<style>th, td { padding:15px 60px;font-size:30px; } table{ margin: 0px 25%; } div{ padding: 30px; text-align: center; background: #00246A; color: white; font-size: 30px;} body { padding: 0px; } * { margin: 0px; } </style> <div style="padding: 30px;  text-align: center;  background: #00246A;  color: white;  font-size: 30px;"><h1>New feedback</h1></div><table><tr><td>Name:</td><td>' + name + '</td></tr><tr><td>Email:</td><td>' + email + '</td></tr><tr><td>Subject:</td><td>' + subject +'</td></tr><tr><td>Body:</td><td>' + body + '</td></tr></table>'
+    sendMail(Mailto(addr="info@crewmarine.eu", name=""), "Feedback", msg)
+
 
 @api.get("/get_company_vacancies")
 def get_company_vacancies(request, company_email: str, limit: int = settings.MAX_VACATIONS_DISPLAYED):
