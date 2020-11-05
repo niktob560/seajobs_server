@@ -168,6 +168,8 @@ def register_sailor(request, name: str, password: str, email: str, birthday_date
             print(f"{e}")
             if f"{e}".startswith("Duplicate entry"):
                 raise Exception("User with such email already exist")
+            elif f"{e}".startswith("Company with"):
+                raise e
             else:
                 return HttpResponseServerError()
     except Exception as e:
