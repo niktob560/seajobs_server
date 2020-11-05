@@ -895,7 +895,7 @@ def update_vacation(request, id: int, position: str = None, salary: int = None, 
         if fleet_type != None:
             if "=" in query:
                 query += ","
-            query += f" fleet_type='{fleet_type}'"
+            query += f" fleet='{fleet_type}'"
         if start_at != None:
             start_at = datetime.strptime(start_at, "%d.%m.%Y")
             start_at = "{Y}-{m}-{d}".format(Y=start_at.year, m=start_at.month, d=start_at.day)
