@@ -376,7 +376,7 @@ def upload_logo(request):
             con.commit()
 
 @api.get("/add_vacation", auth=AuthBearer())
-def add_vacation(request, position: str, salary: int, fleet_type: str, start_at: str, contract_duration: int, nationality: str, english_level: str, requierments: str, fleet_construct_year: int, fleet_dwt: str, fleet_gd_type: str, fleet_power: int):
+def add_vacation(request, position: str, salary: str, fleet_type: str, start_at: str, contract_duration: str, nationality: str, english_level: str, requierments: str, fleet_construct_year: int, fleet_dwt: str, fleet_gd_type: str, fleet_power: int):
     con = None
     cur = None
     try:
@@ -384,16 +384,16 @@ def add_vacation(request, position: str, salary: int, fleet_type: str, start_at:
             raise ValueError("Only company can add vacation")
         if not position:
             raise ValueError("Bad position")
-        if salary < 0:
-            raise ValueError("Salary can't be less than 0")
+        # if salary < 0:
+        #     raise ValueError("Salary can't be less than 0")
         if not fleet_type:
             raise ValueError("Bad fleet type")
         if not start_at:
             raise ValueError("Bad start date")
-        start_at = datetime.strptime(start_at, "%d.%m.%Y")
-        start_at = "{Y}-{m}-{d}".format(Y=start_at.year, m=start_at.month, d=start_at.day)
-        if contract_duration <= 0:
-            raise ValueError("Contract duration can't be less than 1")
+        # start_at = datetime.strptime(start_at, "%d.%m.%Y")
+        # start_at = "{Y}-{m}-{d}".format(Y=start_at.year, m=start_at.month, d=start_at.day)
+        # if contract_duration <= 0:
+        #     raise ValueError("Contract duration can't be less than 1")
         if not nationality:
             raise ValueError("Bad nationality")
         if not english_level:
@@ -433,7 +433,7 @@ def get_vacation(request, id: int):
         if id < 1:
             raise ValueError("Invalid id")
         data = query_db(f"SELECT v.position, v.salary, v.fleet, v.start_at, v.contract_duration, v.company_email, v.requierments, v.fleet_construct_year, v.fleet_dwt, v.fleet_gd, v.fleet_power, v.post_date, v.english_level, v.nationality, v.id, c.logo_path as company_logo_path, c.name as company_name, c.country as company_country FROM vacations v INNER JOIN companies c on v.company_email = c.email WHERE v.id={id}", ("position", "salary", "fleet", "start_at", "contract_duration", "company_email", "requierments", "fleet_construct_year", "fleet_dwt", "fleet_gd", "fleet_power", "post_date", "english_level", "nationality", "id", "company_logo_path", "company_name", "company_country"), one=True)
-        data["start_at"] = data["start_at"].strftime("%d.%m.%Y")
+        # data["start_at"] = data["start_at"].strftime("%d.%m.%Y")
         data["post_date"] = data["post_date"].strftime("%d.%m.%Y")
         data["company"] = {
                                 "name": data["company_name"], 
@@ -555,15 +555,15 @@ def get_vacations(request, position = " ", fleet = " ", countries = " ", salary_
         end_at = end_at.strip()
         sort = sort.strip()
         try:
-            if start_at:
-                start_at = datetime.strptime(start_at, "%d.%m.%Y")
-                start_at = "{Y}-{m}-{d}".format(Y=start_at.year, m=start_at.month, d=start_at.day)
+            # if start_at:
+            #     start_at = datetime.strptime(start_at, "%d.%m.%Y")
+            #     start_at = "{Y}-{m}-{d}".format(Y=start_at.year, m=start_at.month, d=start_at.day)
         except:
             start_at = ""
         try:
-            if end_at:
-                end_at = datetime.strptime(end_at, "%d.%m.%Y")
-                end_at = "{Y}-{m}-{d}".format(Y=end_at.year, m=end_at.month, d=end_at.day)
+            # if end_at:
+            #     end_at = datetime.strptime(end_at, "%d.%m.%Y")
+            #     end_at = "{Y}-{m}-{d}".format(Y=end_at.year, m=end_at.month, d=end_at.day)
         except:
             end_at = ''
         where_position = ""
@@ -604,19 +604,19 @@ def get_vacations(request, position = " ", fleet = " ", countries = " ", salary_
                     where_position += " OR "
             where_position += ")"
         
-        if salary_from > 0:
-            if len(where_position) > 0:
-                where_position += " AND "
-            where_position += f"v.salary >= {salary_from}"
+        # if salary_from > 0:
+        #     if len(where_position) > 0:
+        #         where_position += " AND "
+        #     where_position += f"v.salary >= {salary_from}"
         
-        if start_at:
-            if len(where_position) > 0:
-                where_position += " AND "
-            where_position += f"v.start_at >= '{start_at}'"
-        if end_at:
-            if len(where_position) > 0:
-                where_position += " AND "
-            where_position += f"v.start_at <= '{end_at}'"
+        # if start_at:
+        #     if len(where_position) > 0:
+        #         where_position += " AND "
+        #     where_position += f"v.start_at >= '{start_at}'"
+        # if end_at:
+        #     if len(where_position) > 0:
+        #         where_position += " AND "
+        #     where_position += f"v.start_at <= '{end_at}'"
         
         if sort:
             try:
@@ -636,9 +636,7 @@ def get_vacations(request, position = " ", fleet = " ", countries = " ", salary_
         if offset < 0:
             offset = 0
         q = "SELECT v.post_date, v.position, v.salary, v.fleet, v.start_at, v.company_email, v.contract_duration, v.id, c.logo_path as company_logo_path, c.name as company_name, c.country as company_contry FROM vacations v INNER JOIN companies c on v.company_email = c.email {0} {1} LIMIT {2} OFFSET {3}".format(where_position, order_by, limit, offset, args=("%d", "%i", "%s", "%d", "%d"))
-        print(q)
         data = query_db(q, ("post_date", "position", "salary", "fleet", "start_at", "company_email", "contract_duration", "id", "company_logo_path", "company_name", "company_contry"), args=())
-        print(data)
         for i in range(0, len(data)):
             data[i]["company"] = {
                                     "name": data[i]["company_name"], 
@@ -651,7 +649,7 @@ def get_vacations(request, position = " ", fleet = " ", countries = " ", salary_
             del data[i]["company_contry"]
             del data[i]["company_email"]
             data[i]["post_date"] = data[i]["post_date"].strftime("%d.%m.%Y %H:%M:%S")
-            data[i]["start_at"] = data[i]["start_at"].strftime("%d.%m.%Y")
+            # data[i]["start_at"] = data[i]["start_at"].strftime("%d.%m.%Y")
         print(data)
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
@@ -919,7 +917,7 @@ def remove_vacation(request, id: int):
 
 
 @api.get("/update_vacation", auth=AuthBearer())
-def update_vacation(request, id: int, position: str = None, salary: int = None, fleet_type: str = None, start_at: str = None, contract_duration: int = None, requierments: str = None, fleet_construct_year: int = None, fleet_dwt: str = None, fleet_gd: str = None, fleet_power: int = None, english_level: str = None, nationality: str = None):
+def update_vacation(request, id: int, position: str = None, salary: str = None, fleet_type: str = None, start_at: str = None, contract_duration: str = None, requierments: str = None, fleet_construct_year: int = None, fleet_dwt: str = None, fleet_gd: str = None, fleet_power: int = None, english_level: str = None, nationality: str = None):
     try:
         if request.auth["owner_type"] != "company":
             raise ValueError("Only company can update vacation")
@@ -927,27 +925,27 @@ def update_vacation(request, id: int, position: str = None, salary: int = None, 
         if position != None:
             query += f" position='{position}'"
         if salary != None:
-            if salary <= 0:
-                raise ValueError("Salary can't be less than 0")
+            # if salary <= 0:
+            #     raise ValueError("Salary can't be less than 0")
             if "=" in query:
                 query += ","
-            query += f" salary={salary}"
+            query += f" salary='{salary}'"
         if fleet_type != None:
             if "=" in query:
                 query += ","
             query += f" fleet='{fleet_type}'"
         if start_at != None:
-            start_at = datetime.strptime(start_at, "%d.%m.%Y")
-            start_at = "{Y}-{m}-{d}".format(Y=start_at.year, m=start_at.month, d=start_at.day)
+            # start_at = datetime.strptime(start_at, "%d.%m.%Y")
+            # start_at = "{Y}-{m}-{d}".format(Y=start_at.year, m=start_at.month, d=start_at.day)
             if "=" in query:
                 query += ","
             query += f" start_at='{start_at}'"
         if contract_duration != None:
-            if contract_duration <= 0:
-                raise ValueError("Contract duration can't be less than 1")
+            # if contract_duration <= 0:
+            #     raise ValueError("Contract duration can't be less than 1")
             if "=" in query:
                 query += ","
-            query += f" contract_duration={contract_duration}"
+            query += f" contract_duration='{contract_duration}'"
         if requierments != None:
             if "=" in query:
                 query += ","
