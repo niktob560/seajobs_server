@@ -519,12 +519,14 @@ def get_vacations(request, position = " ", fleet = " ", countries = " ", salary_
         end_at = end_at.strip()
         sort = sort.strip()
         try:
+            pass
             # if start_at:
             #     start_at = datetime.strptime(start_at, "%d.%m.%Y")
             #     start_at = "{Y}-{m}-{d}".format(Y=start_at.year, m=start_at.month, d=start_at.day)
         except:
             start_at = ""
         try:
+            pass
             # if end_at:
             #     end_at = datetime.strptime(end_at, "%d.%m.%Y")
             #     end_at = "{Y}-{m}-{d}".format(Y=end_at.year, m=end_at.month, d=end_at.day)
