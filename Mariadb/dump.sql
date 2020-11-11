@@ -35,10 +35,10 @@ CREATE TABLE companies_requests (
 
 CREATE TABLE vacations (
   position VARCHAR(400),
-  salary INT UNSIGNED NOT NULL,
+  salary TEXT NOT NULL,
   fleet TEXT NOT NULL,
-  start_at DATE NOT NULL,
-  contract_duration INT UNSIGNED NOT NULL,
+  start_at TEXT NOT NULL,
+  contract_duration TEXT NOT NULL,
   company_email VARCHAR(200) NOT NULL,
   requierments VARCHAR(1024) DEFAULT ' ',
   fleet_construct_year INT NOT NULL,
