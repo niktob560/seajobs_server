@@ -66,9 +66,7 @@ CREATE TABLE files (
   name VARCHAR(200) PRIMARY KEY
 );
 
-CREATE INDEX vacations_salary ON vacations(salary);
 CREATE INDEX vacations_post ON vacations(post_date);
-CREATE INDEX vacations_start ON vacations(start_at);
 
 CREATE UNIQUE INDEX companies_email ON companies(email);
 CREATE UNIQUE INDEX users_email ON users(email);
