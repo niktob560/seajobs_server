@@ -1029,7 +1029,6 @@ def get_company_vacancies(request, company_email: str, limit: int = settings.MAX
             del data[i]["company_contry"]
             del data[i]["company_email"]
             data[i]["post_date"] = data[i]["post_date"].strftime("%d.%m.%Y %H:%M:%S")
-            data[i]["start_at"] = data[i]["start_at"].strftime("%d.%m.%Y")
     except Exception as e:
         return {"result": "err", "extra": f"{e}"}
     else:

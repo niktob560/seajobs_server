@@ -75,8 +75,4 @@ CREATE UNIQUE INDEX files_name ON files(name);
 
 -- Password is 1234
 -- TODO: change
-<<<<<<< HEAD
 INSERT INTO companies(name, password, salt, website, mobile_phone, email, country, city, address) VALUES ('Crewmarine', '5da37d7dbe98e16b5207813ced7da51d5025e200a5c3ca4ea966a4bac02c62d1ac8cff8028bdd6054bfb5ab0b67033e66fcb6a6bb487e8a0e10f31a9bf78c105', 'h78FjKOHydIoKRDS', '', '', 'admin@admin.admin', '', '', '') LIMIT 1;
-=======
-INSERT INTO companies(name, password, salt, website, mobile_phone, email, country, city, address) VALUES ('seajobs', '5da37d7dbe98e16b5207813ced7da51d5025e200a5c3ca4ea966a4bac02c62d1ac8cff8028bdd6054bfb5ab0b67033e66fcb6a6bb487e8a0e10f31a9bf78c105', 'h78FjKOHydIoKRDS', '', '', 'admin@seajobs.com', '', '', '') LIMIT 1;
->>>>>>> master
