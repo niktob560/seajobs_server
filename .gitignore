@@ -2,3 +2,4 @@ db.sqlite3
 Nginx/Logs
 DB
 api/seajobs_server/__pycache__
+Nginx/logs
